@@ -1,0 +1,278 @@
+[gd_scene load_steps=12 format=3 uid="uid://cysny571dnqgg"]
+
+[ext_resource type="Script" uid="uid://t3fdu2ep8s8s" path="res://Scripts/game.gd" id="1_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://bphs7vyy8sgbr" path="res://Scenes/single_letter_display.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://mu85yeukccao" path="res://Scenes/battle_background.tscn" id="3_wrm1d"]
+[ext_resource type="Script" uid="uid://dppu13r8bqi1i" path="res://Scripts/Classes/hover_button.gd" id="4_i6g32"]
+[ext_resource type="Texture2D" uid="uid://dc1idrifqyp47" path="res://Assets/Textures/Soul.png" id="5_1l0tm"]
+[ext_resource type="Script" uid="uid://but14krk8r2bv" path="res://Scripts/soul.gd" id="6_v158k"]
+[ext_resource type="PackedScene" uid="uid://ccry6m48yu1vj" path="res://Scenes/settings.tscn" id="7_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://bcrbsr0w8gphc" path="res://Scenes/win_loose_screen.tscn" id="8_v158k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wrm1d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxrlw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ebmjs"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qxrlw")
+
+[node name="Background" parent="." instance=ExtResource("3_wrm1d")]
+z_index = -5
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = 288.0
+offset_top = 32.0
+offset_right = 864.0
+offset_bottom = 400.0
+
+[node name="Input" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 368.0
+offset_top = 712.0
+offset_right = -408.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wrm1d")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_qxrlw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ebmjs")
+flat = true
+
+[node name="RowContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 64.0
+offset_bottom = -276.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Row1" type="HBoxContainer" parent="RowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Row2" type="HBoxContainer" parent="RowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Row3" type="HBoxContainer" parent="RowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Row4" type="HBoxContainer" parent="RowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Row5" type="HBoxContainer" parent="RowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Row6" type="HBoxContainer" parent="RowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Keyboard" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 400.0
+offset_right = 880.0
+offset_bottom = 624.0
+
+[node name="LetterContainer" type="VBoxContainer" parent="Keyboard"]
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 584.0
+offset_bottom = 192.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Keyboard/LetterContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="SingleLetterDisplay" parent="Keyboard/LetterContainer/HBoxContainer" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "Q"
+
+[node name="SingleLetterDisplay2" parent="Keyboard/LetterContainer/HBoxContainer" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "W"
+
+[node name="SingleLetterDisplay3" parent="Keyboard/LetterContainer/HBoxContainer" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "E"
+
+[node name="SingleLetterDisplay4" parent="Keyboard/LetterContainer/HBoxContainer" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "R"
+
+[node name="SingleLetterDisplay5" parent="Keyboard/LetterContainer/HBoxContainer" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "T"
+
+[node name="SingleLetterDisplay6" parent="Keyboard/LetterContainer/HBoxContainer" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "Y"
+
+[node name="SingleLetterDisplay7" parent="Keyboard/LetterContainer/HBoxContainer" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "U"
+
+[node name="SingleLetterDisplay8" parent="Keyboard/LetterContainer/HBoxContainer" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "I"
+
+[node name="SingleLetterDisplay9" parent="Keyboard/LetterContainer/HBoxContainer" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "O"
+
+[node name="SingleLetterDisplay10" parent="Keyboard/LetterContainer/HBoxContainer" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "P"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Keyboard/LetterContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="SingleLetterDisplay" parent="Keyboard/LetterContainer/HBoxContainer2" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "A"
+
+[node name="SingleLetterDisplay2" parent="Keyboard/LetterContainer/HBoxContainer2" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "S"
+
+[node name="SingleLetterDisplay3" parent="Keyboard/LetterContainer/HBoxContainer2" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "D"
+
+[node name="SingleLetterDisplay4" parent="Keyboard/LetterContainer/HBoxContainer2" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "F"
+
+[node name="SingleLetterDisplay5" parent="Keyboard/LetterContainer/HBoxContainer2" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "G"
+
+[node name="SingleLetterDisplay6" parent="Keyboard/LetterContainer/HBoxContainer2" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "H"
+
+[node name="SingleLetterDisplay7" parent="Keyboard/LetterContainer/HBoxContainer2" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "J"
+
+[node name="SingleLetterDisplay8" parent="Keyboard/LetterContainer/HBoxContainer2" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "K"
+
+[node name="SingleLetterDisplay9" parent="Keyboard/LetterContainer/HBoxContainer2" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "L"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Keyboard/LetterContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="SingleLetterDisplay8" parent="Keyboard/LetterContainer/HBoxContainer3" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "ENT"
+control_character = true
+
+[node name="SingleLetterDisplay" parent="Keyboard/LetterContainer/HBoxContainer3" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "Z"
+
+[node name="SingleLetterDisplay2" parent="Keyboard/LetterContainer/HBoxContainer3" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "X"
+
+[node name="SingleLetterDisplay3" parent="Keyboard/LetterContainer/HBoxContainer3" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "C"
+
+[node name="SingleLetterDisplay4" parent="Keyboard/LetterContainer/HBoxContainer3" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "V"
+
+[node name="SingleLetterDisplay5" parent="Keyboard/LetterContainer/HBoxContainer3" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "B"
+
+[node name="SingleLetterDisplay6" parent="Keyboard/LetterContainer/HBoxContainer3" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "N"
+
+[node name="SingleLetterDisplay7" parent="Keyboard/LetterContainer/HBoxContainer3" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "M"
+
+[node name="SingleLetterDisplay9" parent="Keyboard/LetterContainer/HBoxContainer3" instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+initial_letter = "BACK"
+control_character = true
+
+[node name="Menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 16.0
+offset_right = 1136.0
+offset_bottom = 128.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+text = "♡♥"
+script = ExtResource("4_i6g32")
+metadata/_custom_type_script = "uid://dppu13r8bqi1i"
+
+[node name="Soul" type="Sprite2D" parent="."]
+position = Vector2(576, 400)
+texture = ExtResource("5_1l0tm")
+script = ExtResource("6_v158k")
+metadata/_custom_type_script = "uid://but14krk8r2bv"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Settings" parent="." instance=ExtResource("7_1l0tm")]
+visible = false
+
+[node name="WinLooseScreen" parent="." instance=ExtResource("8_v158k")]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 224.0
+offset_top = 120.0
+offset_right = 928.0
+offset_bottom = 568.0
+
+[connection signal="text_changed" from="Input" to="." method="_on_input_text_changed"]
+[connection signal="text_submitted" from="Input" to="." method="_on_input_text_submitted"]
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

@@ -1,0 +1,139 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccry6m48yu1vj"]
+
+[ext_resource type="Script" uid="uid://c5d34ccje77ys" path="res://Scripts/settings.gd" id="1_lhmql"]
+[ext_resource type="Script" uid="uid://vr5mkkhvfged" path="res://Scripts/volume.gd" id="2_6kysc"]
+[ext_resource type="AudioStream" uid="uid://88bav1inm3pg" path="res://Assets/Audio/SFX/snd_menumove.wav" id="2_i44u3"]
+[ext_resource type="AudioStream" uid="uid://duoexkkgqo7vr" path="res://Assets/Audio/SFX/snd_save.wav" id="4_aaqfp"]
+
+[node name="Settings" type="Window"]
+oversampling_override = 1.0
+title = "< SETTINGS >"
+position = Vector2i(0, 32)
+size = Vector2i(940, 400)
+accessibility_name = "Settings"
+accessibility_description = "Volume Settings"
+script = ExtResource("1_lhmql")
+
+[node name="Background" type="Panel" parent="."]
+offset_left = -24.0
+offset_top = -40.0
+offset_right = 968.0
+offset_bottom = 632.0
+
+[node name="List" type="VBoxContainer" parent="Background"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 40.0
+offset_right = 952.0
+offset_bottom = 640.0
+
+[node name="MasterVolume" type="Control" parent="Background/List"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+script = ExtResource("2_6kysc")
+
+[node name="Name" type="Label" parent="Background/List/MasterVolume"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 208.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 30
+text = "MASTER VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Background/List/MasterVolume"]
+layout_mode = 0
+offset_left = 312.0
+offset_right = 408.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 30
+text = "0.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Background/List/MasterVolume"]
+layout_mode = 0
+offset_left = 408.0
+offset_right = 912.0
+offset_bottom = 64.0
+value = 100.0
+rounded = true
+
+[node name="SFXVolume" type="Control" parent="Background/List"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+script = ExtResource("2_6kysc")
+target_bus = "SFX"
+
+[node name="Name" type="Label" parent="Background/List/SFXVolume"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 208.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 30
+text = "SFX VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Background/List/SFXVolume"]
+layout_mode = 0
+offset_left = 312.0
+offset_right = 408.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 30
+text = "0.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Background/List/SFXVolume"]
+layout_mode = 0
+offset_left = 408.0
+offset_right = 912.0
+offset_bottom = 64.0
+value = 60.0
+rounded = true
+
+[node name="MusicVolume" type="Control" parent="Background/List"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+script = ExtResource("2_6kysc")
+target_bus = "Music"
+
+[node name="Name" type="Label" parent="Background/List/MusicVolume"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 208.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 30
+text = "MUSIC VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Background/List/MusicVolume"]
+layout_mode = 0
+offset_left = 312.0
+offset_right = 408.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 30
+text = "0.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Background/List/MusicVolume"]
+layout_mode = 0
+offset_left = 408.0
+offset_right = 912.0
+offset_bottom = 64.0
+value = 60.0
+rounded = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_i44u3")
+bus = &"SFX"
+
+[node name="AudioStreamPlayerSave" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_aaqfp")
+bus = &"SFX"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

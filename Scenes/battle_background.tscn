@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://mu85yeukccao"]
+
+[ext_resource type="Shader" uid="uid://b76v1dp1bb5lg" path="res://Assets/Shaders/scrolling.gdshader" id="1_08y17"]
+[ext_resource type="Texture2D" uid="uid://c86tqo2c8h1xs" path="res://Assets/Textures/Battlebit.png" id="2_j0nqg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_y8bq0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0nqg"]
+shader = ExtResource("1_08y17")
+shader_parameter/speed = 1.0
+shader_parameter/scroll_direction = Vector2(-1, -1)
+shader_parameter/pulse = false
+shader_parameter/transparency = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_207f5"]
+shader = ExtResource("1_08y17")
+shader_parameter/speed = 1.0
+shader_parameter/scroll_direction = Vector2(1, 1)
+shader_parameter/pulse = false
+shader_parameter/transparency = 0.5
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(575.75, 323.75)
+scale = Vector2(1152.5, 648.5)
+texture = SubResource("CanvasTexture_y8bq0")
+
+[node name="Scroll" type="TextureRect" parent="."]
+self_modulate = Color(0.164706, 0, 0.137255, 1)
+material = SubResource("ShaderMaterial_j0nqg")
+offset_right = 288.0
+offset_bottom = 162.0
+scale = Vector2(4, 4)
+texture = ExtResource("2_j0nqg")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Scroll2" type="TextureRect" parent="."]
+self_modulate = Color(0.298039, 0, 0.254902, 1)
+material = SubResource("ShaderMaterial_207f5")
+offset_top = -24.0
+offset_right = 288.0
+offset_bottom = 146.0
+scale = Vector2(4, 4)
+texture = ExtResource("2_j0nqg")
+expand_mode = 1
+stretch_mode = 1

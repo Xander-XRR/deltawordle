@@ -1,0 +1,284 @@
+[gd_scene load_steps=23 format=3 uid="uid://b6d0x2ax8xwx3"]
+
+[ext_resource type="Script" uid="uid://dpev51smmvqvu" path="res://Scripts/main.gd" id="1_bo1nx"]
+[ext_resource type="FontFile" uid="uid://3r7txihx6e0f" path="res://Assets/Fonts/deltarune.ttf" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://dppu13r8bqi1i" path="res://Scripts/Classes/hover_button.gd" id="3_8gbba"]
+[ext_resource type="Shader" uid="uid://cjddlxpfdytji" path="res://Assets/Shaders/prophecy.gdshader" id="4_344ge"]
+[ext_resource type="Texture2D" uid="uid://dc1idrifqyp47" path="res://Assets/Textures/Soul.png" id="4_jjvhh"]
+[ext_resource type="Script" uid="uid://but14krk8r2bv" path="res://Scripts/soul.gd" id="5_kry3j"]
+[ext_resource type="Shader" uid="uid://b76v1dp1bb5lg" path="res://Assets/Shaders/scrolling.gdshader" id="6_6iyac"]
+[ext_resource type="PackedScene" uid="uid://dig01yp5h8yvc" path="res://Scenes/new_game_prompt.tscn" id="8_344ge"]
+[ext_resource type="Texture2D" uid="uid://qaabvpl4dehh" path="res://Assets/Textures/dog.webp" id="10_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://cicseh5k1fjt1" path="res://Scenes/fountain.tscn" id="11_d1ilt"]
+[ext_resource type="Texture2D" uid="uid://jbleisj27vmy" path="res://Assets/Textures/DepthsBright.png" id="11_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://ccry6m48yu1vj" path="res://Scenes/settings.tscn" id="12_6iyac"]
+[ext_resource type="Shader" uid="uid://cn1yj7ba73mt" path="res://Assets/Shaders/border.gdshader" id="12_k12tt"]
+[ext_resource type="AudioStream" uid="uid://p8j7papjwu8k" path="res://Assets/Audio/Music/menu.ogg" id="13_fdnlq"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wsu2k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wsu2k"]
+shader = ExtResource("4_344ge")
+shader_parameter/Scroll_Texture = ExtResource("11_wsu2k")
+shader_parameter/Use_Original_Texture = false
+shader_parameter/Scrolling_Speed = Vector2(-1, -1)
+shader_parameter/Time_Scale = 0.1
+shader_parameter/Texture_Scale = 1.0
+shader_parameter/Height = 8.0
+shader_parameter/Cycles = 0.4
+shader_parameter/Offset = 0.0
+shader_parameter/Distance = 128.0
+shader_parameter/Count = 2
+shader_parameter/Fade = 0.25
+shader_parameter/Start_Alpha = 0.8
+shader_parameter/Tint_Amount = 0.5
+shader_parameter/Tint = Color(1, 1, 1, 1)
+shader_parameter/Pulse_both_Directions = false
+shader_parameter/Diagonal_Angle = 45.0
+shader_parameter/Echo_Blend_Mode = 0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_k12tt"]
+viewport_path = NodePath("SubViewportContainer/TitleDogSubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_344ge"]
+shader = ExtResource("4_344ge")
+shader_parameter/Scroll_Texture = ExtResource("11_wsu2k")
+shader_parameter/Use_Original_Texture = false
+shader_parameter/Scrolling_Speed = Vector2(-1, -1)
+shader_parameter/Time_Scale = 0.1
+shader_parameter/Texture_Scale = 1.0
+shader_parameter/Height = 8.0
+shader_parameter/Cycles = 0.3
+shader_parameter/Offset = 0.0
+shader_parameter/Distance = 35.0
+shader_parameter/Count = 2
+shader_parameter/Fade = 0.25
+shader_parameter/Start_Alpha = 0.8
+shader_parameter/Tint_Amount = 0.5
+shader_parameter/Tint = Color(1, 1, 1, 1)
+shader_parameter/Pulse_both_Directions = false
+shader_parameter/Diagonal_Angle = 45.0
+shader_parameter/Echo_Blend_Mode = 0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6iyac"]
+viewport_path = NodePath("SubViewportContainer/TitleSubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h1bgf"]
+shader = ExtResource("12_k12tt")
+shader_parameter/border_thickness = 10.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b3802"]
+viewport_path = NodePath("SubViewportContainer/TitleBorderSubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdsj5"]
+shader = ExtResource("6_6iyac")
+shader_parameter/speed = 10.0
+shader_parameter/scroll_direction = Vector2(1, 1)
+shader_parameter/pulse = true
+shader_parameter/transparency = 0.5
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bo1nx")
+
+[node name="ScreenTint" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(0, 0, 0, 0.490196)
+z_index = 1
+position = Vector2(575.75, 323.75)
+scale = Vector2(1152.5, 648.5)
+texture = SubResource("CanvasTexture_wsu2k")
+
+[node name="Soul" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(576, 200)
+texture = ExtResource("4_jjvhh")
+script = ExtResource("5_kry3j")
+metadata/_custom_type_script = "uid://but14krk8r2bv"
+
+[node name="TitleDog" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_wsu2k")
+position = Vector2(576, 111.99999)
+scale = Vector2(1.25, 1.25)
+texture = SubResource("ViewportTexture_k12tt")
+
+[node name="TitleShadered" type="Sprite2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_344ge")
+position = Vector2(584, 112)
+texture = SubResource("ViewportTexture_6iyac")
+
+[node name="TitleBorder" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_h1bgf")
+position = Vector2(576, 114)
+scale = Vector2(1, 0.934783)
+texture = SubResource("ViewportTexture_b3802")
+
+[node name="Button_Manager" type="Node" parent="."]
+
+[node name="Start" type="Button" parent="Button_Manager"]
+offset_left = 416.0
+offset_top = 232.0
+offset_right = 736.0
+offset_bottom = 352.0
+focus_neighbor_top = NodePath("../Quit")
+focus_neighbor_bottom = NodePath("../Credits")
+focus_next = NodePath("../Credits")
+focus_previous = NodePath("../Settings")
+theme_override_font_sizes/font_size = 20
+text = "START"
+script = ExtResource("3_8gbba")
+soul_offset = Vector2(93, 0)
+metadata/_custom_type_script = "uid://dppu13r8bqi1i"
+
+[node name="Credits" type="Button" parent="Button_Manager"]
+offset_left = 248.0
+offset_top = 360.0
+offset_right = 568.0
+offset_bottom = 480.0
+focus_neighbor_left = NodePath("../License")
+focus_neighbor_top = NodePath("../Start")
+focus_neighbor_right = NodePath("../License")
+focus_neighbor_bottom = NodePath("../Settings")
+focus_next = NodePath("../License")
+focus_previous = NodePath("../Start")
+text = "CREDITS"
+script = ExtResource("3_8gbba")
+soul_offset = Vector2(75, 0)
+metadata/_custom_type_script = "uid://dppu13r8bqi1i"
+
+[node name="License" type="Button" parent="Button_Manager"]
+offset_left = 584.0
+offset_top = 360.0
+offset_right = 904.0
+offset_bottom = 480.0
+focus_neighbor_left = NodePath("../Credits")
+focus_neighbor_top = NodePath("../Start")
+focus_neighbor_right = NodePath("../Credits")
+focus_neighbor_bottom = NodePath("../Quit")
+focus_next = NodePath("../Settings")
+focus_previous = NodePath("../Credits")
+text = "LICENSE"
+script = ExtResource("3_8gbba")
+soul_offset = Vector2(75, 0)
+metadata/_custom_type_script = "uid://dppu13r8bqi1i"
+
+[node name="Settings" type="Button" parent="Button_Manager"]
+offset_left = 248.0
+offset_top = 488.0
+offset_right = 568.0
+offset_bottom = 608.0
+focus_neighbor_left = NodePath("../Quit")
+focus_neighbor_top = NodePath("../Credits")
+focus_neighbor_right = NodePath("../Quit")
+focus_neighbor_bottom = NodePath("../Start")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../License")
+theme_override_font_sizes/font_size = 20
+text = "SETTINGS"
+script = ExtResource("3_8gbba")
+soul_offset = Vector2(65, 0)
+metadata/_custom_type_script = "uid://dppu13r8bqi1i"
+
+[node name="Quit" type="Button" parent="Button_Manager"]
+offset_left = 584.0
+offset_top = 488.0
+offset_right = 904.0
+offset_bottom = 608.0
+focus_neighbor_left = NodePath("../Settings")
+focus_neighbor_top = NodePath("../License")
+focus_neighbor_right = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../Start")
+focus_next = NodePath("../Start")
+focus_previous = NodePath("../Settings")
+theme_override_font_sizes/font_size = 20
+text = "QUIT PROGRAM"
+script = ExtResource("3_8gbba")
+soul_offset = Vector2(37, 0)
+metadata/_custom_type_script = "uid://dppu13r8bqi1i"
+
+[node name="BGPanel" type="Panel" parent="Button_Manager"]
+self_modulate = Color(1, 1, 1, 0.784314)
+z_index = -1
+offset_left = 144.0
+offset_top = 208.0
+offset_right = 1008.0
+offset_bottom = 632.0
+mouse_filter = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_top = 648.0
+offset_right = 1152.0
+offset_bottom = 1208.0
+
+[node name="TitleSubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1152, 256)
+render_target_update_mode = 4
+
+[node name="Title" type="Label" parent="SubViewportContainer/TitleSubViewport"]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 1120.0
+offset_bottom = 264.0
+theme_override_fonts/font = ExtResource("1_jjgbg")
+theme_override_font_sizes/font_size = 120
+text = "DELTAWORDLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleBorderSubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(832, 184)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/TitleBorderSubViewport"]
+material = SubResource("ShaderMaterial_pdsj5")
+offset_right = 832.0
+offset_bottom = 184.0
+texture = ExtResource("11_wsu2k")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TitleDogSubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(125, 110)
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/TitleDogSubViewport"]
+position = Vector2(64, 56)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_jkdf5")
+
+[node name="Fountain" parent="." instance=ExtResource("11_d1ilt")]
+
+[node name="NewGamePrompt" parent="." instance=ExtResource("8_344ge")]
+visible = false
+
+[node name="MainMenuSettings" parent="." instance=ExtResource("12_6iyac")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_fdnlq")
+bus = &"Music"
+
+[connection signal="pressed" from="Button_Manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button_Manager/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Button_Manager/License" to="." method="_on_info_pressed"]
+[connection signal="pressed" from="Button_Manager/License" to="." method="_on_license_pressed"]
+[connection signal="pressed" from="Button_Manager/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Button_Manager/Quit" to="." method="_on_quit_pressed"]
+[connection signal="close_requested" from="NewGamePrompt" to="." method="_on_new_game_prompt_close_requested"]
+[connection signal="close_requested" from="MainMenuSettings" to="." method="_on_settings_close_requested"]

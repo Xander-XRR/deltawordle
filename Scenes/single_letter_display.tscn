@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://bphs7vyy8sgbr"]
+
+[ext_resource type="Script" uid="uid://cx26oux6amqj0" path="res://Scripts/Classes/single_letter_display.gd" id="1_y72g1"]
+[ext_resource type="Script" uid="uid://gg71tmcuo2od" path="res://Scripts/Classes/soul_magnet.gd" id="2_yuh56"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6qo5x"]
+load_path = "res://.godot/imported/InputTexture.png-24f15ab5bee54bc31d539352420b2119.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yuh56"]
+texture = SubResource("CompressedTexture2D_6qo5x")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(498, 198, 288, 288)
+
+[node name="SingleLetterDisplay" type="Control"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 48.0
+mouse_filter = 1
+script = ExtResource("1_y72g1")
+metadata/_custom_type_script = "uid://cx26oux6amqj0"
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_yuh56")
+
+[node name="Label" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 48.0
+offset_bottom = 48.0
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="SoulMagnet" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 48.0
+script = ExtResource("2_yuh56")
+soul_offset = Vector2(24, 0)
+metadata/_custom_type_script = "uid://gg71tmcuo2od"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="SoulMagnet" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="SoulMagnet" to="." method="_on_control_mouse_exited"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcrbsr0w8gphc"]
+
+[ext_resource type="Script" uid="uid://u66sgvlf473r" path="res://Scripts/win_loose_screen.gd" id="1_jc186"]
+
+[node name="WinLooseScreen" type="Panel"]
+offset_right = 704.0
+offset_bottom = 448.0
+script = ExtResource("1_jc186")
+
+[node name="Announcement" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 680.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 75
+text = "YOU EXIST!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Word" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 160.0
+offset_right = 680.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 30
+text = "THE CORRECT WORD WAS: word"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnTitle" type="Button" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 256.0
+offset_right = 320.0
+offset_bottom = 384.0
+text = "RETURN TO TITLE"
+
+[node name="NewGame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 256.0
+offset_right = 608.0
+offset_bottom = 384.0
+text = "NEW GAME"
+
+[connection signal="pressed" from="ReturnTitle" to="." method="_on_return_title_pressed"]
+[connection signal="pressed" from="NewGame" to="." method="_on_new_game_pressed"]

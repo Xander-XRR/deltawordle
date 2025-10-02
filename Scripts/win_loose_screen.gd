@@ -7,7 +7,7 @@ extends DeltaWindow
 
 
 func announce(won: bool, w_word: String):
-	visible = true
+	window_popup(true)
 	
 	var win_state = "WON" if won else "LOST"
 	

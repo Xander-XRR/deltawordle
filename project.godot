@@ -13,7 +13,8 @@ config_version=5
 config/name="DeltaWordle"
 run/main_scene="uid://confh3gqckh72"
 config/features=PackedStringArray("4.5", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://cnpu2tdw0csvq"
+config/windows_native_icon="res://Assets/Textures/icon.ico"
 
 [autoload]
 

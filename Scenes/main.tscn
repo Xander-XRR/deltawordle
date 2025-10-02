@@ -353,10 +353,10 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 11
 layout_mode = 0
-offset_left = 240.0
-offset_top = 140.79999
-offset_right = 1200.0
-offset_bottom = 652.7999
+offset_left = 336.0
+offset_top = 191.99997
+offset_right = 1296.0
+offset_bottom = 703.9999
 scale = Vector2(0.9, 0.9)
 
 [node name="NewGamePrompt" parent="." instance=ExtResource("8_344ge")]
@@ -364,10 +364,10 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 11
 layout_mode = 0
-offset_left = 294.0
-offset_top = 153.20001
-offset_right = 994.0
-offset_bottom = 565.19995
+offset_left = 364.0
+offset_top = 194.40001
+offset_right = 1064.0
+offset_bottom = 606.4
 scale = Vector2(0.9, 0.9)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]

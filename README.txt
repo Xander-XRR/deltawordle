@@ -30,6 +30,7 @@ Sprites:
 	Battle Menu (Deltarune) - https://www.spriters-resource.com/pc_computer/deltarune/asset/110733/
 	HUD (Deltarune) - https://www.spriters-resource.com/pc_computer/deltarune/asset/110943/
 	Dark Fountains (Deltarune) - https://www.spriters-resource.com/pc_computer/deltarune/asset/183527/
+	Church Prophecy Panels (Deltarune) - https://www.spriters-resource.com/pc_computer/deltarune/asset/273065/
 
 Fonts:
 	undertale deltarune text font extended - https://fontstruct.com/fontstructions/show/2008226/undertale-deltarune-text-font-extended

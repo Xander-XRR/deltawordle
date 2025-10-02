@@ -3,18 +3,18 @@
 [ext_resource type="Script" uid="uid://u66sgvlf473r" path="res://Scripts/win_loose_screen.gd" id="1_jc186"]
 [ext_resource type="Script" uid="uid://dppu13r8bqi1i" path="res://Scripts/Classes/hover_button.gd" id="2_1bebs"]
 
-[node name="WinLoseScreen" type="Panel"]
+[node name="WinLooseScreen" type="Panel"]
 custom_minimum_size = Vector2(300, 100)
-offset_right = 576.0
+offset_right = 640.0
 offset_bottom = 384.0
 script = ExtResource("1_jc186")
 metadata/_custom_type_script = "uid://bx0enhrxijss5"
 
 [node name="Announcement" type="Label" parent="."]
 layout_mode = 0
-offset_left = 136.0
+offset_left = 160.0
 offset_top = 80.0
-offset_right = 448.0
+offset_right = 480.0
 offset_bottom = 161.0
 theme_override_font_sizes/font_size = 40
 text = "YOU EXIST!"
@@ -23,9 +23,9 @@ vertical_alignment = 1
 
 [node name="Word" type="Label" parent="."]
 layout_mode = 0
-offset_left = 64.0
+offset_left = 96.0
 offset_top = 160.0
-offset_right = 512.0
+offset_right = 544.0
 offset_bottom = 224.0
 theme_override_font_sizes/font_size = 20
 text = "THE CORRECT WORD WAS: word"
@@ -34,19 +34,20 @@ vertical_alignment = 1
 
 [node name="BackToTitle" type="Button" parent="."]
 layout_mode = 0
-offset_left = 304.0
+offset_left = 328.0
 offset_top = 232.0
-offset_right = 528.0
+offset_right = 600.0
 offset_bottom = 344.0
 text = "RETURN TO TITLE"
 script = ExtResource("2_1bebs")
+text_size_overrides = Vector2i(17, 22)
 metadata/_custom_type_script = "uid://dppu13r8bqi1i"
 
 [node name="NewGame" type="Button" parent="."]
 layout_mode = 0
-offset_left = 48.0
+offset_left = 40.0
 offset_top = 232.0
-offset_right = 272.0
+offset_right = 312.0
 offset_bottom = 344.0
 text = "NEW GAME"
 script = ExtResource("2_1bebs")

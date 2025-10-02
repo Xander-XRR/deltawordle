@@ -123,7 +123,6 @@ func check_if_valid_word() -> void:
 	await reveal_text_correctness()
 	
 	if input.text == selected_word:
-		win_loose_screen.window_popup(true)
 		win_loose_screen.announce(true, selected_word)
 		return
 	else:
@@ -134,7 +133,6 @@ func check_if_valid_word() -> void:
 			tween.tween_property(music_player, "pitch_scale", 1.15, 0.5)
 		
 		if current_row > 5:
-			win_loose_screen.window_popup(true)
 			win_loose_screen.announce(false, selected_word)
 			var tween = create_tween()
 			tween.tween_property(music_player, "pitch_scale", 0.85, 0.5)

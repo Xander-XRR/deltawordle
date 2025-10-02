@@ -1,0 +1,136 @@
+[gd_scene load_steps=20 format=3 uid="uid://dlumkdo5swhhb"]
+
+[ext_resource type="Script" uid="uid://cfku2sb4xjaak" path="res://Scripts/battle.gd" id="1_lrv64"]
+[ext_resource type="Script" uid="uid://1o460j08x4ga" path="res://Scripts/thing.gd" id="2_486ce"]
+[ext_resource type="Texture2D" uid="uid://b6f6biwrs5130" path="res://Assets/Textures/Thing_body.png" id="2_ww2ai"]
+[ext_resource type="Texture2D" uid="uid://baiha35s627lw" path="res://Assets/Textures/Thing_head.png" id="3_lrv64"]
+[ext_resource type="Texture2D" uid="uid://7s287xk7pj3h" path="res://Assets/Textures/Thing_wing1.png" id="4_qeyqd"]
+[ext_resource type="Texture2D" uid="uid://ygw11p4g75v" path="res://Assets/Textures/Thing_wing2.png" id="5_k7mbx"]
+[ext_resource type="Texture2D" uid="uid://csdcijlt3adtw" path="res://Assets/Textures/Thing_wing3.png" id="6_upb72"]
+[ext_resource type="Texture2D" uid="uid://jli8td2grxni" path="res://Assets/Textures/Thing_wing4.png" id="7_rssjf"]
+[ext_resource type="Script" uid="uid://bki8k0faoujhr" path="res://Scripts/echo_particle_emitter.gd" id="8_qeyqd"]
+[ext_resource type="AudioStream" uid="uid://be8tw8hi5r6pr" path="res://Assets/Audio/_/statue_level1.ogg" id="9_k7mbx"]
+[ext_resource type="AudioStream" uid="uid://cbmrki82rog6i" path="res://Assets/Audio/_/statue_chord_basic.ogg" id="9_qeyqd"]
+[ext_resource type="AudioStream" uid="uid://dd85g60mjpdi3" path="res://Assets/Audio/_/statue_level2.ogg" id="11_7vlph"]
+[ext_resource type="AudioStream" uid="uid://bj2xd4tnojcht" path="res://Assets/Audio/_/statue_level3.ogg" id="12_486ce"]
+[ext_resource type="AudioStream" uid="uid://dnkojptoonhgg" path="res://Assets/Audio/_/statue_level4.ogg" id="13_387br"]
+[ext_resource type="AudioStream" uid="uid://0yjtodiyucjk" path="res://Assets/Audio/_/statue2_level1.ogg" id="14_emx8f"]
+[ext_resource type="AudioStream" uid="uid://btmkmg3tam5mv" path="res://Assets/Audio/_/statue2_level2.ogg" id="15_kcxpu"]
+[ext_resource type="AudioStream" uid="uid://b134ni7m75tk7" path="res://Assets/Audio/_/statue2_level3.ogg" id="16_hgaye"]
+[ext_resource type="AudioStream" uid="uid://bo4q477ovh8nm" path="res://Assets/Audio/_/statue2_level4.ogg" id="17_cwdtu"]
+[ext_resource type="AudioStream" uid="uid://db0ukbb76gd2m" path="res://Assets/Audio/_/statue2_level5.ogg" id="18_ljaiu"]
+
+[node name="Battle" type="ColorRect"]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_lrv64")
+
+[node name="Thing" type="Node2D" parent="."]
+z_index = 4
+position = Vector2(0, 24)
+script = ExtResource("2_486ce")
+
+[node name="ThingBody" type="Sprite2D" parent="Thing"]
+position = Vector2(576, 320)
+scale = Vector2(4, 4)
+texture = ExtResource("2_ww2ai")
+
+[node name="ThingHead" type="Sprite2D" parent="Thing"]
+position = Vector2(576, 320)
+scale = Vector2(4, 4)
+texture = ExtResource("3_lrv64")
+
+[node name="ThingWing1" type="Sprite2D" parent="Thing"]
+position = Vector2(560, 256)
+scale = Vector2(4, 4)
+texture = ExtResource("4_qeyqd")
+
+[node name="ThingWing2" type="Sprite2D" parent="Thing"]
+position = Vector2(576, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("5_k7mbx")
+
+[node name="ThingWing3" type="Sprite2D" parent="Thing"]
+position = Vector2(560, 336)
+scale = Vector2(4, 4)
+texture = ExtResource("6_upb72")
+
+[node name="ThingWing4" type="Sprite2D" parent="Thing"]
+position = Vector2(592, 320)
+scale = Vector2(4, 4)
+texture = ExtResource("7_rssjf")
+
+[node name="EchoParticleEmitter" type="Node2D" parent="."]
+position = Vector2(576, 320)
+script = ExtResource("8_qeyqd")
+
+[node name="MusicPlayerChord" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_qeyqd")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="MusicLevels" type="Node" parent="."]
+
+[node name="StatueLevel1" type="AudioStreamPlayer" parent="MusicLevels"]
+stream = ExtResource("9_k7mbx")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="StatueLevel2" type="AudioStreamPlayer" parent="MusicLevels"]
+stream = ExtResource("11_7vlph")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="StatueLevel3" type="AudioStreamPlayer" parent="MusicLevels"]
+stream = ExtResource("12_486ce")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="StatueLevel4" type="AudioStreamPlayer" parent="MusicLevels"]
+stream = ExtResource("13_387br")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="Statue2Level1" type="AudioStreamPlayer" parent="MusicLevels"]
+stream = ExtResource("14_emx8f")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="Statue2Level2" type="AudioStreamPlayer" parent="MusicLevels"]
+stream = ExtResource("15_kcxpu")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="Statue2Level3" type="AudioStreamPlayer" parent="MusicLevels"]
+stream = ExtResource("16_hgaye")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="Statue2Level4" type="AudioStreamPlayer" parent="MusicLevels"]
+stream = ExtResource("17_cwdtu")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="Statue2Level5" type="AudioStreamPlayer" parent="MusicLevels"]
+stream = ExtResource("18_ljaiu")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true

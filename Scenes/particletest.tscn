@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c30l628ceohw5"]
+
+[ext_resource type="PackedScene" uid="uid://bock1hddw04nc" path="res://Scenes/echo_particle.tscn" id="1_1nfgr"]
+
+[node name="PARTICLETEST" type="Node2D"]
+
+[node name="EchoParticle" parent="." instance=ExtResource("1_1nfgr")]
+position = Vector2(544, 328)

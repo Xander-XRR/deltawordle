@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxs6e521xet4b"]
+
+[ext_resource type="StyleBox" uid="uid://bd1clh85su2yv" path="res://Assets/Styles/deltarune_display_orange_style.tres" id="1_gcop3"]
+[ext_resource type="Script" uid="uid://lrcft752pxvk" path="res://Scripts/letter_display.gd" id="1_pvun4"]
+
+[node name="LetterDisplay" type="Panel"]
+custom_minimum_size = Vector2(48, 48)
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_styles/panel = ExtResource("1_gcop3")
+script = ExtResource("1_pvun4")
+
+[node name="LetterLabel" type="Label" parent="."]
+z_index = 1
+layout_mode = 0
+offset_top = -15.0
+offset_right = 48.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 40
+text = "@"
+horizontal_alignment = 1
+vertical_alignment = 1

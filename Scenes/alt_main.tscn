@@ -1,0 +1,184 @@
+[gd_scene load_steps=11 format=3 uid="uid://18g316md6k3t"]
+
+[ext_resource type="Script" uid="uid://d4megyjmtx47o" path="res://Scripts/Classes/rich_text_button.gd" id="1_i12fn"]
+[ext_resource type="StyleBox" uid="uid://d2syknyok7j2h" path="res://Assets/Styles/deltarune_display_green_style.tres" id="1_n3mej"]
+[ext_resource type="Script" uid="uid://cqrqg8x84c2g7" path="res://Scripts/alt_main.gd" id="1_rocl8"]
+[ext_resource type="AudioStream" uid="uid://leqsh2wn672g" path="res://Assets/Audio/Music/northernlight.ogg" id="4_qecqd"]
+[ext_resource type="AudioStream" uid="uid://dhsjlvcphltd" path="res://Assets/Audio/SFX/snd_noise.wav" id="6_geikc"]
+[ext_resource type="PackedScene" uid="uid://c5us06nqukqcs" path="res://Scenes/thank_you.tscn" id="7_84jcf"]
+[ext_resource type="AudioStream" uid="uid://c825y4qxn3lfk" path="res://Assets/Audio/SFX/snd_select.wav" id="7_hxl1r"]
+[ext_resource type="PackedScene" uid="uid://ccry6m48yu1vj" path="res://Scenes/settings.tscn" id="8_geikc"]
+[ext_resource type="PackedScene" uid="uid://lmy5hbkudrqk" path="res://Scenes/alt_new_game_prompt.tscn" id="10_prob0"]
+[ext_resource type="Script" uid="uid://but14krk8r2bv" path="res://Scripts/soul.gd" id="10_wdl2b"]
+
+[node name="alt_main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rocl8")
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 224.0
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[color=green]DELTAWORDLE[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleBackground" type="Panel" parent="Title"]
+self_modulate = Color(0, 1, 0, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 224.0
+offset_top = 40.0
+offset_right = 928.0
+offset_bottom = 176.0
+theme_override_styles/panel = ExtResource("1_n3mej")
+
+[node name="Descriptions" type="Label" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 576.0
+offset_top = 256.0
+offset_right = 1024.0
+offset_bottom = 448.0
+theme_override_font_sizes/font_size = 31
+autowrap_mode = 2
+
+[node name="Start" type="RichTextLabel" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 256.0
+offset_right = 384.0
+offset_bottom = 320.0
+theme_override_font_sizes/normal_font_size = 31
+text = "NEW GAME"
+vertical_alignment = 1
+script = ExtResource("1_i12fn")
+metadata/_custom_type_script = "uid://d4megyjmtx47o"
+
+[node name="Settings" type="RichTextLabel" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 320.0
+offset_right = 384.0
+offset_bottom = 384.0
+theme_override_font_sizes/normal_font_size = 31
+text = "SETTINGS"
+vertical_alignment = 1
+script = ExtResource("1_i12fn")
+metadata/_custom_type_script = "uid://d4megyjmtx47o"
+
+[node name="Credits" type="RichTextLabel" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 384.0
+offset_right = 384.0
+offset_bottom = 448.0
+theme_override_font_sizes/normal_font_size = 31
+text = "CREDITS"
+vertical_alignment = 1
+script = ExtResource("1_i12fn")
+metadata/_custom_type_script = "uid://d4megyjmtx47o"
+
+[node name="License" type="RichTextLabel" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 448.0
+offset_right = 384.0
+offset_bottom = 512.0
+theme_override_font_sizes/normal_font_size = 31
+text = "LICENSE"
+vertical_alignment = 1
+script = ExtResource("1_i12fn")
+metadata/_custom_type_script = "uid://d4megyjmtx47o"
+
+[node name="Quit" type="RichTextLabel" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 512.0
+offset_right = 544.0
+offset_bottom = 576.0
+theme_override_font_sizes/normal_font_size = 31
+text = "EXIT APPLICATION"
+vertical_alignment = 1
+script = ExtResource("1_i12fn")
+metadata/_custom_type_script = "uid://d4megyjmtx47o"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qecqd")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="SFXPlayerNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_geikc")
+bus = &"SFX"
+
+[node name="SFXPlayerSelect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_hxl1r")
+bus = &"SFX"
+
+[node name="ThankYou" parent="." instance=ExtResource("7_84jcf")]
+visible = false
+layout_mode = 0
+
+[node name="BackgroundFade" type="ColorRect" parent="."]
+visible = false
+self_modulate = Color(0, 0, 0, 0.49019608)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="AltMenuSettings" parent="." instance=ExtResource("8_geikc")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 144.0
+offset_top = 97.6
+offset_right = 1104.0
+offset_bottom = 609.6
+scale = Vector2(0.9, 0.9)
+theme_override_styles/panel = ExtResource("1_n3mej")
+
+[node name="AltNewGamePrompt" parent="." instance=ExtResource("10_prob0")]
+visible = false
+layout_mode = 0
+offset_left = 224.0
+offset_top = 96.0
+offset_right = 928.0
+offset_bottom = 544.0
+
+[node name="Soul" type="Sprite2D" parent="."]
+script = ExtResource("10_wdl2b")
+metadata/_custom_type_script = "uid://but14krk8r2bv"
+
+[connection signal="hovered" from="Start" to="." method="_on_start_hovered"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="hovered" from="Settings" to="." method="_on_settings_hovered"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="hovered" from="Credits" to="." method="_on_credits_hovered"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
+[connection signal="hovered" from="License" to="." method="_on_license_hovered"]
+[connection signal="pressed" from="License" to="." method="_on_license_pressed"]
+[connection signal="hovered" from="Quit" to="." method="_on_quit_hovered"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="close_requested" from="AltMenuSettings" to="." method="_on_alt_menu_settings_close_requested"]
+[connection signal="close_requested" from="AltNewGamePrompt" to="." method="_on_new_game_prompt_close_requested"]

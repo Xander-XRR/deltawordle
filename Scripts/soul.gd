@@ -30,7 +30,6 @@ func _process(delta: float) -> void:
 		State.FREE:
 			var tween = create_tween()
 			tween.tween_property(self, "global_position", get_global_mouse_position(), 0.1)
-			#global_position = get_global_mouse_position()
 	
 
 func _on_set_ownership(is_owned: bool) -> void:

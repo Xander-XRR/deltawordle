@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c5us06nqukqcs"]
+
+[node name="ThankYou" type="ColorRect"]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1088.0
+offset_bottom = 432.0
+theme_override_font_sizes/font_size = 40
+text = "THANK YOU FOR YOUR FEEDBACK.
+WE WILL SEE YOU SOON!"

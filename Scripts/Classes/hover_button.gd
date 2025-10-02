@@ -31,7 +31,8 @@ func _ready() -> void:
 	
 
 func set_icon() -> void:
-	set_theme_font_override_smooth(text_size_overrides.y)
+	if !disabled:
+		set_theme_font_override_smooth(text_size_overrides.y)
 	
 
 func rid_icon() -> void:

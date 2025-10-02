@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://lmy5hbkudrqk"]
+
+[ext_resource type="StyleBox" uid="uid://d2syknyok7j2h" path="res://Assets/Styles/deltarune_display_green_style.tres" id="1_51pjf"]
+[ext_resource type="Script" uid="uid://bwg6u8il08u62" path="res://Scripts/alt_new_game_prompt.gd" id="2_h7hsh"]
+[ext_resource type="StyleBox" uid="uid://tvhujlkqqybi" path="res://Assets/Styles/deltarune_close_button_style_normal.tres" id="3_anyew"]
+[ext_resource type="StyleBox" uid="uid://6iafa18xitft" path="res://Assets/Styles/deltarune_close_button_style_pressed.tres" id="4_a1w2p"]
+[ext_resource type="StyleBox" uid="uid://boe2nk1qgyai3" path="res://Assets/Styles/deltarune_close_button_style_hovered.tres" id="5_1phbv"]
+[ext_resource type="AudioStream" uid="uid://dhsjlvcphltd" path="res://Assets/Audio/SFX/snd_noise.wav" id="6_1phbv"]
+[ext_resource type="AudioStream" uid="uid://c825y4qxn3lfk" path="res://Assets/Audio/SFX/snd_select.wav" id="7_pscim"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i0ksk"]
+size = Vector2(15, 10)
+
+[node name="AltNewGamePrompt" type="Panel"]
+modulate = Color(0, 1, 0, 1)
+offset_right = 704.0
+offset_bottom = 448.0
+theme_override_styles/panel = ExtResource("1_51pjf")
+script = ExtResource("2_h7hsh")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 304.0
+offset_bottom = 73.0
+theme_override_font_sizes/font_size = 28
+text = "< NEW PROJECT >"
+
+[node name="AmountTitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 88.0
+offset_right = 371.0
+offset_bottom = 129.0
+theme_override_font_sizes/font_size = 20
+text = "SELECT LEVEL OF DIFFICULTY"
+
+[node name="LetterOptions" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 128.0
+offset_right = 512.0
+offset_bottom = 240.0
+theme_override_font_sizes/font_size = 20
+theme_override_icons/icon = SubResource("PlaceholderTexture2D_i0ksk")
+theme_override_styles/normal = ExtResource("1_51pjf")
+theme_override_styles/pressed = ExtResource("1_51pjf")
+theme_override_styles/hover = ExtResource("1_51pjf")
+theme_override_styles/hover_pressed = ExtResource("1_51pjf")
+theme_override_styles/disabled = ExtResource("1_51pjf")
+theme_override_styles/focus = ExtResource("1_51pjf")
+selected = 0
+item_count = 1
+popup/item_0/text = "[^&][%NO-DESC::&x46494E44484552]"
+popup/item_0/id = 4
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 128.0
+offset_right = 512.0
+offset_bottom = 240.0
+theme_override_font_sizes/font_size = 20
+text = "[^&][%NO-DESC::&x46494E44484552]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 664.0
+offset_top = 16.0
+offset_right = 684.0
+offset_bottom = 36.0
+theme_override_styles/normal = ExtResource("3_anyew")
+theme_override_styles/pressed = ExtResource("4_a1w2p")
+theme_override_styles/hover = ExtResource("5_1phbv")
+theme_override_styles/hover_pressed = ExtResource("4_a1w2p")
+
+[node name="SFXPlayerNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1phbv")
+bus = &"SFX"
+
+[node name="SFXPlayerSelect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_pscim")
+bus = &"SFX"
+
+[node name="StartNewGame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 320.0
+offset_right = 480.0
+offset_bottom = 424.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("1_51pjf")
+theme_override_styles/pressed = ExtResource("1_51pjf")
+theme_override_styles/hover = ExtResource("1_51pjf")
+theme_override_styles/hover_pressed = ExtResource("1_51pjf")
+theme_override_styles/disabled = ExtResource("1_51pjf")
+text = "BEGIN"
+
+[connection signal="item_selected" from="LetterOptions" to="." method="_on_letter_options_item_selected"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="StartNewGame" to="." method="_on_start_new_game_pressed"]

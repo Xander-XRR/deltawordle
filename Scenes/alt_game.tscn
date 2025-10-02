@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://twr37fojoxke"]
+
+[ext_resource type="PackedScene" uid="uid://dlumkdo5swhhb" path="res://Scenes/battle.tscn" id="1_2rdtq"]
+[ext_resource type="Script" uid="uid://cwckmxkt67asa" path="res://Scripts/alt_game.gd" id="1_xda4w"]
+[ext_resource type="StyleBox" uid="uid://d2syknyok7j2h" path="res://Assets/Styles/deltarune_display_green_style.tres" id="3_j1m0r"]
+
+[node name="AltGame" type="ColorRect"]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_xda4w")
+
+[node name="Battle" parent="." instance=ExtResource("1_2rdtq")]
+layout_mode = 0
+
+[node name="Other" type="Control" parent="."]
+z_index = 4
+anchors_preset = 0
+offset_left = 240.0
+offset_top = 16.0
+offset_right = 280.0
+offset_bottom = 56.0
+
+[node name="Hint" type="Label" parent="Other"]
+layout_mode = 0
+offset_left = -48.0
+offset_top = 240.0
+offset_right = 720.0
+offset_bottom = 368.0
+theme_override_font_sizes/font_size = 31
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="InputField" type="LineEdit" parent="Other"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 480.0
+offset_right = 520.0
+offset_bottom = 583.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("3_j1m0r")
+theme_override_styles/read_only = ExtResource("3_j1m0r")
+theme_override_styles/focus = ExtResource("3_j1m0r")
+alignment = 1
+max_length = 8
+
+[connection signal="text_submitted" from="Other/InputField" to="." method="_on_input_field_text_submitted"]

@@ -14,8 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ccry6m48yu1vj" path="res://Scenes/settings.tscn" id="12_6iyac"]
 [ext_resource type="Shader" uid="uid://cn1yj7ba73mt" path="res://Assets/Shaders/border.gdshader" id="12_k12tt"]
 [ext_resource type="AudioStream" uid="uid://p8j7papjwu8k" path="res://Assets/Audio/Music/menu.ogg" id="13_fdnlq"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_wsu2k"]
+[ext_resource type="AudioStream" uid="uid://dhsjlvcphltd" path="res://Assets/Audio/SFX/snd_noise.wav" id="15_wsu2k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wsu2k"]
 shader = ExtResource("4_344ge")
@@ -86,16 +85,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bo1nx")
 
-[node name="ScreenTint" type="Sprite2D" parent="."]
-visible = false
-self_modulate = Color(0, 0, 0, 0.490196)
-z_index = 1
-position = Vector2(575.75, 323.75)
-scale = Vector2(1152.5, 648.5)
-texture = SubResource("CanvasTexture_wsu2k")
-
 [node name="Soul" type="Sprite2D" parent="."]
-z_index = 2
+z_index = 12
 position = Vector2(576, 200)
 texture = ExtResource("4_jjvhh")
 script = ExtResource("5_kry3j")
@@ -121,9 +112,9 @@ position = Vector2(576, 114)
 scale = Vector2(1, 0.934783)
 texture = SubResource("ViewportTexture_b3802")
 
-[node name="Button_Manager" type="Node" parent="."]
+[node name="ButtonManager" type="Node" parent="."]
 
-[node name="Start" type="Button" parent="Button_Manager"]
+[node name="Start" type="Button" parent="ButtonManager"]
 offset_left = 416.0
 offset_top = 232.0
 offset_right = 736.0
@@ -135,10 +126,10 @@ focus_previous = NodePath("../Settings")
 theme_override_font_sizes/font_size = 20
 text = "START"
 script = ExtResource("3_8gbba")
-soul_offset = Vector2(93, 0)
+soul_offset = Vector2(92, 0)
 metadata/_custom_type_script = "uid://dppu13r8bqi1i"
 
-[node name="Credits" type="Button" parent="Button_Manager"]
+[node name="Credits" type="Button" parent="ButtonManager"]
 offset_left = 248.0
 offset_top = 360.0
 offset_right = 568.0
@@ -151,10 +142,10 @@ focus_next = NodePath("../License")
 focus_previous = NodePath("../Start")
 text = "CREDITS"
 script = ExtResource("3_8gbba")
-soul_offset = Vector2(75, 0)
+soul_offset = Vector2(73, 0)
 metadata/_custom_type_script = "uid://dppu13r8bqi1i"
 
-[node name="License" type="Button" parent="Button_Manager"]
+[node name="License" type="Button" parent="ButtonManager"]
 offset_left = 584.0
 offset_top = 360.0
 offset_right = 904.0
@@ -167,10 +158,10 @@ focus_next = NodePath("../Settings")
 focus_previous = NodePath("../Credits")
 text = "LICENSE"
 script = ExtResource("3_8gbba")
-soul_offset = Vector2(75, 0)
+soul_offset = Vector2(71, 0)
 metadata/_custom_type_script = "uid://dppu13r8bqi1i"
 
-[node name="Settings" type="Button" parent="Button_Manager"]
+[node name="Settings" type="Button" parent="ButtonManager"]
 offset_left = 248.0
 offset_top = 488.0
 offset_right = 568.0
@@ -187,7 +178,7 @@ script = ExtResource("3_8gbba")
 soul_offset = Vector2(65, 0)
 metadata/_custom_type_script = "uid://dppu13r8bqi1i"
 
-[node name="Quit" type="Button" parent="Button_Manager"]
+[node name="Quit" type="Button" parent="ButtonManager"]
 offset_left = 584.0
 offset_top = 488.0
 offset_right = 904.0
@@ -201,10 +192,10 @@ focus_previous = NodePath("../Settings")
 theme_override_font_sizes/font_size = 20
 text = "QUIT PROGRAM"
 script = ExtResource("3_8gbba")
-soul_offset = Vector2(37, 0)
+soul_offset = Vector2(36, 0)
 metadata/_custom_type_script = "uid://dppu13r8bqi1i"
 
-[node name="BGPanel" type="Panel" parent="Button_Manager"]
+[node name="BGPanel" type="Panel" parent="ButtonManager"]
 self_modulate = Color(1, 1, 1, 0.784314)
 z_index = -1
 offset_left = 144.0
@@ -212,6 +203,90 @@ offset_top = 208.0
 offset_right = 1008.0
 offset_bottom = 632.0
 mouse_filter = 2
+
+[node name="FakeButtons" type="Node2D" parent="."]
+visible = false
+z_index = 1
+
+[node name="StartDummy" type="Panel" parent="FakeButtons"]
+offset_left = 416.0
+offset_top = 232.0
+offset_right = 736.0
+offset_bottom = 352.0
+
+[node name="Label" type="Label" parent="FakeButtons/StartDummy"]
+self_modulate = Color(0.8117647, 0.8117647, 0.8117647, 1)
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 20
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsDummy" type="Panel" parent="FakeButtons"]
+offset_left = 248.0
+offset_top = 360.0
+offset_right = 568.0
+offset_bottom = 480.0
+
+[node name="Label" type="Label" parent="FakeButtons/CreditsDummy"]
+self_modulate = Color(0.8117647, 0.8117647, 0.8117647, 1)
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 20
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LicenseDummy" type="Panel" parent="FakeButtons"]
+offset_left = 584.0
+offset_top = 360.0
+offset_right = 904.0
+offset_bottom = 480.0
+
+[node name="Label" type="Label" parent="FakeButtons/LicenseDummy"]
+self_modulate = Color(0.8117647, 0.8117647, 0.8117647, 1)
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 20
+text = "LICENSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsDummy" type="Panel" parent="FakeButtons"]
+offset_left = 248.0
+offset_top = 488.0
+offset_right = 568.0
+offset_bottom = 608.0
+
+[node name="Label" type="Label" parent="FakeButtons/SettingsDummy"]
+self_modulate = Color(0.8117647, 0.8117647, 0.8117647, 1)
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 20
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitDummy" type="Panel" parent="FakeButtons"]
+offset_left = 584.0
+offset_top = 488.0
+offset_right = 904.0
+offset_bottom = 608.0
+
+[node name="Label" type="Label" parent="FakeButtons/QuitDummy"]
+self_modulate = Color(0.8117647, 0.8117647, 0.8117647, 1)
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 20
+text = "QUIT PROGRAM"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 0
@@ -262,23 +337,53 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("10_jkdf5")
 
 [node name="Fountain" parent="." instance=ExtResource("11_d1ilt")]
+z_index = -2
 
-[node name="NewGamePrompt" parent="." instance=ExtResource("8_344ge")]
-visible = false
+[node name="ScreenTint" type="ColorRect" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0)
 
 [node name="MainMenuSettings" parent="." instance=ExtResource("12_6iyac")]
 unique_name_in_owner = true
 visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 11
+layout_mode = 0
+offset_left = 240.0
+offset_top = 140.79999
+offset_right = 1200.0
+offset_bottom = 652.7999
+scale = Vector2(0.9, 0.9)
+
+[node name="NewGamePrompt" parent="." instance=ExtResource("8_344ge")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 11
+layout_mode = 0
+offset_left = 294.0
+offset_top = 153.20001
+offset_right = 994.0
+offset_bottom = 565.19995
+scale = Vector2(0.9, 0.9)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_fdnlq")
 bus = &"Music"
 
-[connection signal="pressed" from="Button_Manager/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Button_Manager/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="Button_Manager/License" to="." method="_on_info_pressed"]
-[connection signal="pressed" from="Button_Manager/License" to="." method="_on_license_pressed"]
-[connection signal="pressed" from="Button_Manager/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="Button_Manager/Quit" to="." method="_on_quit_pressed"]
-[connection signal="close_requested" from="NewGamePrompt" to="." method="_on_new_game_prompt_close_requested"]
+[node name="SelectSFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_wsu2k")
+bus = &"SFX"
+
+[connection signal="pressed" from="ButtonManager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="ButtonManager/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="ButtonManager/License" to="." method="_on_info_pressed"]
+[connection signal="pressed" from="ButtonManager/License" to="." method="_on_license_pressed"]
+[connection signal="pressed" from="ButtonManager/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="ButtonManager/Quit" to="." method="_on_quit_pressed"]
+[connection signal="visibility_changed" from="ScreenTint" to="ScreenTint" method="_on_visibility_changed"]
 [connection signal="close_requested" from="MainMenuSettings" to="." method="_on_settings_close_requested"]
+[connection signal="close_requested" from="NewGamePrompt" to="." method="_on_new_game_prompt_close_requested"]

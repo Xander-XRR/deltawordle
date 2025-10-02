@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmdc41j6m31k6"]
+
+[ext_resource type="Script" uid="uid://bey66hecpllsx" path="res://Scripts/gay_label.gd" id="1_wq3kc"]
+
+[node name="FadeFallEffectTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GayLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 256.0
+offset_right = 640.0
+offset_bottom = 384.0
+bbcode_enabled = true
+text = "YAYA"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_wq3kc")
+
+[node name="Ghost1" type="RichTextLabel" parent="GayLabel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ghost2" type="RichTextLabel" parent="GayLabel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ghost3" type="RichTextLabel" parent="GayLabel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

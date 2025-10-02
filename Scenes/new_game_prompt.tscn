@@ -1,108 +1,72 @@
-[gd_scene load_steps=9 format=3 uid="uid://dig01yp5h8yvc"]
+[gd_scene load_steps=6 format=3 uid="uid://dig01yp5h8yvc"]
 
-[ext_resource type="Script" uid="uid://c5qlfde2imsko" path="res://Scripts/new_game_prompt.gd" id="1_5yy6d"]
+[ext_resource type="Script" uid="uid://donndpn8ilpt" path="res://Scripts/new_game_prompt.gd" id="1_pck68"]
 [ext_resource type="Script" uid="uid://dppu13r8bqi1i" path="res://Scripts/Classes/hover_button.gd" id="1_tv164"]
 [ext_resource type="Script" uid="uid://c3pxgpb4evbfn" path="res://Scripts/option_button.gd" id="2_yhfv2"]
 [ext_resource type="Script" uid="uid://gg71tmcuo2od" path="res://Scripts/Classes/soul_magnet.gd" id="4_lpux0"]
-[ext_resource type="Texture2D" uid="uid://dc1idrifqyp47" path="res://Assets/Textures/Soul.png" id="5_0145e"]
 [ext_resource type="AudioStream" uid="uid://c825y4qxn3lfk" path="res://Assets/Audio/SFX/snd_select.wav" id="6_0145e"]
-[ext_resource type="Script" uid="uid://but14krk8r2bv" path="res://Scripts/soul.gd" id="6_lpux0"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_yhfv2"]
+[node name="NewGamePrompt" type="Panel"]
+custom_minimum_size = Vector2(300, 100)
+offset_right = 704.0
+offset_bottom = 416.0
+script = ExtResource("1_pck68")
+window_title = "< NEW GAME >"
+metadata/_custom_type_script = "uid://bx0enhrxijss5"
 
-[node name="NewGamePrompt" type="Window"]
-oversampling_override = 1.0
-title = "< NEW GAME >"
-position = Vector2i(0, 32)
-size = Vector2i(704, 416)
-unresizable = true
-popup_window = true
-script = ExtResource("1_5yy6d")
-
-[node name="Label" type="Label" parent="."]
-offset_left = 192.0
-offset_top = 12.0
-offset_right = 512.0
-offset_bottom = 116.0
-theme_override_font_sizes/font_size = 40
-text = "Word Size"
-horizontal_alignment = 1
+[node name="SizeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 96.0
+offset_right = 408.0
+offset_bottom = 153.0
+theme_override_font_sizes/font_size = 28
+text = "Word Size:"
 vertical_alignment = 1
 
 [node name="OptionButton" type="OptionButton" parent="."]
-offset_left = 96.0
-offset_top = 128.0
-offset_right = 608.0
-offset_bottom = 272.0
-theme_override_font_sizes/font_size = 30
-theme_override_constants/arrow_margin = 25
+layout_mode = 0
+offset_left = 160.0
+offset_top = 144.0
+offset_right = 544.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 20
 selected = 2
 item_count = 5
-popup/item_0/text = "3 Letters"
-popup/item_0/id = 1
-popup/item_1/text = "4 Letters"
-popup/item_1/id = 2
-popup/item_2/text = "5 Letters"
-popup/item_2/id = 3
-popup/item_3/text = "6 Letters"
-popup/item_3/id = 4
-popup/item_4/text = "7 Letters"
+popup/item_0/text = "3 LETTERS"
+popup/item_0/id = 0
+popup/item_1/text = "4 LETTERS"
+popup/item_1/id = 1
+popup/item_2/text = "5 LETTERS"
+popup/item_2/id = 2
+popup/item_3/text = "6 LETTERS"
+popup/item_3/id = 3
+popup/item_4/text = "7 LETTERS"
 popup/item_4/id = 4
 script = ExtResource("2_yhfv2")
-text_size_overrides = Vector2i(30, 35)
 
-[node name="SoulMagnet" type="Control" parent="OptionButton" node_paths=PackedStringArray("soul")]
+[node name="SoulMagnet" type="Control" parent="OptionButton"]
 anchors_preset = 0
-offset_right = 512.0
-offset_bottom = 144.0
-mouse_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("4_lpux0")
-soul = NodePath("../../Soul")
 metadata/_custom_type_script = "uid://gg71tmcuo2od"
 
 [node name="Start" type="Button" parent="."]
-offset_left = 424.0
-offset_top = 284.0
-offset_right = 688.0
-offset_bottom = 395.0
+layout_mode = 0
+offset_left = 408.0
+offset_top = 272.0
+offset_right = 672.0
+offset_bottom = 383.0
 theme_override_font_sizes/font_size = 25
 text = "START"
 script = ExtResource("1_tv164")
+soul_offset = Vector2(67, 0)
 metadata/_custom_type_script = "uid://dppu13r8bqi1i"
-
-[node name="SoulMagnet" type="Control" parent="Start" node_paths=PackedStringArray("soul")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("4_lpux0")
-soul = NodePath("../../Soul")
-soul_offset = Vector2(65, 0)
-metadata/_custom_type_script = "uid://gg71tmcuo2od"
-
-[node name="Background" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(351.75, 207.75)
-scale = Vector2(704.5, 416.5)
-texture = SubResource("CanvasTexture_yhfv2")
-
-[node name="Soul" type="Sprite2D" parent="."]
-position = Vector2(208, 64)
-texture = ExtResource("5_0145e")
-script = ExtResource("6_lpux0")
-metadata/_custom_type_script = "uid://but14krk8r2bv"
-
-[node name="OptionButtonShader" type="Sprite2D" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_0145e")
 bus = &"SFX"
 
-[connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="item_selected" from="OptionButton" to="OptionButton" method="_on_item_selected"]
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Start" to="Start" method="_on_pressed"]

@@ -157,6 +157,7 @@ Button/styles/pressed = ExtResource("2_cplwo")
 LineEdit/styles/focus = ExtResource("2_cplwo")
 LineEdit/styles/normal = ExtResource("2_cplwo")
 LineEdit/styles/read_only = ExtResource("2_cplwo")
+OptionButton/constants/arrow_margin = 30
 OptionButton/styles/disabled = ExtResource("2_cplwo")
 OptionButton/styles/focus = ExtResource("2_cplwo")
 OptionButton/styles/hover = ExtResource("2_cplwo")

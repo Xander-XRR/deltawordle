@@ -1,8 +1,10 @@
-extends Panel
+@tool
+extends DeltaWindow
 
 
 @onready var announcement: Label = $Announcement
 @onready var word: Label = $Word
+
 
 func announce(won: bool, w_word: String):
 	visible = true
@@ -14,9 +16,9 @@ func announce(won: bool, w_word: String):
 	
 
 
-func _on_return_title_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
-
-
 func _on_new_game_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+	SceneTransition.transition_to_scene("res://Scenes/game.tscn")
+
+
+func _on_back_to_title_pressed() -> void:
+	SceneTransition.transition_to_scene("res://Scenes/main.tscn")

@@ -1,38 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccry6m48yu1vj"]
+[gd_scene load_steps=7 format=3 uid="uid://ccry6m48yu1vj"]
 
 [ext_resource type="Script" uid="uid://c5d34ccje77ys" path="res://Scripts/settings.gd" id="1_lhmql"]
 [ext_resource type="Script" uid="uid://vr5mkkhvfged" path="res://Scripts/volume.gd" id="2_6kysc"]
 [ext_resource type="AudioStream" uid="uid://88bav1inm3pg" path="res://Assets/Audio/SFX/snd_menumove.wav" id="2_i44u3"]
 [ext_resource type="AudioStream" uid="uid://duoexkkgqo7vr" path="res://Assets/Audio/SFX/snd_save.wav" id="4_aaqfp"]
+[ext_resource type="Script" uid="uid://gg71tmcuo2od" path="res://Scripts/Classes/soul_magnet.gd" id="8_f60ng"]
+[ext_resource type="Texture2D" uid="uid://dc1idrifqyp47" path="res://Assets/Textures/Soul.png" id="9_bismi"]
 
-[node name="Settings" type="Window"]
-oversampling_override = 1.0
-title = "< SETTINGS >"
-position = Vector2i(0, 32)
-size = Vector2i(940, 400)
-accessibility_name = "Settings"
-accessibility_description = "Volume Settings"
+[node name="Settings" type="Panel"]
+custom_minimum_size = Vector2(300, 100)
+offset_right = 960.0
+offset_bottom = 448.0
 script = ExtResource("1_lhmql")
+window_title = "< SETTINGS >"
+metadata/_custom_type_script = "uid://bx0enhrxijss5"
 
-[node name="Background" type="Panel" parent="."]
-offset_left = -24.0
-offset_top = -40.0
-offset_right = 968.0
-offset_bottom = 632.0
-
-[node name="List" type="VBoxContainer" parent="Background"]
+[node name="List" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 40.0
-offset_right = 952.0
-offset_bottom = 640.0
+offset_top = 72.0
+offset_right = 928.0
+offset_bottom = 472.0
 
-[node name="MasterVolume" type="Control" parent="Background/List"]
+[node name="MasterVolume" type="Control" parent="List"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+tooltip_text = "Master Volume (~-80 DB to 0 DB)."
 script = ExtResource("2_6kysc")
 
-[node name="Name" type="Label" parent="Background/List/MasterVolume"]
+[node name="Name" type="Label" parent="List/MasterVolume"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 208.0
@@ -42,7 +38,7 @@ text = "MASTER VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="Background/List/MasterVolume"]
+[node name="Value" type="Label" parent="List/MasterVolume"]
 layout_mode = 0
 offset_left = 312.0
 offset_right = 408.0
@@ -52,21 +48,30 @@ text = "0.0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="Background/List/MasterVolume"]
+[node name="HSlider" type="HSlider" parent="List/MasterVolume"]
 layout_mode = 0
 offset_left = 408.0
-offset_right = 912.0
+offset_right = 888.0
 offset_bottom = 64.0
 value = 100.0
 rounded = true
 
-[node name="SFXVolume" type="Control" parent="Background/List"]
+[node name="SoulMagnet" type="Control" parent="List/MasterVolume/HSlider"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_f60ng")
+soul_offset = Vector2(-385, 0)
+metadata/_custom_type_script = "uid://gg71tmcuo2od"
+
+[node name="SFXVolume" type="Control" parent="List"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+tooltip_text = "Sound Effect Volume (~-80 DB to 0 DB)."
 script = ExtResource("2_6kysc")
 target_bus = "SFX"
 
-[node name="Name" type="Label" parent="Background/List/SFXVolume"]
+[node name="Name" type="Label" parent="List/SFXVolume"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 208.0
@@ -76,7 +81,7 @@ text = "SFX VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="Background/List/SFXVolume"]
+[node name="Value" type="Label" parent="List/SFXVolume"]
 layout_mode = 0
 offset_left = 312.0
 offset_right = 408.0
@@ -86,21 +91,30 @@ text = "0.0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="Background/List/SFXVolume"]
+[node name="HSlider" type="HSlider" parent="List/SFXVolume"]
 layout_mode = 0
 offset_left = 408.0
-offset_right = 912.0
+offset_right = 888.0
 offset_bottom = 64.0
 value = 60.0
 rounded = true
 
-[node name="MusicVolume" type="Control" parent="Background/List"]
+[node name="SoulMagnet" type="Control" parent="List/SFXVolume/HSlider"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_f60ng")
+soul_offset = Vector2(-385, 0)
+metadata/_custom_type_script = "uid://gg71tmcuo2od"
+
+[node name="MusicVolume" type="Control" parent="List"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+tooltip_text = "Music Volume (~-80 DB to 0 DB)."
 script = ExtResource("2_6kysc")
 target_bus = "Music"
 
-[node name="Name" type="Label" parent="Background/List/MusicVolume"]
+[node name="Name" type="Label" parent="List/MusicVolume"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 208.0
@@ -110,7 +124,7 @@ text = "MUSIC VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="Background/List/MusicVolume"]
+[node name="Value" type="Label" parent="List/MusicVolume"]
 layout_mode = 0
 offset_left = 312.0
 offset_right = 408.0
@@ -120,13 +134,49 @@ text = "0.0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="Background/List/MusicVolume"]
+[node name="HSlider" type="HSlider" parent="List/MusicVolume"]
 layout_mode = 0
 offset_left = 408.0
-offset_right = 912.0
+offset_right = 888.0
 offset_bottom = 64.0
 value = 60.0
 rounded = true
+
+[node name="SoulMagnet" type="Control" parent="List/MusicVolume/HSlider"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_f60ng")
+soul_offset = Vector2(-385, 0)
+metadata/_custom_type_script = "uid://gg71tmcuo2od"
+
+[node name="SillyBugs" type="Control" parent="List"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+tooltip_text = "Enable some harmless, silly bugs i encountered during development. :3"
+
+[node name="Name" type="Label" parent="List/SillyBugs"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 308.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 31
+text = "SILLY BUGS"
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="List/SillyBugs"]
+layout_mode = 0
+offset_left = 816.0
+offset_top = -4.0
+offset_right = 888.0
+offset_bottom = 68.0
+
+[node name="SoulMagnet" type="Control" parent="List/SillyBugs/CheckBox"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_f60ng")
+metadata/_custom_type_script = "uid://gg71tmcuo2od"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_i44u3")
@@ -136,4 +186,14 @@ bus = &"SFX"
 stream = ExtResource("4_aaqfp")
 bus = &"SFX"
 
-[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[node name="AltSoul" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.25882354)
+layout_mode = 0
+offset_left = 904.0
+offset_top = 392.0
+offset_right = 936.0
+offset_bottom = 424.0
+texture = ExtResource("9_bismi")
+
+[connection signal="gui_input" from="AltSoul" to="." method="_on_alt_soul_gui_input"]

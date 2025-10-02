@@ -11,14 +11,16 @@ config_version=5
 [application]
 
 config/name="DeltaWordle"
-run/main_scene="uid://b6d0x2ax8xwx3"
+run/main_scene="uid://confh3gqckh72"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://global.gd"
-Settings="*res://settings.gd"
+Debug="*res://Scenes/debug.tscn"
+SceneTransition="*res://Scripts/Globals/scene_transition.gd"
+Global="*res://Scripts/Globals/global.gd"
+Settings="*res://Scripts/Globals/settings.gd"
 
 [display]
 

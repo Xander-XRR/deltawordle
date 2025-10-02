@@ -1,0 +1,118 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj04soi1o8gjr"]
+
+[ext_resource type="Script" uid="uid://dncs8h8r214t3" path="res://Scripts/debug.gd" id="1_raf04"]
+[ext_resource type="Script" uid="uid://bey66hecpllsx" path="res://Scripts/gay_label.gd" id="2_axs6p"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 2
+visible = false
+script = ExtResource("1_raf04")
+
+[node name="BG" type="Panel" parent="."]
+offset_right = 560.0
+offset_bottom = 376.0
+
+[node name="OpenSettings" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 260.0
+offset_bottom = 101.0
+text = "OPEN SETTINGS FILE"
+
+[node name="DeleteSettings" type="Button" parent="."]
+offset_left = 264.0
+offset_top = 16.0
+offset_right = 530.0
+offset_bottom = 101.0
+text = "DELETE SETTINGS FILE"
+
+[node name="DebugLabel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GayLabel" type="RichTextLabel" parent="DebugLabel"]
+z_index = 1
+layout_mode = 0
+offset_left = 768.0
+offset_top = -64.0
+offset_right = 1152.0
+offset_bottom = 184.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[tornado radius=3 freq=-2.5][rainbow freq=0.1]DEBUG[/rainbow][/tornado]"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_axs6p")
+
+[node name="Ghost1" type="RichTextLabel" parent="DebugLabel"]
+self_modulate = Color(1, 1, 1, 0.78431374)
+layout_mode = 0
+offset_left = 768.0
+offset_top = -64.0
+offset_right = 808.0
+offset_bottom = -24.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/normal_font_size = 35
+
+[node name="Ghost2" type="RichTextLabel" parent="DebugLabel"]
+self_modulate = Color(1, 1, 1, 0.78431374)
+layout_mode = 0
+offset_left = 768.0
+offset_top = -64.0
+offset_right = 808.0
+offset_bottom = -24.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/normal_font_size = 35
+
+[node name="Ghost3" type="RichTextLabel" parent="DebugLabel"]
+self_modulate = Color(1, 1, 1, 0.78431374)
+layout_mode = 0
+offset_left = 768.0
+offset_top = -64.0
+offset_right = 808.0
+offset_bottom = -24.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/normal_font_size = 35
+
+[node name="ColorRect" type="ColorRect" parent="DebugLabel"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 832.0
+offset_right = 1088.0
+offset_bottom = 128.0
+
+[node name="ColorRect2" type="ColorRect" parent="DebugLabel"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 840.0
+offset_top = 8.0
+offset_right = 1080.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 1)
+
+[node name="RevolutionPoint" type="Node2D" parent="DebugLabel"]
+position = Vector2(902, 30)
+
+[node name="GotToScene" type="OptionButton" parent="."]
+offset_left = 16.0
+offset_top = 120.0
+offset_right = 280.0
+offset_bottom = 192.0
+
+[node name="GotToSceneButton" type="Button" parent="GotToScene"]
+layout_mode = 0
+offset_top = 72.0
+offset_right = 266.0
+offset_bottom = 157.0
+text = "GO TO SELECTED SCENE"
+
+[connection signal="pressed" from="OpenSettings" to="." method="_on_open_settings_pressed"]
+[connection signal="pressed" from="DeleteSettings" to="." method="_on_delete_settings_pressed"]
+[connection signal="pressed" from="GotToScene/GotToSceneButton" to="." method="_on_got_to_scene_button_pressed"]

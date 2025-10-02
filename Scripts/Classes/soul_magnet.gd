@@ -20,6 +20,8 @@ signal set_ownership(is_owned: bool)
 
 
 func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_PASS
+	
 	parent = get_parent_control()
 	add_child(audio_player)
 	
@@ -43,9 +45,9 @@ func _ready() -> void:
 
 
 func set_owned() -> void:
-	audio_player.stream = SND_NOISE
-	audio_player.play()
 	if soul:
+		audio_player.stream = SND_NOISE
+		audio_player.play()
 		tween = create_tween()
 		tween.tween_property(soul, "global_position", global_position + Vector2(soul_offset.x, (parent.size.y / 2 if soul_offset.y == 0.0 else soul_offset.y)), 0.4) \
 			.set_trans(Tween.TRANS_CUBIC) \

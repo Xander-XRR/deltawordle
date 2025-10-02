@@ -3,9 +3,11 @@ extends Control
 
 @export var target_bus: String = "Master"
 
+@onready var setting_name: Label = $Name
 @onready var value_label: Label = $Value
 @onready var h_slider: HSlider = $HSlider
-@onready var audio_stream_player: AudioStreamPlayer = $"../../../AudioStreamPlayer"
+@onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
+@onready var soul_magnet: SoulMagnet = $HSlider/SoulMagnet
 
 
 func _ready() -> void:
@@ -24,7 +26,11 @@ func _ready() -> void:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index(target_bus), true)
 	value_label.text = str(int(h_slider.value)) + "%"
 	
-	h_slider.connect("value_changed", _on_h_slider_value_changed)
+	h_slider.value_changed.connect(_on_h_slider_value_changed)
+	h_slider.focus_entered.connect(_on_h_slider_focus.bind(true))
+	h_slider.mouse_entered.connect(_on_h_slider_focus)
+	h_slider.focus_exited.connect(_on_h_slider_unfocus.bind(true))
+	h_slider.mouse_exited.connect(_on_h_slider_unfocus)
 	
 
 
@@ -50,3 +56,15 @@ func _on_h_slider_value_changed(value: float, silent: bool = false) -> void:
 		if !silent:
 			audio_stream_player.play()
 	
+
+func _on_h_slider_focus(true_focus: bool = false) -> void:
+	if !setting_name.text.begins_with("  "):
+		setting_name.text = "  " + setting_name.text
+	if true_focus:
+		setting_name.self_modulate = Color.YELLOW
+	
+
+func _on_h_slider_unfocus(true_unfocus: bool = false) -> void:
+	setting_name.text = setting_name.text.trim_prefix("  ")
+	if true_unfocus:
+		setting_name.self_modulate = Color.WHITE

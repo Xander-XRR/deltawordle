@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://cicseh5k1fjt1"]
+[gd_scene load_steps=18 format=3 uid="uid://cicseh5k1fjt1"]
 
+[ext_resource type="Script" uid="uid://mhjsxn7jmkkc" path="res://Scripts/fountain.gd" id="1_esix4"]
 [ext_resource type="Shader" uid="uid://b76v1dp1bb5lg" path="res://Assets/Shaders/scrolling.gdshader" id="1_g50lj"]
 [ext_resource type="Texture2D" uid="uid://i1qd10s64i3j" path="res://Assets/Textures/FountainTexture1.png" id="2_nfsg8"]
 [ext_resource type="Texture2D" uid="uid://dbisjckuhmafp" path="res://Assets/Textures/FountainTexture2.png" id="3_esix4"]
@@ -13,15 +14,15 @@
 shader = ExtResource("1_g50lj")
 shader_parameter/speed = 10.0
 shader_parameter/scroll_direction = Vector2(1, 1)
-shader_parameter/pulse = true
-shader_parameter/transparency = 0.4
+shader_parameter/pulse = false
+shader_parameter/transparency = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lyxrf"]
 shader = ExtResource("1_g50lj")
 shader_parameter/speed = -10.0
 shader_parameter/scroll_direction = Vector2(1, 1)
-shader_parameter/pulse = true
-shader_parameter/transparency = 0.5
+shader_parameter/pulse = false
+shader_parameter/transparency = 0.75
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_g50lj"]
 viewport_path = NodePath("FountainMainSubViewport")
@@ -58,6 +59,7 @@ shader_parameter/transparency = 0.5
 
 [node name="Fountain" type="Node2D"]
 z_index = -1
+script = ExtResource("1_esix4")
 
 [node name="Texture1" type="TextureRect" parent="."]
 z_index = -3
@@ -170,7 +172,7 @@ alpha_value = 0.75
 speed = 0.9
 
 [node name="Base" type="TextureRect" parent="."]
-z_index = -2
+z_index = 1
 offset_left = 96.0
 offset_top = -184.0
 offset_right = 336.0

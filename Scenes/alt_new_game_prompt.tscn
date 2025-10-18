@@ -5,8 +5,8 @@
 [ext_resource type="StyleBox" uid="uid://tvhujlkqqybi" path="res://Assets/Styles/deltarune_close_button_style_normal.tres" id="3_anyew"]
 [ext_resource type="StyleBox" uid="uid://6iafa18xitft" path="res://Assets/Styles/deltarune_close_button_style_pressed.tres" id="4_a1w2p"]
 [ext_resource type="StyleBox" uid="uid://boe2nk1qgyai3" path="res://Assets/Styles/deltarune_close_button_style_hovered.tres" id="5_1phbv"]
-[ext_resource type="AudioStream" uid="uid://dhsjlvcphltd" path="res://Assets/Audio/SFX/snd_noise.wav" id="6_1phbv"]
-[ext_resource type="AudioStream" uid="uid://c825y4qxn3lfk" path="res://Assets/Audio/SFX/snd_select.wav" id="7_pscim"]
+[ext_resource type="AudioStream" uid="uid://brxq8ht2o46il" path="res://Assets/Audio/SFX/snd_noise.wav" id="6_1phbv"]
+[ext_resource type="AudioStream" uid="uid://c8obhqa78yeel" path="res://Assets/Audio/SFX/snd_select.wav" id="7_pscim"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i0ksk"]
 size = Vector2(15, 10)

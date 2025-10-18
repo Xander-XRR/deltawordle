@@ -31,13 +31,13 @@ var wrong_word_anim_playing: bool = false
 
 
 var game_music: Dictionary = {
-	FIELDS_OF_HOPES = [preload("uid://dgj8dc4clse3s")],
-	FOREST = [preload("uid://bfssxps3n74pj")],
-	GIANT_QUEEN_APPEARS = [preload("uid://bdkeppp0mdqsf")],
-	MIKE = [preload("uid://dklrct567q5xj")], # Mike, Silk their song.
-	PUMPKIN_BOSS = [preload("uid://c8st4n2ot5ihc")], # YOUR MAMA-MIA IS TAKING TOO TOO
-	ROUXLS_BATTLE = [preload("uid://bjvaa5okjt8g5")], # Bottom.
-	SPAMTON_DANCE = [preload("uid://cw8f3yahldk63")]
+	FIELDS_OF_HOPES = [preload("res://Assets/Audio/Music/field_of_hopes.ogg")],
+	FOREST = [preload("res://Assets/Audio/Music/forest.ogg")],
+	GIANT_QUEEN_APPEARS = [preload("res://Assets/Audio/Music/giant_queen_appears.ogg")],
+	MIKE = [preload("res://Assets/Audio/Music/mike.ogg")], # Mike, Silk their song.
+	PUMPKIN_BOSS = [preload("res://Assets/Audio/Music/pumpkin_boss.ogg")], # YOUR MAMA-MIA IS TAKING TOO TOO
+	ROUXLS_BATTLE = [preload("res://Assets/Audio/Music/rouxls_battle.ogg")], # Bottom.
+	SPAMTON_DANCE = [preload("res://Assets/Audio/Music/spamton_dance.ogg")]
 }
 
 var keyboard_letters: Dictionary = {}

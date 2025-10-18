@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dpblfb7t82dpc"
-path="res://.godot/imported/undertale-deltarune-text-font-extended.otf-66582006fc1a0512ff6b734bd696fcea.fontdata"
+uid="uid://3r7txihx6e0f"
+path="res://.godot/imported/deltarune.ttf-e7ccbcb26c89c7f582a2e46ee81b789d.fontdata"
 
 [deps]
 
-source_file="res://Assets/Fonts/undertale-deltarune-text-font-extended.otf"
-dest_files=["res://.godot/imported/undertale-deltarune-text-font-extended.otf-66582006fc1a0512ff6b734bd696fcea.fontdata"]
+source_file="res://Assets/Audio/SFX/Fonts/deltarune.ttf"
+dest_files=["res://.godot/imported/deltarune.ttf-e7ccbcb26c89c7f582a2e46ee81b789d.fontdata"]
 
 [params]
 

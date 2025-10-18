@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6d0x2ax8xwx3"]
+[gd_scene load_steps=17 format=3 uid="uid://b6d0x2ax8xwx3"]
 
 [ext_resource type="Script" uid="uid://dpev51smmvqvu" path="res://Scripts/main.gd" id="1_bo1nx"]
-[ext_resource type="FontFile" uid="uid://3r7txihx6e0f" path="res://Assets/Fonts/deltarune.ttf" id="1_jjgbg"]
+[ext_resource type="FontFile" uid="uid://3r7txihx6e0f" path="res://Assets/Audio/SFX/Fonts/deltarune.ttf" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dppu13r8bqi1i" path="res://Scripts/Classes/hover_button.gd" id="3_8gbba"]
 [ext_resource type="Shader" uid="uid://cjddlxpfdytji" path="res://Assets/Shaders/prophecy.gdshader" id="4_344ge"]
 [ext_resource type="Shader" uid="uid://b76v1dp1bb5lg" path="res://Assets/Shaders/scrolling.gdshader" id="6_6iyac"]
@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cicseh5k1fjt1" path="res://Scenes/fountain.tscn" id="11_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://jbleisj27vmy" path="res://Assets/Textures/DepthsBright.png" id="11_wsu2k"]
 [ext_resource type="Shader" uid="uid://cn1yj7ba73mt" path="res://Assets/Shaders/border.gdshader" id="12_k12tt"]
-[ext_resource type="AudioStream" uid="uid://p8j7papjwu8k" path="res://Assets/Audio/Music/menu.ogg" id="13_fdnlq"]
-[ext_resource type="AudioStream" uid="uid://dhsjlvcphltd" path="res://Assets/Audio/SFX/snd_noise.wav" id="15_wsu2k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wsu2k"]
 shader = ExtResource("4_344ge")
@@ -338,11 +336,9 @@ anchor_bottom = 1.0
 color = Color(0, 0, 0, 0)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_fdnlq")
 bus = &"Music"
 
 [node name="SelectSFXPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_wsu2k")
 bus = &"SFX"
 
 [connection signal="pressed" from="ButtonManager/Start" to="." method="_on_start_pressed"]

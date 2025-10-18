@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b70086pc6wjvq" path="res://Scripts/music_interact.gd" id="1_c1r0o"]
 [ext_resource type="AudioStream" uid="uid://3cvcjj6ee5y2" path="res://Assets/Audio/Music/Church3_remix.ogg" id="2_mim1n"]
-[ext_resource type="FontFile" uid="uid://3r7txihx6e0f" path="res://Assets/Fonts/deltarune.ttf" id="3_x5txg"]
+[ext_resource type="FontFile" uid="uid://3r7txihx6e0f" path="res://Assets/Audio/SFX/Fonts/deltarune.ttf" id="3_x5txg"]
 
 [node name="MusicInteract" type="CanvasLayer"]
 layer = 5

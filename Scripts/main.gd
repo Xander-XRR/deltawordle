@@ -15,22 +15,22 @@ const NETZ_REMIX_MUSIC_INTERACT = preload("res://Scenes/music_interact.tscn")
 
 # Menu Music [file path, starting point, volume (DB)]
 var menu_music: Dictionary = {
-	ALT_CHURCH_LOBBY = [preload("uid://cs60e63rlya3j")],
-	ANNOYING_PROPHECY = [preload("uid://c1lvmqshi2rpj")],
-	AUDIO_ANOTHERHIM = [preload("uid://b6cavfejrhojr")],
-	AUDIO_STORY = [preload("uid://byi7m8udftbef")],
-	CH_4_CREDITS = [preload("uid://cynapqn2nlogk"), 15.15, 2],
-	CHURCH_ZONE_3 = [preload("uid://dkd0sddl1rdkx"), 25.4, 6],
-	DOGCHECK = [preload("uid://jc7fg0aws3ip")],
-	KRIS_PIANO_WAITINGROOM = [preload("uid://b40lulffh516v")],
-	MENU = [preload("uid://p8j7papjwu8k")],
-	NOELLE = [preload("uid://bldo0nm3rb01e")],
-	QUIET_AUTUMN = [preload("uid://0x3qoj0ikqty")],
-	QUIET_CHURCH = [preload("uid://ihwyxro3qhtp")],
-	SECOND_CHURCH = [preload("uid://iy303eny0xwk"),  25.4, 6],
-	SHOP_1 = [preload("uid://csh7dbuppdd6c")],
-	THE_HOLY = [preload("uid://7wotfb3vu4ft")],
-	TOWN = [preload("uid://by77462xa8onh")]
+	ALT_CHURCH_LOBBY = [preload("res://Assets/Audio/Music/alt_church_lobby.ogg")],
+	ANNOYING_PROPHECY = [preload("res://Assets/Audio/Music/annoying_prophecy.ogg")],
+	AUDIO_ANOTHERHIM = [preload("res://Assets/Audio/Music/AUDIO_ANOTHERHIM.ogg")],
+	AUDIO_STORY = [preload("res://Assets/Audio/Music/AUDIO_STORY.ogg")],
+	CH_4_CREDITS = [preload("res://Assets/Audio/Music/ch4_credits.ogg"), 15.15, 2],
+	CHURCH_ZONE_3 = [preload("res://Assets/Audio/Music/church_zone3.ogg"), 25.4, 6],
+	DOGCHECK = [preload("res://Assets/Audio/Music/dogcheck.ogg")],
+	KRIS_PIANO_WAITINGROOM = [preload("res://Assets/Audio/Music/kris_piano_waitingroom.ogg")],
+	MENU = [preload("res://Assets/Audio/Music/menu.ogg")],
+	NOELLE = [preload("res://Assets/Audio/Music/noelle.ogg")],
+	QUIET_AUTUMN = [preload("res://Assets/Audio/Music/quiet_autumn.ogg")],
+	QUIET_CHURCH = [preload("res://Assets/Audio/Music/quiet_church.ogg")],
+	SECOND_CHURCH = [preload("res://Assets/Audio/Music/second_church.ogg"),  25.4, 6],
+	SHOP_1 = [preload("res://Assets/Audio/Music/shop1.ogg")],
+	THE_HOLY = [preload("res://Assets/Audio/Music/THE_HOLY.ogg")],
+	TOWN = [preload("res://Assets/Audio/Music/town.ogg")]
 }
 
 

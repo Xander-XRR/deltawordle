@@ -4,9 +4,9 @@
 [ext_resource type="StyleBox" uid="uid://d2syknyok7j2h" path="res://Assets/Styles/deltarune_display_green_style.tres" id="1_n3mej"]
 [ext_resource type="Script" uid="uid://cqrqg8x84c2g7" path="res://Scripts/alt_main.gd" id="1_rocl8"]
 [ext_resource type="AudioStream" uid="uid://leqsh2wn672g" path="res://Assets/Audio/Music/northernlight.ogg" id="4_qecqd"]
-[ext_resource type="AudioStream" uid="uid://dhsjlvcphltd" path="res://Assets/Audio/SFX/snd_noise.wav" id="6_geikc"]
+[ext_resource type="AudioStream" uid="uid://brxq8ht2o46il" path="res://Assets/Audio/SFX/snd_noise.wav" id="6_geikc"]
 [ext_resource type="PackedScene" uid="uid://c5us06nqukqcs" path="res://Scenes/thank_you.tscn" id="7_84jcf"]
-[ext_resource type="AudioStream" uid="uid://c825y4qxn3lfk" path="res://Assets/Audio/SFX/snd_select.wav" id="7_hxl1r"]
+[ext_resource type="AudioStream" uid="uid://c8obhqa78yeel" path="res://Assets/Audio/SFX/snd_select.wav" id="7_hxl1r"]
 [ext_resource type="PackedScene" uid="uid://lmy5hbkudrqk" path="res://Scenes/alt_new_game_prompt.tscn" id="10_prob0"]
 
 [node name="alt_main" type="Control"]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccry6m48yu1vj"]
+[gd_scene load_steps=6 format=3 uid="uid://ccry6m48yu1vj"]
 
 [ext_resource type="Script" uid="uid://c5d34ccje77ys" path="res://Scripts/settings.gd" id="1_lhmql"]
 [ext_resource type="Script" uid="uid://vr5mkkhvfged" path="res://Scripts/volume.gd" id="2_6kysc"]
-[ext_resource type="AudioStream" uid="uid://88bav1inm3pg" path="res://Assets/Audio/SFX/snd_menumove.wav" id="2_i44u3"]
-[ext_resource type="AudioStream" uid="uid://duoexkkgqo7vr" path="res://Assets/Audio/SFX/snd_save.wav" id="4_aaqfp"]
+[ext_resource type="AudioStream" uid="uid://eaghvlqnbw87" path="res://Assets/Audio/SFX/snd_menumove.wav" id="2_i44u3"]
 [ext_resource type="Script" uid="uid://gg71tmcuo2od" path="res://Scripts/Classes/soul_magnet.gd" id="8_f60ng"]
 [ext_resource type="Texture2D" uid="uid://dc1idrifqyp47" path="res://Assets/Textures/Soul.png" id="9_bismi"]
 
@@ -184,7 +183,7 @@ stream = ExtResource("2_i44u3")
 bus = &"SFX"
 
 [node name="AudioStreamPlayerSave" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_aaqfp")
+stream = ExtResource("2_i44u3")
 bus = &"SFX"
 
 [node name="AltSoul" type="TextureRect" parent="."]

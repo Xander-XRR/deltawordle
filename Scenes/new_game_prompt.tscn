@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dppu13r8bqi1i" path="res://Scripts/Classes/hover_button.gd" id="1_tv164"]
 [ext_resource type="Script" uid="uid://c3pxgpb4evbfn" path="res://Scripts/option_button.gd" id="2_yhfv2"]
 [ext_resource type="Script" uid="uid://gg71tmcuo2od" path="res://Scripts/Classes/soul_magnet.gd" id="4_lpux0"]
-[ext_resource type="AudioStream" uid="uid://c825y4qxn3lfk" path="res://Assets/Audio/SFX/snd_select.wav" id="6_0145e"]
+[ext_resource type="AudioStream" uid="uid://c8obhqa78yeel" path="res://Assets/Audio/SFX/snd_select.wav" id="6_0145e"]
 
 [node name="DeltaWindow" type="Panel"]
 offset_right = 704.0

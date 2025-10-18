@@ -1,7 +1,13 @@
 ## Global Class controlling Settings related functionality.
-extends Node
+extends CanvasLayer
+
 
 const SAVE_PATH: String = "user://settings.cfg"
+const SETTINGS = preload("res://Scenes/settings.tscn")
+
+@onready var settings_window: SettingsWindows = SETTINGS.instantiate()
+
+var settings_file_existed_on_startup: bool = false
 
 var master_volume: float = 30.0
 var sfx_volume: float = 50.0
@@ -11,10 +17,28 @@ var last_played_game_theme: String = ""
 var encountered_experiment: bool = false
 
 signal update_volume_labels(master, sfx, music)
-
+signal settings_window_popup_requested
+signal settings_window_hide_requested
 
 func _ready() -> void:
 	load_settings()
+	
+	layer = 2
+	
+	settings_window.visible = false
+	settings_window.popup_requested.connect(func(): settings_window_popup_requested.emit())
+	settings_window.close_requested.connect(func(): settings_window_hide_requested.emit())
+	add_child(settings_window)
+	
+
+
+func show_settings_window() -> void:
+	settings_window.window_popup(true)
+	
+
+
+func hide_settings_window() -> void:
+	settings_window.window_hide()
 	
 
 
@@ -25,7 +49,7 @@ func save_single_setting(setting_name: String, value) -> void:
 		file.set_value("settings", setting_name, value)
 		file.save(Settings.SAVE_PATH)
 	else:
-		print("No Settings file found.")
+		print("Settings: No Settings file found.")
 
 
 func load_single_setting(setting_name: String, default) -> Variant:
@@ -34,7 +58,7 @@ func load_single_setting(setting_name: String, default) -> Variant:
 	if err == OK:
 		return file.get_value("settings", setting_name, default)
 	else:
-		print("No Settings file found.")
+		print("Settings: No Settings file found.")
 		return default
 
 
@@ -48,13 +72,14 @@ func save_settings() -> void:
 	file.set_value("settings", "last_played_game_theme", last_played_game_theme)
 	var err = file.save(SAVE_PATH)
 	if err != OK:
-		push_error("Failed saving Settings: %s" % err)
+		push_error("Settings: Failed saving Settings: %s" % err)
 
 
 func load_settings() -> void:
 	var file = ConfigFile.new()
 	var err = file.load(SAVE_PATH)
 	if err == OK:
+		settings_file_existed_on_startup = true
 		master_volume = file.get_value("settings", "master_volume", master_volume)
 		sfx_volume = file.get_value("settings", "sfx_volume", sfx_volume)
 		music_volume = file.get_value("settings", "music_volume", music_volume)
@@ -62,7 +87,8 @@ func load_settings() -> void:
 		last_played_game_theme = file.get_value("settings", "last_played_game_theme", last_played_game_theme)
 		encountered_experiment = file.get_value("settings", "encountered_experiment", encountered_experiment)
 	else:
-		print("No Settings file found, using defaults.")
+		settings_file_existed_on_startup = false
+		print("Settings: No Settings file found, using defaults.")
 	
 	_apply_loaded_settings()
 	

@@ -1,5 +1,5 @@
 ## Global Class Controlling transition bars.
-extends Control
+extends CanvasLayer
 class_name BarsPlayer
 
 
@@ -24,11 +24,9 @@ func _ready() -> void:
 	add_child(bar_upper)
 	add_child(bar_lower)
 	
-	z_index = 10
-	
 
 
-func transition_to_scene(new_scene) -> void:
+func transition_to_scene(new_scene, time: float = 1.0) -> void:
 	var tween = create_tween()
 	var old_volume = AudioServer.get_bus_volume_linear(1)
 	
@@ -37,7 +35,7 @@ func transition_to_scene(new_scene) -> void:
 		func(vol): AudioServer.set_bus_volume_linear(1, vol),
 		AudioServer.get_bus_volume_linear(1),
 		0.0,
-		1.0
+		time
 	).finished
 	
 	if new_scene is PackedScene:
@@ -61,10 +59,14 @@ func set_vertical_bars(to: float):
 	bar_upper.size.y = to
 	bar_lower.size.y = to
 	bar_lower.position.y = window_height - to
+	print("BarPlayer(SET): set vertical bars to ", to)
+	
 
-func animate_vertical_bars(to: float, duration: float) -> void:
+func animate_vertical_bars(to: float, duration: float = 1.0) -> void:
 	var tween = create_tween()
+	print("BarPlayer(TWEEN START): tweening vertical bars to ", to)
 	tween.tween_property(bar_upper, "size", Vector2(bar_upper.size.x, to), duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(bar_lower, "position", Vector2(bar_lower.position.x, window_height - to), duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(bar_lower, "size", Vector2(bar_lower.size.x, to), duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	await tween.parallel().tween_property(bar_lower, "size", Vector2(bar_lower.size.x, to), duration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT).finished
+	print("BarPlayer(TWEEN END): finished tweening vertical bars to ", to)
 	

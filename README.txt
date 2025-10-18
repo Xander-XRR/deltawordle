@@ -66,6 +66,7 @@ Music:
 		THE HOLY                  - THE_HOLY.ogg
 		A Town Called Hometown    - town.ogg
 	
+	netz!! Deltarune CH4 The third Sanctuary Remix - https://youtu.be/A1sE-l_ICes?si=Xb4UPcOZT07UlESN
 
 Shaders:
 	DELTARUNE: The “Prophecy Panel” Shader - https://godotshaders.com/shader/deltarune-the-prophecy-panel-shader/

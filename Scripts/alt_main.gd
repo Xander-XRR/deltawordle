@@ -8,19 +8,21 @@ extends Control
 @onready var license: RichTextButton = $License
 @onready var quit: RichTextButton = $Quit
 @onready var background_fade: ColorRect = $BackgroundFade
-@onready var alt_menu_settings: SettingsWindows = $AltMenuSettings
 @onready var new_game_prompt: Panel = $AltNewGamePrompt
 
 const DELTARUNE_BATTLE_BOX_STYLE = preload("uid://d2syknyok7j2h")
 
 
 func _ready() -> void:
-	SceneTransition.animate_vertical_bars(0.0, 0.01)
+	GlobalSoul.soul.visible = false
+	SceneTransition.set_vertical_bars(0.0)
+	
 	start.unhovered.connect(_no_hovered)
 	settings.unhovered.connect(_no_hovered)
 	credits.unhovered.connect(_no_hovered)
 	license.unhovered.connect(_no_hovered)
 	quit.unhovered.connect(_no_hovered)
+	Settings.settings_window_hide_requested.connect(_on_alt_menu_settings_close_requested)
 	
 	for child in new_game_prompt.get_children(true):
 		if child.has_method("add_theme_stylebox_override"):
@@ -43,25 +45,26 @@ func _on_new_game_prompt_close_requested() -> void:
 
 
 func _on_settings_pressed() -> void:
-	alt_menu_settings.visible = true
+	Settings.show_settings_window()
 	background_fade.visible = true
 
 func _on_settings_hovered() -> void:
 	descriptions.text = "CUSTOMIZE APPLICATION."
 
 func _on_alt_menu_settings_close_requested() -> void:
+	Settings.hide_settings_window()
 	background_fade.visible = false
 
 
 func _on_credits_pressed() -> void:
-	OS.shell_open(ProjectSettings.globalize_path("res://README.txt"))
+	Global.open_and_show_file("res://README.txt", "README.txt")
 
 func _on_credits_hovered() -> void:
 	descriptions.text = "PERCEIVE THE ONES WHO MADE THIS POSSIBLE."
 
 
 func _on_license_pressed() -> void:
-	OS.shell_open(ProjectSettings.globalize_path("res://LICENSE"))
+	Global.open_and_show_file("res://LICENCE", "LICENSE")
 
 func _on_license_hovered() -> void:
 	descriptions.text = "ACKNOWLEDGE THE TERMS AND SERVICE OF THIS EXPERIMENT."
@@ -70,7 +73,7 @@ func _on_license_hovered() -> void:
 func _on_quit_pressed() -> void:
 	if randi() % 2 == 1:
 		$ThankYou.visible = true
-		await get_tree().create_timer(5.0).timeout
+		await get_tree().create_timer(3.0).timeout
 	get_tree().call_deferred("quit")
 
 func _on_quit_hovered() -> void:
@@ -79,3 +82,7 @@ func _on_quit_hovered() -> void:
 
 func _no_hovered() -> void:
 	descriptions.text = ""
+
+
+func _exit_tree() -> void:
+	GlobalSoul.soul.visible = true

@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr6mg4wexrgb0"]
+
+[ext_resource type="Script" uid="uid://dcoteqw8hb1ee" path="res://Scripts/prophecy.gd" id="1_6x38r"]
+
+[node name="Prophecy" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6x38r")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 483.0
+offset_bottom = 237.0
+theme_override_font_sizes/font_size = 25
+text = "VERSE 7&&&
+AND WHEN THE HOPEFUL FINALLY SEES,&
+DISPAIR WILL BRING THEM ONTO THEIR KNEES.&
+THEIR LIGHT FADE 'WAY, THEIR SOUL IN TWAIN,&
+THE ONE THEY SOUGHT, THEIR KNIFE IN STAIN.&
+A|N|D| |A|L|L| |W|I|L|L| |F|A|L|L| |T|O| |D|A|R|K|N|E|S|S|'| |R|E|I|G|N|.|"

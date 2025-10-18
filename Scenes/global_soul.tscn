@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk57vqb0xfpvh"]
+
+[ext_resource type="Script" uid="uid://dcn1mioa2iaqj" path="res://Scripts/Globals/global_soul.gd" id="1_qvucj"]
+[ext_resource type="Script" uid="uid://but14krk8r2bv" path="res://Scripts/Globals/soul.gd" id="2_q8j71"]
+
+[node name="GlobalSoul" type="CanvasLayer"]
+layer = 7
+script = ExtResource("1_qvucj")
+
+[node name="Soul" type="Sprite2D" parent="."]
+position = Vector2(-64, 0)
+script = ExtResource("2_q8j71")
+metadata/_custom_type_script = "uid://but14krk8r2bv"

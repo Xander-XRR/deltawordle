@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://due2r7scvil56"]
+
+[ext_resource type="Script" uid="uid://b70086pc6wjvq" path="res://Scripts/music_interact.gd" id="1_c1r0o"]
+[ext_resource type="AudioStream" uid="uid://3cvcjj6ee5y2" path="res://Assets/Audio/Music/Church3_remix.ogg" id="2_mim1n"]
+[ext_resource type="FontFile" uid="uid://3r7txihx6e0f" path="res://Assets/Fonts/deltarune.ttf" id="3_x5txg"]
+
+[node name="MusicInteract" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_c1r0o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -4
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="RemixPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_mim1n")
+autoplay = true
+bus = &"Music"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 6
+
+[node name="TitleControl" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Title" type="Label" parent="CanvasLayer/TitleControl"]
+visible = false
+layout_mode = 0
+offset_left = 199.0
+offset_top = 64.0
+offset_right = 407.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("3_x5txg")
+theme_override_font_sizes/font_size = 120
+text = "DEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title2" type="Label" parent="CanvasLayer/TitleControl"]
+visible = false
+layout_mode = 0
+offset_left = 394.0
+offset_top = 71.0
+offset_right = 538.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("3_x5txg")
+theme_override_font_sizes/font_size = 120
+text = "TA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title3" type="Label" parent="CanvasLayer/TitleControl"]
+visible = false
+layout_mode = 0
+offset_left = 538.0
+offset_top = 71.0
+offset_right = 845.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("3_x5txg")
+theme_override_font_sizes/font_size = 120
+text = "WORD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title4" type="Label" parent="CanvasLayer/TitleControl"]
+visible = false
+layout_mode = 0
+offset_left = 845.0
+offset_top = 71.0
+offset_right = 955.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("3_x5txg")
+theme_override_font_sizes/font_size = 120
+text = "LE"
+horizontal_alignment = 1
+vertical_alignment = 1

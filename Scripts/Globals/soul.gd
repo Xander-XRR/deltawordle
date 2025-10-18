@@ -6,12 +6,16 @@ enum State { OWNED, GRACE, FREE }
 var state = State.OWNED
 
 const TRANSER_GRACE_PERIOD: float = 0.02
+const SOUL = preload("uid://dc1idrifqyp47")
 
 
 var time: float = 0.0
 var owned: bool = true
 var time_off_owner: float = 0
 
+
+func _ready() -> void:
+	texture = SOUL
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

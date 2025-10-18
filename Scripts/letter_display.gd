@@ -1,4 +1,5 @@
 extends Panel
+class_name LetterDisplay
 
 
 @onready var letter_label: Label = $LetterLabel

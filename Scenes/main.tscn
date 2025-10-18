@@ -1,17 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://b6d0x2ax8xwx3"]
+[gd_scene load_steps=19 format=3 uid="uid://b6d0x2ax8xwx3"]
 
 [ext_resource type="Script" uid="uid://dpev51smmvqvu" path="res://Scripts/main.gd" id="1_bo1nx"]
 [ext_resource type="FontFile" uid="uid://3r7txihx6e0f" path="res://Assets/Fonts/deltarune.ttf" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dppu13r8bqi1i" path="res://Scripts/Classes/hover_button.gd" id="3_8gbba"]
 [ext_resource type="Shader" uid="uid://cjddlxpfdytji" path="res://Assets/Shaders/prophecy.gdshader" id="4_344ge"]
-[ext_resource type="Texture2D" uid="uid://dc1idrifqyp47" path="res://Assets/Textures/Soul.png" id="4_jjvhh"]
-[ext_resource type="Script" uid="uid://but14krk8r2bv" path="res://Scripts/soul.gd" id="5_kry3j"]
 [ext_resource type="Shader" uid="uid://b76v1dp1bb5lg" path="res://Assets/Shaders/scrolling.gdshader" id="6_6iyac"]
-[ext_resource type="PackedScene" uid="uid://dig01yp5h8yvc" path="res://Scenes/new_game_prompt.tscn" id="8_344ge"]
 [ext_resource type="Texture2D" uid="uid://qaabvpl4dehh" path="res://Assets/Textures/dog.webp" id="10_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://cicseh5k1fjt1" path="res://Scenes/fountain.tscn" id="11_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://jbleisj27vmy" path="res://Assets/Textures/DepthsBright.png" id="11_wsu2k"]
-[ext_resource type="PackedScene" uid="uid://ccry6m48yu1vj" path="res://Scenes/settings.tscn" id="12_6iyac"]
 [ext_resource type="Shader" uid="uid://cn1yj7ba73mt" path="res://Assets/Shaders/border.gdshader" id="12_k12tt"]
 [ext_resource type="AudioStream" uid="uid://p8j7papjwu8k" path="res://Assets/Audio/Music/menu.ogg" id="13_fdnlq"]
 [ext_resource type="AudioStream" uid="uid://dhsjlvcphltd" path="res://Assets/Audio/SFX/snd_noise.wav" id="15_wsu2k"]
@@ -84,13 +80,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bo1nx")
-
-[node name="Soul" type="Sprite2D" parent="."]
-z_index = 12
-position = Vector2(576, 200)
-texture = ExtResource("4_jjvhh")
-script = ExtResource("5_kry3j")
-metadata/_custom_type_script = "uid://but14krk8r2bv"
 
 [node name="TitleDog" type="Sprite2D" parent="."]
 visible = false
@@ -338,6 +327,7 @@ texture = ExtResource("10_jkdf5")
 
 [node name="Fountain" parent="." instance=ExtResource("11_d1ilt")]
 z_index = -2
+layout_mode = 0
 
 [node name="ScreenTint" type="ColorRect" parent="."]
 z_index = 2
@@ -346,29 +336,6 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 0)
-
-[node name="MainMenuSettings" parent="." instance=ExtResource("12_6iyac")]
-unique_name_in_owner = true
-visible = false
-modulate = Color(1, 1, 1, 0)
-z_index = 11
-layout_mode = 0
-offset_left = 336.0
-offset_top = 191.99997
-offset_right = 1296.0
-offset_bottom = 703.9999
-scale = Vector2(0.9, 0.9)
-
-[node name="NewGamePrompt" parent="." instance=ExtResource("8_344ge")]
-visible = false
-modulate = Color(1, 1, 1, 0)
-z_index = 11
-layout_mode = 0
-offset_left = 364.0
-offset_top = 194.40001
-offset_right = 1064.0
-offset_bottom = 606.4
-scale = Vector2(0.9, 0.9)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_fdnlq")
@@ -385,5 +352,3 @@ bus = &"SFX"
 [connection signal="pressed" from="ButtonManager/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="ButtonManager/Quit" to="." method="_on_quit_pressed"]
 [connection signal="visibility_changed" from="ScreenTint" to="ScreenTint" method="_on_visibility_changed"]
-[connection signal="close_requested" from="MainMenuSettings" to="." method="_on_settings_close_requested"]
-[connection signal="close_requested" from="NewGamePrompt" to="." method="_on_new_game_prompt_close_requested"]

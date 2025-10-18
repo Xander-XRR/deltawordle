@@ -5,12 +5,14 @@ extends Panel
 @onready var sfx_player_noise: AudioStreamPlayer = $SFXPlayerNoise
 @onready var sfx_player_select: AudioStreamPlayer = $SFXPlayerSelect
 
-const DELTARUNE_BATTLE_BOX_STYLE = preload("uid://d2syknyok7j2h")
+var DELTARUNE_BATTLE_BOX_STYLE
 
 signal close_requested
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	DELTARUNE_BATTLE_BOX_STYLE = ResourceLoader.load("res://Assets/Styles/deltarune_display_green_style.tres")
+	
 	var popup = letter_options.get_popup()
 	popup.add_theme_stylebox_override("panel", DELTARUNE_BATTLE_BOX_STYLE)
 

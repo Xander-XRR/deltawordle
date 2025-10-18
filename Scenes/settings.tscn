@@ -7,8 +7,7 @@
 [ext_resource type="Script" uid="uid://gg71tmcuo2od" path="res://Scripts/Classes/soul_magnet.gd" id="8_f60ng"]
 [ext_resource type="Texture2D" uid="uid://dc1idrifqyp47" path="res://Assets/Textures/Soul.png" id="9_bismi"]
 
-[node name="Settings" type="Panel"]
-custom_minimum_size = Vector2(300, 100)
+[node name="DeltaWindow" type="Panel"]
 offset_right = 960.0
 offset_bottom = 448.0
 script = ExtResource("1_lhmql")
@@ -153,7 +152,8 @@ metadata/_custom_type_script = "uid://gg71tmcuo2od"
 [node name="SillyBugs" type="Control" parent="List"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
-tooltip_text = "Enable some harmless, silly bugs i encountered during development. :3"
+tooltip_text = "Enable some harmless, silly bugs i encountered during development. :3
+(Not available... yet.)"
 
 [node name="Name" type="Label" parent="List/SillyBugs"]
 layout_mode = 0
@@ -161,7 +161,7 @@ offset_left = 8.0
 offset_right = 308.0
 offset_bottom = 64.0
 theme_override_font_sizes/font_size = 31
-text = "SILLY BUGS"
+text = "SILLY BUGS (n/a)"
 vertical_alignment = 1
 
 [node name="CheckBox" type="CheckBox" parent="List/SillyBugs"]
@@ -170,6 +170,7 @@ offset_left = 816.0
 offset_top = -4.0
 offset_right = 888.0
 offset_bottom = 68.0
+disabled = true
 
 [node name="SoulMagnet" type="Control" parent="List/SillyBugs/CheckBox"]
 anchors_preset = 0

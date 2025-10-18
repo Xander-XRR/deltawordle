@@ -8,9 +8,9 @@ class_name GayTextLabel
 @onready var revolution_point: Node2D = $"../RevolutionPoint"
 
 var time: float = 0.0
-var radius: float = 50.0
+var radius: float = 40.0
 var speed: float = 1.0
-var vector_mult: Vector2 = Vector2(1.25, 0.75)
+var vector_mult: Vector2 = Vector2(1.30, 0.70)
 var offset: float = 2
 
 

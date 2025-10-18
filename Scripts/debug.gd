@@ -13,11 +13,13 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_open_settings_pressed() -> void:
+	print("DEBUG: Settings Path: ", ProjectSettings.globalize_path(Settings.SAVE_PATH))
 	OS.shell_open(ProjectSettings.globalize_path(Settings.SAVE_PATH))
+	
 
 
 func _on_delete_settings_pressed() -> void:
-	print(ProjectSettings.globalize_path(Settings.SAVE_PATH))
+	print("DEBUG: Settings Path: ", ProjectSettings.globalize_path(Settings.SAVE_PATH))
 	if FileAccess.file_exists(ProjectSettings.globalize_path(Settings.SAVE_PATH)):
 		var err = OS.move_to_trash(ProjectSettings.globalize_path(Settings.SAVE_PATH))
 		if err != OK:

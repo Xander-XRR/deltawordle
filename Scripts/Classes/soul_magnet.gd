@@ -2,7 +2,8 @@ extends Control
 class_name SoulMagnet
 
 
-@export var soul: Soul
+@onready var soul: Soul = GlobalSoul.soul
+
 @export var soul_offset: Vector2 = Vector2(50.0, 0.0)
 @export var text_size_overrides: Vector2i = Vector2i(20, 25)
 
@@ -16,6 +17,8 @@ var tween: Tween
 var dummy_tex: ImageTexture
 var soul_owned: bool = false
 
+var is_magnetize: bool = true
+
 signal set_ownership(is_owned: bool)
 
 
@@ -25,10 +28,6 @@ func _ready() -> void:
 	parent = get_parent_control()
 	add_child(audio_player)
 	
-	if !soul:
-		soul = get_tree().current_scene.get_node("Soul")
-		if !soul:
-			push_error("No Soul Node Found.")
 	
 	parent.focus_entered.connect(set_owned)
 	parent.focus_exited.connect(set_disowned)
@@ -45,7 +44,7 @@ func _ready() -> void:
 
 
 func set_owned() -> void:
-	if soul:
+	if soul and is_magnetize:
 		audio_player.stream = SND_NOISE
 		audio_player.play()
 		tween = create_tween()
@@ -85,6 +84,6 @@ func play_sound_select() -> void:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_action_pressed("left_mouse_button") and soul_owned:
+	if event is InputEventMouseButton and event.is_action_pressed("left_mouse_button") and soul_owned and is_magnetize:
 		play_sound_select()
 		

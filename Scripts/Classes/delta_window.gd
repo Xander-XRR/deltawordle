@@ -8,6 +8,8 @@ var title_label: Label
 var quit_button: Button
 var body_title_seperator: HSeparator
 var drag_control: Control
+var full_title_bar_control: Control
+var full_body_control: Control
 
 var _window_title: String
 @export var window_title: String:
@@ -24,6 +26,7 @@ const DELTARUNE_CLOSE_BUTTON_STYLE_HOVERED = preload("uid://boe2nk1qgyai3")
 const DELTARUNE_CLOSE_BUTTON_STYLE_NORMAL = preload("uid://tvhujlkqqybi")
 const DELTARUNE_CLOSE_BUTTON_STYLE_PRESSED = preload("uid://6iafa18xitft")
 
+signal popup_requested
 signal close_requested
 
 var _is_being_dragged: bool = false
@@ -31,8 +34,7 @@ var _dragging_offset: Vector2 = Vector2.ZERO
 
 func _enter_tree() -> void:
 	if Engine.is_editor_hint():
-		custom_minimum_size = Vector2(300.0, 100.0)
-	
+		_create_window_gizmos_if_missing()
 	_create_window_gizmos_if_missing()
 
 
@@ -86,14 +88,38 @@ func _create_window_gizmos_if_missing():
 	if has_node("DragControl"):
 		drag_control = get_node("DragControl")
 	else:
-		var ctrl = Control.new()
-		ctrl.name = "DragControl"
-		ctrl.size = Vector2(size.x - 88.0, 56)
-		ctrl.position = Vector2(16.0, 16.0)
+		var control = Control.new()
+		control.name = "DragControl"
+		control.size = Vector2(size.x - 88.0, 56.0)
+		control.position = Vector2(16.0, 16.0)
 		
-		add_child(ctrl)
-		drag_control = ctrl
-		ctrl.owner = owner
+		add_child(control)
+		drag_control = control
+		control.owner = owner
+	
+	if has_node("FullTitleBarControl"):
+		full_title_bar_control = get_node("FullTitleBarControl")
+	else:
+		var control = Control.new()
+		control.name = "FullTitleBarControl"
+		control.size = Vector2(size.x, 72.0)
+		control.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		
+		add_child(control)
+		full_title_bar_control = control
+		control.owner = owner
+	
+	if has_node("FullBodyControl"):
+		full_body_control = get_node("FullBodyControl")
+	else:
+		var control = Control.new()
+		control.name = "FullBodyControl"
+		control.size = size
+		control.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		
+		add_child(control)
+		full_body_control = control
+		control.owner = owner
 	
 
 
@@ -106,6 +132,10 @@ func _ready() -> void:
 		body_title_seperator = get_node("BodyTitleSeperator")
 	if not drag_control and has_node("DragControl"):
 		drag_control = get_node("DragControl")
+	if not full_title_bar_control and has_node("FullTitleBarControl"):
+		full_title_bar_control = get_node("FullTitleBarControl")
+	if not full_body_control and has_node("FullBodyControl"):
+		full_body_control = get_node("FullBodyControl")
 	
 	if quit_button:
 		quit_button.pressed.connect(func(): close_requested.emit())
@@ -118,6 +148,9 @@ func _ready() -> void:
 
 
 func window_popup(centered: bool = false) -> void:
+	if visible:
+		return
+	
 	var tween = create_tween()
 	if centered:
 		global_position = get_viewport_rect().size * 0.5 - size * scale * 0.5
@@ -128,6 +161,8 @@ func window_popup(centered: bool = false) -> void:
 	tween.tween_property(self, "scale", Vector2.ONE, 0.1)
 	tween.parallel().tween_property(self, "global_position", global_position - size * Vector2(0.05, 0.05), 0.1)
 	tween.parallel().tween_property(self, "modulate", Color.WHITE, 0.1)
+	
+	popup_requested.emit()
 	
 
 
@@ -140,19 +175,23 @@ func window_hide() -> void:
 	
 
 
+func window_interactable(set_interactable: MouseFilter) -> void:
+	full_body_control.mouse_filter = set_interactable
+
+
 func _process(_delta: float) -> void:
 	if _is_being_dragged:
 		var target_global := get_global_mouse_position() - _dragging_offset
 		
 		var bound_size = get_viewport().get_visible_rect().size
-		target_global.x = clamp(target_global.x, 0.0, max(0.0, bound_size.x - drag_control.size.x))
-		target_global.y = clamp(target_global.y, 0.0, max(0.0, bound_size.y - drag_control.size.y))
+		target_global.x = clamp(target_global.x, 0.0, max(0.0, bound_size.x - full_title_bar_control.size.x))
+		target_global.y = clamp(target_global.y, 0.0, max(0.0, bound_size.y - full_title_bar_control.size.y))
 		
 		global_position = target_global
 
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_RESIZED:
+	if what == Panel.NOTIFICATION_RESIZED:
 		if title_label:
 			title_label.size.x = size.x
 		if quit_button:

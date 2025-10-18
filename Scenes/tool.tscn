@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1ieu0n3row1s"]
+
+[ext_resource type="Script" uid="uid://dxdcdrovbap4p" path="res://Scripts/tool.gd" id="1_v307u"]
+[ext_resource type="AudioStream" uid="uid://dkd0sddl1rdkx" path="res://Assets/Audio/Music/church_zone3.ogg" id="2_fqtr4"]
+
+[node name="Tool" type="Node2D"]
+script = ExtResource("1_v307u")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_fqtr4")
+autoplay = true

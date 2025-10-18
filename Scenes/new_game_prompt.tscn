@@ -6,8 +6,7 @@
 [ext_resource type="Script" uid="uid://gg71tmcuo2od" path="res://Scripts/Classes/soul_magnet.gd" id="4_lpux0"]
 [ext_resource type="AudioStream" uid="uid://c825y4qxn3lfk" path="res://Assets/Audio/SFX/snd_select.wav" id="6_0145e"]
 
-[node name="NewGamePrompt" type="Panel"]
-custom_minimum_size = Vector2(300, 100)
+[node name="DeltaWindow" type="Panel"]
 offset_right = 704.0
 offset_bottom = 416.0
 script = ExtResource("1_pck68")

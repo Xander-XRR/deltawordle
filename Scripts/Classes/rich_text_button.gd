@@ -11,7 +11,7 @@ signal unhovered
 signal pressed
 
 
-func _init() -> void:
+func _ready() -> void:
 	focus_entered.connect(_selected)
 	mouse_entered.connect(_selected)
 	focus_exited.connect(_unselected)

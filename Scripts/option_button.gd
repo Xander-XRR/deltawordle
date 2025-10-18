@@ -15,12 +15,12 @@ func _ready() -> void:
 	mouse_exited.connect(rid_icon)
 	
 	var img_size = text_offset
-	var img = Image.create(img_size, 10, false, Image.FORMAT_RGBA8)
+	var img = Image.create(img_size, 1, false, Image.FORMAT_RGBA8)
 	img.fill(Color(0, 0, 0, 0))
 	dummy_tex = ImageTexture.create_from_image(img)
 	
 	img_size = 20
-	img = Image.create(img_size, 10, false, Image.FORMAT_RGBA8)
+	img = Image.create(img_size, 1, false, Image.FORMAT_RGBA8)
 	img.fill(Color(0, 0, 0, 0))
 	dummy_tex_small = ImageTexture.create_from_image(img)
 	

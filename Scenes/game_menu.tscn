@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp0a6g5itkgnd"]
+
+[ext_resource type="Script" uid="uid://c084vnvr5fkv8" path="res://Scripts/game_menu.gd" id="1_in7i6"]
+[ext_resource type="Script" uid="uid://dppu13r8bqi1i" path="res://Scripts/Classes/hover_button.gd" id="2_5a81j"]
+[ext_resource type="Script" uid="uid://gg71tmcuo2od" path="res://Scripts/Classes/soul_magnet.gd" id="3_ekb2d"]
+[ext_resource type="Script" uid="uid://c3pxgpb4evbfn" path="res://Scripts/option_button.gd" id="4_fw0i3"]
+
+[node name="GameMenu" type="Panel"]
+offset_right = 640.0
+offset_bottom = 352.0
+script = ExtResource("1_in7i6")
+window_title = "< MENU >"
+metadata/_custom_type_script = "uid://bx0enhrxijss5"
+
+[node name="TitleButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 208.0
+offset_right = 608.0
+offset_bottom = 320.0
+text = "RETURN TO TITLE"
+script = ExtResource("2_5a81j")
+text_size_overrides = Vector2i(15, 20)
+soul_offset = Vector2(34, 0)
+metadata/_custom_type_script = "uid://dppu13r8bqi1i"
+
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 208.0
+offset_right = 288.0
+offset_bottom = 320.0
+text = "SETTINGS"
+script = ExtResource("2_5a81j")
+soul_offset = Vector2(38, 0)
+metadata/_custom_type_script = "uid://dppu13r8bqi1i"
+
+[node name="MusicLabelPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 608.0
+offset_bottom = 192.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="MusicLabelPanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 160.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 25
+text = "MUSIC:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSelect" type="OptionButton" parent="MusicLabelPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -56.0
+offset_bottom = 56.0
+grow_horizontal = 0
+grow_vertical = 2
+text_overrun_behavior = 1
+item_count = 7
+popup/item_0/text = "Fields of Hopes and Dreams"
+popup/item_0/id = 0
+popup/item_1/text = "Scarlet Forest"
+popup/item_1/id = 1
+popup/item_2/text = "Giga Size"
+popup/item_2/id = 2
+popup/item_3/text = "Catswing"
+popup/item_3/id = 3
+popup/item_4/text = "A DARK ZONE"
+popup/item_4/id = 4
+popup/item_5/text = "It's Pronounced \"Rules\""
+popup/item_5/id = 5
+popup/item_6/text = "Air Waves"
+popup/item_6/id = 6
+script = ExtResource("4_fw0i3")
+
+[node name="SoulMagnet" type="Control" parent="MusicLabelPanel/MusicSelect"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ekb2d")
+metadata/_custom_type_script = "uid://gg71tmcuo2od"
+
+[connection signal="pressed" from="TitleButton" to="." method="_on_title_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

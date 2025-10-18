@@ -1,11 +1,13 @@
 extends Button
 class_name HoverButton
 
+
+@onready var soul_magnet: SoulMagnet = SoulMagnet.new()
+
 @export var text_size_overrides: Vector2i = Vector2i(20, 25)
 @export var soul_offset: Vector2 = Vector2(0.0, 0.0)
 @export var soul_node_override: Soul
 
-var soul_magnet: SoulMagnet = SoulMagnet.new()
 var tween: Tween
 
 var dummy_tex: ImageTexture

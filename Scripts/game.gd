@@ -6,10 +6,10 @@ extends Control
 @onready var letter_container: VBoxContainer = $Keyboard/LetterContainer
 @onready var sfx_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
-@onready var settings: DeltaWindow = $Settings
-@onready var win_loose_screen: DeltaWindow = $WinLooseScreen
-@onready var soul: Soul = $Soul
+@onready var win_loose_screen: DeltaWindow = DeltaWindowsLayer.win_loose_screen
 @onready var menu_fade: ColorRect = $MenuFade
+@onready var menu: HoverButton = $Menu
+@onready var game_menu: DeltaWindow = $GameMenu
 
 @export var word_lenght: int = 5
 
@@ -47,14 +47,17 @@ func _ready() -> void:
 	# Random Music 
 	var music_keys = game_music.keys()
 	var random_key = music_keys[randi() % music_keys.size()]
-	print("Last Game Track: " + Settings.last_played_game_theme)
-	print("Random Theme key: " + random_key)
+	print("Game: Last Game Track: " + Settings.last_played_game_theme)
+	print("Game: Random Theme key: " + random_key)
+	
 	if Settings.last_played_game_theme == random_key:
 		random_key = music_keys[randi() % music_keys.size()]
-		print("Repeat Track. Rerolling Random Theme key: " + random_key)
+		print("Game: Repeat Track. Rerolling Random Theme key: " + random_key)
 	
 	Settings.last_played_game_theme = random_key
 	Settings.save_settings()
+	
+	game_menu.music_select.selected = music_keys.find(random_key)
 	var random_music = game_music[random_key][0]
 	
 	random_music.loop = true
@@ -69,18 +72,19 @@ func _ready() -> void:
 	
 	var path = ProjectSettings.globalize_path("res://Possible Words/"+ str(word_lenght) +".txt")
 	if not FileAccess.file_exists(path):
-		push_error("Possible words file missing: %s" % path)
+		push_error("Game: Possible words file missing: %s" % path)
 		possible_words = []
+		get_tree().change_scene_to_file("res://Scenes/main.tscn")
 	else:
 		var file := FileAccess.open(path, FileAccess.READ)
 		if file:
 			var text: String = file.get_as_text()
 			possible_words = text.split("\n", false)
 			file.close()
-			print("Possible Words: ", possible_words)
+			print("Game: Possible Words: ", possible_words)
 		
 		selected_word = possible_words[randi() % possible_words.size()]
-		print("Selected Word: ", selected_word)
+		print("Game: Selected Word: ", selected_word)
 		
 		for row in row_container.get_children():
 			if not row:
@@ -104,6 +108,8 @@ func _ready() -> void:
 			var soul_magnet = SoulMagnet.new()
 			soul_magnet.soul_offset.x = 24.0
 			letter.add_child(soul_magnet)
+	
+	game_menu.music_select.item_selected.connect(_on_new_music_request)
 	
 
 
@@ -244,6 +250,14 @@ func play_invalid_word_anim() -> void:
 	
 
 
+func set_display_interaction(val: bool) -> void:
+	for row in letter_container.get_children():
+		for display in row.get_children():
+			if display is LetterDisplay:
+				display.is_magnetize = val
+	
+
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and !event.is_echo():
 		var c := char(event.unicode).to_upper()
@@ -267,16 +281,34 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_menu_pressed() -> void:
-	soul.z_index = 4
+	game_menu.window_popup(true)
+	SceneTransition.animate_vertical_bars(100.0, 1.0)
 	var tween = create_tween()
 	tween.tween_property(menu_fade, "color", Color(0.0, 0.0, 0.0, 0.392), 0.5)
 	menu_fade.mouse_filter = Control.MOUSE_FILTER_STOP
-	settings.window_popup(true)
+	menu.disabled = true
+	
 
 
-func _on_settings_close_requested() -> void:
-	soul.z_index = 1
+func _on_menu_close_requested() -> void:
+	game_menu.window_hide()
+	SceneTransition.animate_vertical_bars(0.0, 1.0)
 	var tween = create_tween()
 	tween.tween_property(menu_fade, "color", Color(0.0, 0.0, 0.0, 0.0), 0.5)
 	menu_fade.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	settings.window_hide()
+	menu.disabled = false
+	
+
+
+func _on_new_music_request(track_id) -> void:
+	var music_keys = game_music.keys()
+	var selected_key = music_keys[track_id]
+	var music_track = game_music[selected_key][0]
+	
+	music_track.loop = true
+	music_player.stream = music_track
+	
+	if game_music[selected_key].size() >= 2:
+		music_player.play(game_music[selected_key][1])
+	else:
+		music_player.play()

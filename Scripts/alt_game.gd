@@ -46,7 +46,8 @@ func next_level() -> void:
 		input_field.editable = true
 		input_field.call_deferred("release_focus")
 		input_field.call_deferred("grab_focus")
-		
+	else:
+		get_tree().call_deferred("quit")
 	
 
 

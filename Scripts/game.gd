@@ -31,13 +31,13 @@ var wrong_word_anim_playing: bool = false
 
 
 var game_music: Dictionary = {
-	FIELDS_OF_HOPES = [preload("res://Assets/Audio/Music/field_of_hopes.ogg")],
-	FOREST = [preload("res://Assets/Audio/Music/forest.ogg")],
-	GIANT_QUEEN_APPEARS = [preload("res://Assets/Audio/Music/giant_queen_appears.ogg")],
-	MIKE = [preload("res://Assets/Audio/Music/mike.ogg")], # Mike, Silk their song.
-	PUMPKIN_BOSS = [preload("res://Assets/Audio/Music/pumpkin_boss.ogg")], # YOUR MAMA-MIA IS TAKING TOO TOO
-	ROUXLS_BATTLE = [preload("res://Assets/Audio/Music/rouxls_battle.ogg")], # Bottom.
-	SPAMTON_DANCE = [preload("res://Assets/Audio/Music/spamton_dance.ogg")]
+	FIELDS_OF_HOPES = ["res://Assets/Audio/Music/field_of_hopes.ogg"],
+	FOREST = ["res://Assets/Audio/Music/forest.ogg"],
+	GIANT_QUEEN_APPEARS = ["res://Assets/Audio/Music/giant_queen_appears.ogg"],
+	MIKE = ["res://Assets/Audio/Music/mike.ogg"], # Mike, Silk their song.
+	PUMPKIN_BOSS = ["res://Assets/Audio/Music/pumpkin_boss.ogg"], # YOUR MAMA-MIA IS TAKING TOO TOO
+	ROUXLS_BATTLE = ["res://Assets/Audio/Music/rouxls_battle.ogg"], # Bottom.
+	SPAMTON_DANCE = ["res://Assets/Audio/Music/spamton_dance.ogg"]
 }
 
 var keyboard_letters: Dictionary = {}
@@ -58,7 +58,7 @@ func _ready() -> void:
 	Settings.save_settings()
 	
 	game_menu.music_select.selected = music_keys.find(random_key)
-	var random_music = game_music[random_key][0]
+	var random_music = load(game_music[random_key][0])
 	
 	random_music.loop = true
 	music_player.stream = random_music

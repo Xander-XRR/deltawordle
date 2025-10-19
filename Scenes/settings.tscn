@@ -1,52 +1,143 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccry6m48yu1vj"]
+[gd_scene load_steps=7 format=3 uid="uid://ccry6m48yu1vj"]
 
 [ext_resource type="Script" uid="uid://c5d34ccje77ys" path="res://Scripts/settings.gd" id="1_lhmql"]
 [ext_resource type="Script" uid="uid://vr5mkkhvfged" path="res://Scripts/volume.gd" id="2_6kysc"]
 [ext_resource type="AudioStream" uid="uid://eaghvlqnbw87" path="res://Assets/Audio/SFX/snd_menumove.wav" id="2_i44u3"]
+[ext_resource type="AudioStream" uid="uid://cgtadaeh0et58" path="res://Assets/Audio/SFX/snd_save.wav" id="5_6kysc"]
 [ext_resource type="Script" uid="uid://gg71tmcuo2od" path="res://Scripts/Classes/soul_magnet.gd" id="8_f60ng"]
 [ext_resource type="Texture2D" uid="uid://dc1idrifqyp47" path="res://Assets/Textures/Soul.png" id="9_bismi"]
 
 [node name="DeltaWindow" type="Panel"]
 offset_right = 960.0
-offset_bottom = 448.0
+offset_bottom = 512.0
 script = ExtResource("1_lhmql")
 window_title = "< SETTINGS >"
 metadata/_custom_type_script = "uid://bx0enhrxijss5"
 
-[node name="List" type="VBoxContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 72.0
-offset_right = 928.0
-offset_bottom = 472.0
+offset_left = 24.0
+offset_top = 80.0
+offset_right = 936.0
+offset_bottom = 488.0
+current_tab = 2
 
-[node name="MasterVolume" type="Control" parent="List"]
+[node name="GENERAL" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="List" type="VBoxContainer" parent="TabContainer/GENERAL"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 904.0
+offset_bottom = 359.0
+
+[node name="Fullscreen" type="Control" parent="TabContainer/GENERAL/List"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/GENERAL/List/Fullscreen"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 296.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 25
+text = "FULLSCREEN"
+vertical_alignment = 1
+
+[node name="FullscreenCheckBox" type="CheckBox" parent="TabContainer/GENERAL/List/Fullscreen"]
+layout_mode = 0
+offset_left = 816.0
+offset_top = -4.0
+offset_right = 884.0
+offset_bottom = 64.0
+
+[node name="SoulMagnet" type="Control" parent="TabContainer/GENERAL/List/Fullscreen/FullscreenCheckBox"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_f60ng")
+metadata/_custom_type_script = "uid://gg71tmcuo2od"
+
+[node name="SillyBugs" type="Control" parent="TabContainer/GENERAL/List"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+tooltip_text = "Enable some harmless, silly bugs i encountered during development. :3
+(Not available... yet.)"
+
+[node name="Name" type="Label" parent="TabContainer/GENERAL/List/SillyBugs"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 338.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 25
+text = "SILLY BUGS"
+vertical_alignment = 1
+
+[node name="SillyBugsCheckBox" type="CheckBox" parent="TabContainer/GENERAL/List/SillyBugs"]
+layout_mode = 0
+offset_left = 816.0
+offset_top = -4.0
+offset_right = 888.0
+offset_bottom = 68.0
+
+[node name="SoulMagnet" type="Control" parent="TabContainer/GENERAL/List/SillyBugs/SillyBugsCheckBox"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_f60ng")
+metadata/_custom_type_script = "uid://gg71tmcuo2od"
+
+[node name="SillyBugsConfirmation" type="ConfirmationDialog" parent="TabContainer/GENERAL/List/SillyBugs"]
+oversampling_override = 1.0
+initial_position = 5
+size = Vector2i(555, 300)
+ok_button_text = "Enable Silly BUgs"
+dialog_text = "SILLY BUGS enables some, well... silly bugs I encountered during development! Keep in mind that enabling them may freeze/crash the program.
+(Tip: if a Window seems stuck, use the DEBUG MENU to close it [F3 + F4]. Use at your own risk!)"
+dialog_autowrap = true
+
+[node name="AUDIO" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="List" type="VBoxContainer" parent="TabContainer/AUDIO"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 904.0
+offset_bottom = 359.0
+
+[node name="MasterVolume" type="Control" parent="TabContainer/AUDIO/List"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 tooltip_text = "Master Volume (~-80 DB to 0 DB)."
 script = ExtResource("2_6kysc")
 
-[node name="Name" type="Label" parent="List/MasterVolume"]
+[node name="Name" type="Label" parent="TabContainer/AUDIO/List/MasterVolume"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 208.0
 offset_bottom = 64.0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "MASTER VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="List/MasterVolume"]
+[node name="Value" type="Label" parent="TabContainer/AUDIO/List/MasterVolume"]
 layout_mode = 0
 offset_left = 312.0
 offset_right = 408.0
 offset_bottom = 64.0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "0.0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="List/MasterVolume"]
+[node name="HSlider" type="HSlider" parent="TabContainer/AUDIO/List/MasterVolume"]
 layout_mode = 0
 offset_left = 408.0
 offset_right = 888.0
@@ -54,7 +145,7 @@ offset_bottom = 64.0
 value = 100.0
 rounded = true
 
-[node name="SoulMagnet" type="Control" parent="List/MasterVolume/HSlider"]
+[node name="SoulMagnet" type="Control" parent="TabContainer/AUDIO/List/MasterVolume/HSlider"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -62,34 +153,34 @@ script = ExtResource("8_f60ng")
 soul_offset = Vector2(-385, 0)
 metadata/_custom_type_script = "uid://gg71tmcuo2od"
 
-[node name="SFXVolume" type="Control" parent="List"]
+[node name="SFXVolume" type="Control" parent="TabContainer/AUDIO/List"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 tooltip_text = "Sound Effect Volume (~-80 DB to 0 DB)."
 script = ExtResource("2_6kysc")
 target_bus = "SFX"
 
-[node name="Name" type="Label" parent="List/SFXVolume"]
+[node name="Name" type="Label" parent="TabContainer/AUDIO/List/SFXVolume"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 208.0
 offset_bottom = 64.0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "SFX VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="List/SFXVolume"]
+[node name="Value" type="Label" parent="TabContainer/AUDIO/List/SFXVolume"]
 layout_mode = 0
 offset_left = 312.0
 offset_right = 408.0
 offset_bottom = 64.0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "0.0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="List/SFXVolume"]
+[node name="HSlider" type="HSlider" parent="TabContainer/AUDIO/List/SFXVolume"]
 layout_mode = 0
 offset_left = 408.0
 offset_right = 888.0
@@ -97,7 +188,7 @@ offset_bottom = 64.0
 value = 60.0
 rounded = true
 
-[node name="SoulMagnet" type="Control" parent="List/SFXVolume/HSlider"]
+[node name="SoulMagnet" type="Control" parent="TabContainer/AUDIO/List/SFXVolume/HSlider"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -105,34 +196,34 @@ script = ExtResource("8_f60ng")
 soul_offset = Vector2(-385, 0)
 metadata/_custom_type_script = "uid://gg71tmcuo2od"
 
-[node name="MusicVolume" type="Control" parent="List"]
+[node name="MusicVolume" type="Control" parent="TabContainer/AUDIO/List"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 tooltip_text = "Music Volume (~-80 DB to 0 DB)."
 script = ExtResource("2_6kysc")
 target_bus = "Music"
 
-[node name="Name" type="Label" parent="List/MusicVolume"]
+[node name="Name" type="Label" parent="TabContainer/AUDIO/List/MusicVolume"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 208.0
 offset_bottom = 64.0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "MUSIC VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="List/MusicVolume"]
+[node name="Value" type="Label" parent="TabContainer/AUDIO/List/MusicVolume"]
 layout_mode = 0
 offset_left = 312.0
 offset_right = 408.0
 offset_bottom = 64.0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "0.0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="List/MusicVolume"]
+[node name="HSlider" type="HSlider" parent="TabContainer/AUDIO/List/MusicVolume"]
 layout_mode = 0
 offset_left = 408.0
 offset_right = 888.0
@@ -140,7 +231,7 @@ offset_bottom = 64.0
 value = 60.0
 rounded = true
 
-[node name="SoulMagnet" type="Control" parent="List/MusicVolume/HSlider"]
+[node name="SoulMagnet" type="Control" parent="TabContainer/AUDIO/List/MusicVolume/HSlider"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -148,30 +239,67 @@ script = ExtResource("8_f60ng")
 soul_offset = Vector2(-385, 0)
 metadata/_custom_type_script = "uid://gg71tmcuo2od"
 
-[node name="SillyBugs" type="Control" parent="List"]
-custom_minimum_size = Vector2(0, 64)
+[node name="DEBUG" type="TabBar" parent="TabContainer"]
 layout_mode = 2
-tooltip_text = "Enable some harmless, silly bugs i encountered during development. :3
-(Not available... yet.)"
+metadata/_tab_index = 2
 
-[node name="Name" type="Label" parent="List/SillyBugs"]
+[node name="List" type="VBoxContainer" parent="TabContainer/DEBUG"]
 layout_mode = 0
 offset_left = 8.0
-offset_right = 308.0
+offset_top = 7.0
+offset_right = 904.0
+offset_bottom = 359.0
+
+[node name="Debug" type="Control" parent="TabContainer/DEBUG/List"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+tooltip_text = "Enables the use of the DEBUG MENU (F3 + F4)"
+
+[node name="Label" type="Label" parent="TabContainer/DEBUG/List/Debug"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 296.0
 offset_bottom = 64.0
-theme_override_font_sizes/font_size = 31
-text = "SILLY BUGS (n/a)"
+theme_override_font_sizes/font_size = 25
+text = "DEBUG MENU"
 vertical_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="List/SillyBugs"]
+[node name="FullscreenCheckBox" type="CheckBox" parent="TabContainer/DEBUG/List/Debug"]
 layout_mode = 0
 offset_left = 816.0
 offset_top = -4.0
-offset_right = 888.0
-offset_bottom = 68.0
-disabled = true
+offset_right = 884.0
+offset_bottom = 64.0
 
-[node name="SoulMagnet" type="Control" parent="List/SillyBugs/CheckBox"]
+[node name="SoulMagnet" type="Control" parent="TabContainer/DEBUG/List/Debug/FullscreenCheckBox"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_f60ng")
+metadata/_custom_type_script = "uid://gg71tmcuo2od"
+
+[node name="Control" type="Control" parent="TabContainer/DEBUG/List"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+tooltip_text = "Enables the use of the DEBUG MENU (F3 + F4)"
+
+[node name="Label" type="Label" parent="TabContainer/DEBUG/List/Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 296.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 25
+text = "DEBUG MENU"
+vertical_alignment = 1
+
+[node name="FullscreenCheckBox" type="CheckBox" parent="TabContainer/DEBUG/List/Control"]
+layout_mode = 0
+offset_left = 816.0
+offset_top = -4.0
+offset_right = 884.0
+offset_bottom = 64.0
+
+[node name="SoulMagnet" type="Control" parent="TabContainer/DEBUG/List/Control/FullscreenCheckBox"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -183,17 +311,21 @@ stream = ExtResource("2_i44u3")
 bus = &"SFX"
 
 [node name="AudioStreamPlayerSave" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_i44u3")
+stream = ExtResource("5_6kysc")
 bus = &"SFX"
 
 [node name="AltSoul" type="TextureRect" parent="."]
 visible = false
 self_modulate = Color(1, 1, 1, 0.25882354)
 layout_mode = 0
-offset_left = 904.0
-offset_top = 392.0
-offset_right = 936.0
-offset_bottom = 424.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 56.0
+offset_bottom = 56.0
 texture = ExtResource("9_bismi")
 
+[connection signal="toggled" from="TabContainer/GENERAL/List/Fullscreen/FullscreenCheckBox" to="." method="_on_fullscreen_check_box_toggled"]
+[connection signal="toggled" from="TabContainer/GENERAL/List/SillyBugs/SillyBugsCheckBox" to="." method="_on_silly_bugs_check_box_toggled"]
+[connection signal="canceled" from="TabContainer/GENERAL/List/SillyBugs/SillyBugsConfirmation" to="." method="_on_silly_bugs_confirmation_canceled"]
+[connection signal="confirmed" from="TabContainer/GENERAL/List/SillyBugs/SillyBugsConfirmation" to="." method="_on_silly_bugs_confirmation_confirmed"]
 [connection signal="gui_input" from="AltSoul" to="." method="_on_alt_soul_gui_input"]

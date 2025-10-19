@@ -88,7 +88,7 @@ func _on_time_stamp_met() -> void:
 		particle_array[found_slot] = particle
 	else:
 		particle_array.append(particle)
-		push_warning("Particle Array filled, appended new Particle.")
+		push_warning("MusicInteract: Particle Array filled, appended new Particle.")
 	
 	particle.connect("tree_exited", func(): particle_array[found_slot] = null)
 	

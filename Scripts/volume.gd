@@ -6,7 +6,7 @@ extends Control
 @onready var setting_name: Label = $Name
 @onready var value_label: Label = $Value
 @onready var h_slider: HSlider = $HSlider
-@onready var audio_stream_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
+@onready var audio_stream_player: AudioStreamPlayer = $"../../../../AudioStreamPlayer"
 @onready var soul_magnet: SoulMagnet = $HSlider/SoulMagnet
 
 

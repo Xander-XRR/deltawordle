@@ -14,17 +14,25 @@ func _ready() -> void:
 	var fun = randi() % 100 + 1
 	
 	var arg: String = cmd_args[0]
-	if arg.begins_with("--fun"):
-		fun = int(arg.split("=")[1])
+	if arg.begins_with("--nofun"):
+		print("Loader: Set Fun to 0")
+		fun = 0
+	elif arg.begins_with("--fun"):
+		var f = arg.split("=")[1]
+		fun = int(f)
+		print("Loader: Set Fun to ", f)
 	elif arg.begins_with("--netz"):
 		fun = 56
+		print("Loader: Set Fun to 56. Forced Netz Load")
 	elif arg.begins_with("--gaster"):
 		fun = 66
+		print("Loader: Set Fun to 66. Forced Alt Load")
 	
 	print("Loader: FUN value: ", fun)
 	
 	# netz!! third sanctuary custom intro
 	if fun == 56:
+		SceneTransition.set_vertical_bars(0.0)
 		Global.custom_intro = Global.CustomIntros.CHURCH3_REMIX
 		get_tree().call_deferred("change_scene_to_packed", MAIN)
 	

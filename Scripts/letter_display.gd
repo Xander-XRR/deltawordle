@@ -13,6 +13,7 @@ const DELTARUNE_OPTION_SELECTED_STYLE = preload("uid://bww75ndrxdm03")
 
 signal pressed(string: String)
 
+
 func _ready() -> void:
 	letter_label.text = displayed_letter
 	

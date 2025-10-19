@@ -24,6 +24,7 @@ Settings="*res://Scripts/Globals/settings.gd"
 DeltaWindowsLayer="*res://Scenes/delta_windows_layer.tscn"
 SceneTransition="*res://Scripts/Globals/scene_transition.gd"
 Global="*res://Scripts/Globals/global.gd"
+Cleanup="*res://Scripts/Globals/cleanup.gd"
 
 [display]
 

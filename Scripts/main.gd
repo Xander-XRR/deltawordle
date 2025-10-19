@@ -10,27 +10,27 @@ extends Control
 @onready var button_manager: Node = $ButtonManager
 @onready var fake_buttons: Node2D = $FakeButtons
 
-const GAME = preload("uid://cysny571dnqgg")
+const GAME = preload("res://Scenes/game.tscn")
 const NETZ_REMIX_MUSIC_INTERACT = preload("res://Scenes/music_interact.tscn")
 
 # Menu Music [file path, starting point, volume (DB)]
 var menu_music: Dictionary = {
-	ALT_CHURCH_LOBBY = [preload("res://Assets/Audio/Music/alt_church_lobby.ogg")],
-	ANNOYING_PROPHECY = [preload("res://Assets/Audio/Music/annoying_prophecy.ogg")],
-	AUDIO_ANOTHERHIM = [preload("res://Assets/Audio/Music/AUDIO_ANOTHERHIM.ogg")],
-	AUDIO_STORY = [preload("res://Assets/Audio/Music/AUDIO_STORY.ogg")],
-	CH_4_CREDITS = [preload("res://Assets/Audio/Music/ch4_credits.ogg"), 15.15, 2],
-	CHURCH_ZONE_3 = [preload("res://Assets/Audio/Music/church_zone3.ogg"), 25.4, 6],
-	DOGCHECK = [preload("res://Assets/Audio/Music/dogcheck.ogg")],
-	KRIS_PIANO_WAITINGROOM = [preload("res://Assets/Audio/Music/kris_piano_waitingroom.ogg")],
-	MENU = [preload("res://Assets/Audio/Music/menu.ogg")],
-	NOELLE = [preload("res://Assets/Audio/Music/noelle.ogg")],
-	QUIET_AUTUMN = [preload("res://Assets/Audio/Music/quiet_autumn.ogg")],
-	QUIET_CHURCH = [preload("res://Assets/Audio/Music/quiet_church.ogg")],
-	SECOND_CHURCH = [preload("res://Assets/Audio/Music/second_church.ogg"),  25.4, 6],
-	SHOP_1 = [preload("res://Assets/Audio/Music/shop1.ogg")],
-	THE_HOLY = [preload("res://Assets/Audio/Music/THE_HOLY.ogg")],
-	TOWN = [preload("res://Assets/Audio/Music/town.ogg")]
+	ALT_CHURCH_LOBBY = ["res://Assets/Audio/Music/alt_church_lobby.ogg"],
+	ANNOYING_PROPHECY = ["res://Assets/Audio/Music/annoying_prophecy.ogg"],
+	AUDIO_ANOTHERHIM = ["res://Assets/Audio/Music/AUDIO_ANOTHERHIM.ogg"],
+	AUDIO_STORY = ["res://Assets/Audio/Music/AUDIO_STORY.ogg"],
+	CH_4_CREDITS = ["res://Assets/Audio/Music/ch4_credits.ogg", 15.15, 2],
+	CHURCH_ZONE_3 = ["res://Assets/Audio/Music/church_zone3.ogg", 25.4, 6],
+	DOGCHECK = ["res://Assets/Audio/Music/dogcheck.ogg"],
+	KRIS_PIANO_WAITINGROOM = ["res://Assets/Audio/Music/kris_piano_waitingroom.ogg"],
+	MENU = ["res://Assets/Audio/Music/menu.ogg"],
+	NOELLE = ["res://Assets/Audio/Music/noelle.ogg"],
+	QUIET_AUTUMN = ["res://Assets/Audio/Music/quiet_autumn.ogg"],
+	QUIET_CHURCH = ["res://Assets/Audio/Music/quiet_church.ogg"],
+	SECOND_CHURCH = ["res://Assets/Audio/Music/second_church.ogg",  25.4, 6],
+	SHOP_1 = ["res://Assets/Audio/Music/shop1.ogg"],
+	THE_HOLY = ["res://Assets/Audio/Music/THE_HOLY.ogg"],
+	TOWN = ["res://Assets/Audio/Music/town.ogg"]
 }
 
 
@@ -44,6 +44,7 @@ func _ready() -> void:
 	if Global.custom_intro == Global.CustomIntros.CHURCH3_REMIX:
 		SceneTransition.set_vertical_bars(0.0)
 		add_child(NETZ_REMIX_MUSIC_INTERACT.instantiate())
+		Global.custom_intro = Global.CustomIntros.NONE
 	else:
 		var music_keys = menu_music.keys()
 		var random_key = music_keys[randi() % music_keys.size()]
@@ -55,7 +56,7 @@ func _ready() -> void:
 		
 		Settings.last_played_menu_theme = random_key
 		Settings.save_settings()
-		var random_music = menu_music[random_key][0]
+		var random_music = load(menu_music[random_key][0])
 		
 		random_music.loop = true
 		music_player.stream = random_music

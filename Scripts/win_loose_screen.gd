@@ -17,8 +17,10 @@ func announce(won: bool, w_word: String):
 
 
 func _on_new_game_pressed() -> void:
+	window_hide()
 	SceneTransition.transition_to_scene("res://Scenes/game.tscn")
 
 
 func _on_back_to_title_pressed() -> void:
+	window_hide()
 	SceneTransition.transition_to_scene("res://Scenes/main.tscn")

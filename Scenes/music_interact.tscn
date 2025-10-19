@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://3r7txihx6e0f" path="res://Assets/Audio/SFX/Fonts/deltarune.ttf" id="3_x5txg"]
 
 [node name="MusicInteract" type="CanvasLayer"]
-layer = 5
+layer = 8
 script = ExtResource("1_c1r0o")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -20,7 +20,7 @@ autoplay = true
 bus = &"Music"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 6
+layer = 9
 
 [node name="TitleControl" type="Control" parent="CanvasLayer"]
 layout_mode = 3

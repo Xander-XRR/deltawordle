@@ -17,7 +17,6 @@ data_*/
 mono_crash.*.json
 
 # Assets ignores
-Assets/Audio/Music/*.ogg
-Assets/Audio/_/*.ogg
-Assets/Audio/SFX/*.wav
+*.ogg
+*.wav
 

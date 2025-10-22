@@ -20,10 +20,9 @@ offset_left = 24.0
 offset_top = 80.0
 offset_right = 936.0
 offset_bottom = 488.0
-current_tab = 2
+current_tab = 0
 
 [node name="GENERAL" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -50,9 +49,9 @@ vertical_alignment = 1
 [node name="FullscreenCheckBox" type="CheckBox" parent="TabContainer/GENERAL/List/Fullscreen"]
 layout_mode = 0
 offset_left = 816.0
-offset_top = -4.0
+offset_top = -2.0
 offset_right = 884.0
-offset_bottom = 64.0
+offset_bottom = 66.0
 
 [node name="SoulMagnet" type="Control" parent="TabContainer/GENERAL/List/Fullscreen/FullscreenCheckBox"]
 anchors_preset = 0
@@ -79,9 +78,9 @@ vertical_alignment = 1
 [node name="SillyBugsCheckBox" type="CheckBox" parent="TabContainer/GENERAL/List/SillyBugs"]
 layout_mode = 0
 offset_left = 816.0
-offset_top = -4.0
-offset_right = 888.0
-offset_bottom = 68.0
+offset_top = -2.0
+offset_right = 884.0
+offset_bottom = 66.0
 
 [node name="SoulMagnet" type="Control" parent="TabContainer/GENERAL/List/SillyBugs/SillyBugsCheckBox"]
 anchors_preset = 0
@@ -98,6 +97,34 @@ ok_button_text = "Enable Silly BUgs"
 dialog_text = "SILLY BUGS enables some, well... silly bugs I encountered during development! Keep in mind that enabling them may freeze/crash the program.
 (Tip: if a Window seems stuck, use the DEBUG MENU to close it [F3 + F4]. Use at your own risk!)"
 dialog_autowrap = true
+
+[node name="FunEvents" type="Control" parent="TabContainer/GENERAL/List"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+tooltip_text = "Enables FUN Events if enabled. FUN Events are Easter Eggs that can appear on Startup."
+
+[node name="Label" type="Label" parent="TabContainer/GENERAL/List/FunEvents"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 296.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 25
+text = "FUN EVENTS"
+vertical_alignment = 1
+
+[node name="FunEventsCheckBox" type="CheckBox" parent="TabContainer/GENERAL/List/FunEvents"]
+layout_mode = 0
+offset_left = 816.0
+offset_top = -2.0
+offset_right = 884.0
+offset_bottom = 66.0
+
+[node name="SoulMagnet" type="Control" parent="TabContainer/GENERAL/List/FunEvents/FunEventsCheckBox"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_f60ng")
+metadata/_custom_type_script = "uid://gg71tmcuo2od"
 
 [node name="AUDIO" type="TabBar" parent="TabContainer"]
 visible = false
@@ -240,6 +267,7 @@ soul_offset = Vector2(-385, 0)
 metadata/_custom_type_script = "uid://gg71tmcuo2od"
 
 [node name="DEBUG" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -253,7 +281,7 @@ offset_bottom = 359.0
 [node name="Debug" type="Control" parent="TabContainer/DEBUG/List"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
-tooltip_text = "Enables the use of the DEBUG MENU (F3 + F4)"
+tooltip_text = "Enables the use of the DEBUG MENU (F3)"
 
 [node name="Label" type="Label" parent="TabContainer/DEBUG/List/Debug"]
 layout_mode = 0
@@ -264,42 +292,42 @@ theme_override_font_sizes/font_size = 25
 text = "DEBUG MENU"
 vertical_alignment = 1
 
-[node name="FullscreenCheckBox" type="CheckBox" parent="TabContainer/DEBUG/List/Debug"]
+[node name="DebugCheckBox" type="CheckBox" parent="TabContainer/DEBUG/List/Debug"]
 layout_mode = 0
 offset_left = 816.0
 offset_top = -4.0
 offset_right = 884.0
 offset_bottom = 64.0
 
-[node name="SoulMagnet" type="Control" parent="TabContainer/DEBUG/List/Debug/FullscreenCheckBox"]
+[node name="SoulMagnet" type="Control" parent="TabContainer/DEBUG/List/Debug/DebugCheckBox"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_f60ng")
 metadata/_custom_type_script = "uid://gg71tmcuo2od"
 
-[node name="Control" type="Control" parent="TabContainer/DEBUG/List"]
+[node name="DebugPrint" type="Control" parent="TabContainer/DEBUG/List"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
-tooltip_text = "Enables the use of the DEBUG MENU (F3 + F4)"
+tooltip_text = "Enables DEBUG PRINTING. Prints a whole lot of extra Info to the Terminal/Command prompt if launched using it. Requires Restart."
 
-[node name="Label" type="Label" parent="TabContainer/DEBUG/List/Control"]
+[node name="Label" type="Label" parent="TabContainer/DEBUG/List/DebugPrint"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 296.0
 offset_bottom = 64.0
 theme_override_font_sizes/font_size = 25
-text = "DEBUG MENU"
+text = "DEBUG PRINTS"
 vertical_alignment = 1
 
-[node name="FullscreenCheckBox" type="CheckBox" parent="TabContainer/DEBUG/List/Control"]
+[node name="DebugPrintCheckBox" type="CheckBox" parent="TabContainer/DEBUG/List/DebugPrint"]
 layout_mode = 0
 offset_left = 816.0
 offset_top = -4.0
 offset_right = 884.0
 offset_bottom = 64.0
 
-[node name="SoulMagnet" type="Control" parent="TabContainer/DEBUG/List/Control/FullscreenCheckBox"]
+[node name="SoulMagnet" type="Control" parent="TabContainer/DEBUG/List/DebugPrint/DebugPrintCheckBox"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -315,17 +343,20 @@ stream = ExtResource("5_6kysc")
 bus = &"SFX"
 
 [node name="AltSoul" type="TextureRect" parent="."]
-visible = false
 self_modulate = Color(1, 1, 1, 0.25882354)
+z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 56.0
-offset_bottom = 56.0
+offset_left = 896.0
+offset_top = 448.0
+offset_right = 928.0
+offset_bottom = 480.0
 texture = ExtResource("9_bismi")
 
 [connection signal="toggled" from="TabContainer/GENERAL/List/Fullscreen/FullscreenCheckBox" to="." method="_on_fullscreen_check_box_toggled"]
 [connection signal="toggled" from="TabContainer/GENERAL/List/SillyBugs/SillyBugsCheckBox" to="." method="_on_silly_bugs_check_box_toggled"]
 [connection signal="canceled" from="TabContainer/GENERAL/List/SillyBugs/SillyBugsConfirmation" to="." method="_on_silly_bugs_confirmation_canceled"]
 [connection signal="confirmed" from="TabContainer/GENERAL/List/SillyBugs/SillyBugsConfirmation" to="." method="_on_silly_bugs_confirmation_confirmed"]
+[connection signal="toggled" from="TabContainer/GENERAL/List/FunEvents/FunEventsCheckBox" to="." method="_on_fun_events_check_box_toggled"]
+[connection signal="toggled" from="TabContainer/DEBUG/List/Debug/DebugCheckBox" to="." method="_on_debug_check_box_toggled"]
+[connection signal="toggled" from="TabContainer/DEBUG/List/DebugPrint/DebugPrintCheckBox" to="." method="_on_debug_print_check_box_toggled"]
 [connection signal="gui_input" from="AltSoul" to="." method="_on_alt_soul_gui_input"]

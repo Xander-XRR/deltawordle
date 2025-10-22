@@ -68,10 +68,10 @@ vertical_alignment = 1
 
 [node name="Close" type="Button" parent="."]
 layout_mode = 0
-offset_left = 664.0
-offset_top = 16.0
-offset_right = 684.0
-offset_bottom = 36.0
+offset_left = 640.0
+offset_top = 8.0
+offset_right = 696.0
+offset_bottom = 64.0
 theme_override_styles/normal = ExtResource("3_anyew")
 theme_override_styles/pressed = ExtResource("4_a1w2p")
 theme_override_styles/hover = ExtResource("5_1phbv")

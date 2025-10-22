@@ -9,6 +9,7 @@ extends Control
 @onready var title_shadered: Sprite2D = $TitleShadered
 @onready var button_manager: Node = $ButtonManager
 @onready var fake_buttons: Node2D = $FakeButtons
+@onready var back_sfx_player: AudioStreamPlayer = $BackSFXPlayer
 
 const GAME = preload("res://Scenes/game.tscn")
 const NETZ_REMIX_MUSIC_INTERACT = preload("res://Scenes/music_interact.tscn")
@@ -35,11 +36,13 @@ var menu_music: Dictionary = {
 
 
 func _ready() -> void:
+	GlobalSoul.soul.visible = true
 	$ButtonManager/Start.grab_focus()
 	
 	Settings.connect("settings_window_hide_requested", _on_main_menu_settings_close_requested)
 	DeltaWindowsLayer.new_game_prompt.close_requested.connect(_on_new_game_prompt_close_requested)
 	DeltaWindowsLayer.new_game_prompt.new_game_requested.connect(_on_new_game_prompt_new_game_requested)
+	DeltaWindowsLayer.license_window.close_requested.connect(_on_license_window_close_requested)
 	
 	if Global.custom_intro == Global.CustomIntros.CHURCH3_REMIX:
 		SceneTransition.set_vertical_bars(0.0)
@@ -48,11 +51,12 @@ func _ready() -> void:
 	else:
 		var music_keys = menu_music.keys()
 		var random_key = music_keys[randi() % music_keys.size()]
-		print("Main: Last Menu Track: " + Settings.last_played_menu_theme)
-		print("Main: Random Theme key: " + random_key)
+		Debug.dprint(self, "Last Menu Track: " + Settings.last_played_menu_theme)
+		Debug.dprint(self, "Random Theme key: " + random_key)
+		
 		if Settings.last_played_menu_theme == random_key:
 			random_key = music_keys[randi() % music_keys.size()]
-			print("Main: Repeat Track. Rerolling Random Theme key: " + random_key)
+			Debug.dprint(self, "Repeat Track. Rerolling Random Theme key: " + random_key)
 		
 		Settings.last_played_menu_theme = random_key
 		Settings.save_settings()
@@ -111,14 +115,17 @@ func _on_new_game_prompt_close_requested() -> void:
 	SceneTransition.animate_vertical_bars(0.0, 1.0)
 	set_buttons_enabled(true)
 	DeltaWindowsLayer.new_game_prompt.window_hide()
-	select_sfx_player.play()
+	back_sfx_player.play()
 
 
 func _on_credits_pressed() -> void:
-	Global.open_and_show_file("res://README.txt", "README.txt")
+	SceneTransition.transition_to_scene("res://Scenes/credits.tscn")
 
 func _on_license_pressed() -> void:
-	Global.open_and_show_file("res://LICENSE", "LICENSE")
+	DeltaWindowsLayer.license_window.window_popup(true)
+	tween_screen_tint_to(125)
+	SceneTransition.animate_vertical_bars(100.0, 1.0)
+	set_buttons_enabled(false)
 
 
 func _on_settings_pressed() -> void:
@@ -140,3 +147,11 @@ func _on_new_game_prompt_new_game_requested() -> void:
 	SceneTransition.transition_to_scene(GAME)
 	DeltaWindowsLayer.new_game_prompt.window_hide()
 	
+
+
+func _on_license_window_close_requested() -> void:
+	DeltaWindowsLayer.license_window.window_hide()
+	tween_screen_tint_to(0.0)
+	SceneTransition.animate_vertical_bars(0.0, 1.0)
+	set_buttons_enabled(true)
+	back_sfx_player.play()

@@ -101,7 +101,7 @@ func _on_time_stamp_met() -> void:
 
 
 func _on_interupt(num: int) -> void:
-	print("interupt Nr. ", num)
+	Debug.dprint(self, "Interupt Nr. ", num)
 	if num == 0:
 		title.visible = true
 	if num == 1:

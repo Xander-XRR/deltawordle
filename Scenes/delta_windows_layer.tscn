@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://m2pcspy7jn3y"]
+[gd_scene load_steps=9 format=3 uid="uid://m2pcspy7jn3y"]
 
 [ext_resource type="Script" uid="uid://br546qvfack0h" path="res://Scripts/delta_windows_layer.gd" id="1_pmooy"]
 [ext_resource type="PackedScene" uid="uid://bp0a6g5itkgnd" path="res://Scenes/game_menu.tscn" id="1_wina7"]
 [ext_resource type="PackedScene" uid="uid://dig01yp5h8yvc" path="res://Scenes/new_game_prompt.tscn" id="2_dgvth"]
 [ext_resource type="PackedScene" uid="uid://bcrbsr0w8gphc" path="res://Scenes/win_loose_screen.tscn" id="3_a06v0"]
-[ext_resource type="StyleBox" uid="uid://tvhujlkqqybi" path="res://Assets/Styles/deltarune_close_button_style_normal.tres" id="5_pj1wb"]
-[ext_resource type="StyleBox" uid="uid://6iafa18xitft" path="res://Assets/Styles/deltarune_close_button_style_pressed.tres" id="6_bo8yx"]
-[ext_resource type="StyleBox" uid="uid://boe2nk1qgyai3" path="res://Assets/Styles/deltarune_close_button_style_hovered.tres" id="7_loekm"]
+[ext_resource type="StyleBox" uid="uid://tvhujlkqqybi" path="res://Assets/Styles/deltarune_close_button_style_normal.tres" id="5_pmooy"]
+[ext_resource type="StyleBox" uid="uid://6iafa18xitft" path="res://Assets/Styles/deltarune_close_button_style_pressed.tres" id="6_pj1wb"]
+[ext_resource type="StyleBox" uid="uid://boe2nk1qgyai3" path="res://Assets/Styles/deltarune_close_button_style_hovered.tres" id="7_bo8yx"]
+[ext_resource type="PackedScene" uid="uid://c2jokkqw6mnb0" path="res://Scenes/license_window.tscn" id="8_pmooy"]
 
 [node name="DeltaWindowsLayer" type="CanvasLayer"]
 layer = 6
@@ -15,65 +16,19 @@ script = ExtResource("1_pmooy")
 [node name="GameMenu" parent="." instance=ExtResource("1_wina7")]
 visible = false
 modulate = Color(1, 1, 1, 0)
-offset_left = 64.0
-offset_top = 35.2
-offset_right = 704.0
-offset_bottom = 387.2
+offset_left = 32.0
+offset_top = 17.6
+offset_right = 672.0
+offset_bottom = 369.6
 scale = Vector2(0.9, 0.9)
-
-[node name="TitleLabel" type="Label" parent="GameMenu"]
-layout_mode = 0
-offset_top = 12.0
-offset_right = 640.0
-offset_bottom = 45.0
-theme_override_font_sizes/font_size = 31
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="QuitButton" type="Button" parent="GameMenu"]
-layout_mode = 0
-offset_left = 568.0
-offset_top = 16.0
-offset_right = 624.0
-offset_bottom = 72.0
-theme_override_styles/normal = ExtResource("5_pj1wb")
-theme_override_styles/pressed = ExtResource("6_bo8yx")
-theme_override_styles/hover = ExtResource("7_loekm")
-theme_override_styles/hover_pressed = ExtResource("6_bo8yx")
-
-[node name="BodyTitleSeperator" type="HSeparator" parent="GameMenu"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 70.0
-offset_right = 616.0
-offset_bottom = 74.0
-
-[node name="DragControl" type="Control" parent="GameMenu"]
-anchors_preset = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 568.0
-offset_bottom = 72.0
-
-[node name="FullTitleBarControl" type="Control" parent="GameMenu"]
-anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 72.0
-mouse_filter = 2
-
-[node name="FullBodyControl" type="Control" parent="GameMenu"]
-anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 352.0
-mouse_filter = 2
 
 [node name="WinLooseScreen" parent="." instance=ExtResource("3_a06v0")]
 visible = false
 modulate = Color(1, 1, 1, 0)
-offset_left = 64.0
-offset_top = 38.4
-offset_right = 704.0
-offset_bottom = 422.4
+offset_left = 32.0
+offset_top = 19.2
+offset_right = 672.0
+offset_bottom = 403.2
 scale = Vector2(0.9, 0.9)
 
 [node name="TitleLabel" type="Label" parent="WinLooseScreen"]
@@ -91,10 +46,10 @@ offset_left = 568.0
 offset_top = 16.0
 offset_right = 624.0
 offset_bottom = 72.0
-theme_override_styles/normal = ExtResource("5_pj1wb")
-theme_override_styles/pressed = ExtResource("6_bo8yx")
-theme_override_styles/hover = ExtResource("7_loekm")
-theme_override_styles/hover_pressed = ExtResource("6_bo8yx")
+theme_override_styles/normal = ExtResource("5_pmooy")
+theme_override_styles/pressed = ExtResource("6_pj1wb")
+theme_override_styles/hover = ExtResource("7_bo8yx")
+theme_override_styles/hover_pressed = ExtResource("6_pj1wb")
 
 [node name="BodyTitleSeperator" type="HSeparator" parent="WinLooseScreen"]
 layout_mode = 0
@@ -125,8 +80,17 @@ mouse_filter = 2
 [node name="NewGamePrompt" parent="." instance=ExtResource("2_dgvth")]
 visible = false
 modulate = Color(1, 1, 1, 0)
-offset_left = 70.4
-offset_top = 41.600002
-offset_right = 774.4
-offset_bottom = 457.6
+offset_left = 211.2
+offset_top = 124.80001
+offset_right = 915.2
+offset_bottom = 540.8
+scale = Vector2(0.9, 0.9)
+
+[node name="LicenseWindow" parent="." instance=ExtResource("8_pmooy")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 96.0
+offset_top = 51.199997
+offset_right = 1056.0
+offset_bottom = 563.19995
 scale = Vector2(0.9, 0.9)

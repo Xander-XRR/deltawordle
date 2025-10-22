@@ -23,7 +23,7 @@ func _ready() -> void:
 	ghost_2.size = size
 	ghost_3.size = size
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	time += delta
 	

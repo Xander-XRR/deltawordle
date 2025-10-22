@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dncs8h8r214t3" path="res://Scripts/debug.gd" id="1_raf04"]
 [ext_resource type="Script" uid="uid://bey66hecpllsx" path="res://Scripts/gay_label.gd" id="2_axs6p"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="Debug" type="CanvasLayer"]
 layer = 10
 visible = false
 script = ExtResource("1_raf04")

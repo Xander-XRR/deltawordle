@@ -4,16 +4,17 @@ extends Control
 @onready var row_container: Node2D = $RowContainer
 @onready var input: Label = $InputText
 @onready var letter_container: VBoxContainer = $Keyboard/LetterContainer
-@onready var sfx_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var sfx_player: AudioStreamPlayer = $SFXPlayer
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
-@onready var win_loose_screen: DeltaWindow = DeltaWindowsLayer.win_loose_screen
+@onready var win_back_player: AudioStreamPlayer = $WinBackPlayer
 @onready var menu_fade: ColorRect = $MenuFade
 @onready var menu: HoverButton = $Menu
-@onready var game_menu: DeltaWindow = $GameMenu
+@onready var win_loose_screen: DeltaWindow = DeltaWindowsLayer.win_loose_screen
+@onready var game_menu: DeltaWindow = DeltaWindowsLayer.game_menu
 
 @export var word_lenght: int = 5
 
-const LETTER_DISPLAY = preload("uid://bxs6e521xet4b")
+const LETTER_DISPLAY = preload("res://Scenes/letter_display.tscn")
 
 const SND_GRAZE = preload("res://Assets/Audio/SFX/snd_graze.wav")
 const SND_NOISE = preload("res://Assets/Audio/SFX/snd_noise.wav")
@@ -26,6 +27,9 @@ var selected_word: String
 
 var busy: bool = false
 var current_row: int = 0
+
+var bugged_lol: bool = Settings.enable_silly_bugs
+var bugged_time: float = 0.0
 
 var wrong_word_anim_playing: bool = false
 
@@ -47,12 +51,12 @@ func _ready() -> void:
 	# Random Music 
 	var music_keys = game_music.keys()
 	var random_key = music_keys[randi() % music_keys.size()]
-	print("Game: Last Game Track: " + Settings.last_played_game_theme)
-	print("Game: Random Theme key: " + random_key)
+	Debug.dprint(self, "Last Game Track: " + Settings.last_played_game_theme)
+	Debug.dprint(self, "Random Theme key: " + random_key)
 	
 	if Settings.last_played_game_theme == random_key:
 		random_key = music_keys[randi() % music_keys.size()]
-		print("Game: Repeat Track. Rerolling Random Theme key: " + random_key)
+		Debug.dprint(self, "Repeat Track. Rerolling Random Theme key: " + random_key)
 	
 	Settings.last_played_game_theme = random_key
 	Settings.save_settings()
@@ -81,10 +85,10 @@ func _ready() -> void:
 			var text: String = file.get_as_text()
 			possible_words = text.split("\n", false)
 			file.close()
-			print("Game: Possible Words: ", possible_words)
+			Debug.dprint(self, "Possible Words: ", possible_words)
 		
 		selected_word = possible_words[randi() % possible_words.size()]
-		print("Game: Selected Word: ", selected_word)
+		Debug.dprint(self, "Selected Word: ", selected_word)
 		
 		for row in row_container.get_children():
 			if not row:
@@ -110,18 +114,32 @@ func _ready() -> void:
 			letter.add_child(soul_magnet)
 	
 	game_menu.music_select.item_selected.connect(_on_new_music_request)
+	game_menu.close_requested.connect(_on_menu_close_requested)
 	
+
+
+func _process(delta: float) -> void:
+	if bugged_lol:
+		bugged_time += delta
+		var row = row_container.get_child(current_row)
+		
+		if bugged_time > 1.5:
+			if row.position.x != 0.0:
+				await create_tween().tween_property(row, "position", Vector2(0.0, row.position.y), 0.7) \
+				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO).finished
+				play_invalid_word_anim()
+			bugged_time = 0.0
 
 
 func check_if_valid_word() -> void:
 	if input.text.length() != word_lenght:
-		print("Not enough Characters!")
+		Debug.dprint(self, "Not enough Characters!")
 		await play_invalid_word_anim()
 		busy = false
 		return
 	
 	if input.text not in possible_words:
-		print("Invalid Word!")
+		Debug.dprint(self, "Invalid Word!")
 		await play_invalid_word_anim()
 		busy = false
 		return
@@ -193,6 +211,7 @@ func reveal_text_correctness() -> void:
 
 
 func add_letter_to_displays(letter: String) -> void:
+	bugged_time = 0
 	if letter == "BSP":
 		if input.text.length() != 0:
 			input.text = input.text.erase(input.text.length() - 1)
@@ -208,7 +227,7 @@ func add_letter_to_displays(letter: String) -> void:
 	if input.text.length() < word_lenght:
 		input.text += letter
 		add_or_remove_display_letter(letter)
-		print("added letter: ", letter)
+		Debug.dprint(self, "Added letter to input: ", letter)
 	else:
 		play_invalid_word_anim()
 	
@@ -231,7 +250,7 @@ func play_sfx(sfx) -> void:
 
 
 func play_invalid_word_anim() -> void:
-	if !wrong_word_anim_playing:
+	if !wrong_word_anim_playing or bugged_lol:
 		wrong_word_anim_playing = true
 		
 		var row = row_container.get_child(current_row)
@@ -247,6 +266,8 @@ func play_invalid_word_anim() -> void:
 		
 		row.position.x = origin
 		wrong_word_anim_playing = false
+		
+		bugged_time = 0
 	
 
 
@@ -260,7 +281,11 @@ func set_display_interaction(val: bool) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and !event.is_echo():
-		var c := char(event.unicode).to_upper()
+		bugged_time = 0
+		var c: String = ""
+		if event.unicode != 0:
+			c = char(event.unicode).to_upper()
+		
 		if c >= "A" and c <= "Z":
 			if input.text.length() < word_lenght and !busy:
 				input.text += c
@@ -274,8 +299,6 @@ func _input(event: InputEvent) -> void:
 				return
 			busy = true
 			check_if_valid_word()
-		elif event.keycode == KEY_F3 or event.keycode == KEY_F4:
-			pass
 		else:
 			get_viewport().set_input_as_handled()
 
@@ -297,6 +320,7 @@ func _on_menu_close_requested() -> void:
 	tween.tween_property(menu_fade, "color", Color(0.0, 0.0, 0.0, 0.0), 0.5)
 	menu_fade.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	menu.disabled = false
+	win_back_player.play()
 	
 
 
@@ -304,11 +328,15 @@ func _on_new_music_request(track_id) -> void:
 	var music_keys = game_music.keys()
 	var selected_key = music_keys[track_id]
 	var music_track = game_music[selected_key][0]
+	var new_stream = load(music_track)
 	
-	music_track.loop = true
-	music_player.stream = music_track
+	new_stream.loop = true
+	music_player.stream = new_stream
 	
 	if game_music[selected_key].size() >= 2:
 		music_player.play(game_music[selected_key][1])
 	else:
 		music_player.play()
+	
+	Debug.dprint(self, "Set new Music: ", music_track)
+	

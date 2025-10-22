@@ -127,10 +127,12 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="SFXPlayerNoise" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("6_geikc")
 bus = &"SFX"
 
 [node name="SFXPlayerSelect" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("7_hxl1r")
 bus = &"SFX"
 

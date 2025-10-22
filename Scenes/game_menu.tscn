@@ -9,6 +9,7 @@
 offset_right = 640.0
 offset_bottom = 352.0
 script = ExtResource("1_in7i6")
+window_title = "< MENU >"
 metadata/_custom_type_script = "uid://bx0enhrxijss5"
 
 [node name="TitleButton" type="Button" parent="."]
@@ -37,7 +38,7 @@ metadata/_custom_type_script = "uid://dppu13r8bqi1i"
 [node name="MusicLabelPanel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 96.0
+offset_top = 80.0
 offset_right = 608.0
 offset_bottom = 192.0
 mouse_filter = 2
@@ -45,8 +46,9 @@ mouse_filter = 2
 [node name="Label" type="Label" parent="MusicLabelPanel"]
 layout_mode = 0
 offset_left = 32.0
+offset_top = 8.0
 offset_right = 160.0
-offset_bottom = 96.0
+offset_bottom = 104.0
 theme_override_font_sizes/font_size = 25
 text = "MUSIC:"
 horizontal_alignment = 1
@@ -91,3 +93,4 @@ metadata/_custom_type_script = "uid://gg71tmcuo2od"
 
 [connection signal="pressed" from="TitleButton" to="." method="_on_title_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MusicLabelPanel/MusicSelect" to="." method="_on_music_select_pressed"]

@@ -1,14 +1,32 @@
 extends CanvasLayer
 
 
+var dprint_enabled: bool = true
+
+
 func _ready() -> void:
+	dprint_enabled = Settings.load_single_setting("enable_dprint", false)
 	for scene in DirAccess.get_files_at("res://Scenes/"):
 		$GotToScene.add_item(scene)
 
 
+func dprint(source: Node, ...args) -> void:
+	if dprint_enabled:
+		print("[D] ", source.name, ": ", turn_vararg_into_string(args))
+	
+
+
+func turn_vararg_into_string(vararg:  Array) -> String:
+	var return_string = ""
+	for arg in vararg:
+		return_string += str(arg)
+	return return_string
+	
+
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
-		if Input.is_key_pressed(KEY_F3):
+		if Input.is_key_pressed(KEY_F3) and Settings.enable_debug_menu:
 			visible = !visible
 
 

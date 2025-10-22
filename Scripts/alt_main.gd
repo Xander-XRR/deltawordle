@@ -57,14 +57,14 @@ func _on_alt_menu_settings_close_requested() -> void:
 
 
 func _on_credits_pressed() -> void:
-	Global.open_and_show_file("res://README.txt", "README.txt")
+	SceneTransition.transition_to_scene("res://Scenes/credits.tscn")
 
 func _on_credits_hovered() -> void:
 	descriptions.text = "PERCEIVE THE ONES WHO MADE THIS POSSIBLE."
 
 
 func _on_license_pressed() -> void:
-	Global.open_and_show_file("res://LICENCE", "LICENSE")
+	DeltaWindowsLayer.license_window.window_popup(true)
 
 func _on_license_hovered() -> void:
 	descriptions.text = "ACKNOWLEDGE THE TERMS AND SERVICE OF THIS EXPERIMENT."
@@ -73,7 +73,7 @@ func _on_license_hovered() -> void:
 func _on_quit_pressed() -> void:
 	if randi() % 2 == 1:
 		$ThankYou.visible = true
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(2.0).timeout
 	get_tree().call_deferred("quit")
 
 func _on_quit_hovered() -> void:

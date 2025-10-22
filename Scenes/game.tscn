@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bxs6e521xet4b" path="res://Scenes/letter_display.tscn" id="3_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://mu85yeukccao" path="res://Scenes/battle_background.tscn" id="3_wrm1d"]
 [ext_resource type="Script" uid="uid://dppu13r8bqi1i" path="res://Scripts/Classes/hover_button.gd" id="4_i6g32"]
-[ext_resource type="PackedScene" uid="uid://bp0a6g5itkgnd" path="res://Scenes/game_menu.tscn" id="6_ldgsr"]
+[ext_resource type="AudioStream" uid="uid://dw3dt3cbre7fn" path="res://Assets/Audio/SFX/snd_heavyswing.wav" id="6_i6g32"]
 [ext_resource type="AudioStream" uid="uid://3cphmxweifv8" path="res://Assets/Audio/SFX/snd_hurt1.wav" id="7_h4fw4"]
 
 [node name="Game" type="Control"]
@@ -246,26 +246,17 @@ script = ExtResource("4_i6g32")
 soul_offset = Vector2(55, 53)
 metadata/_custom_type_script = "uid://dppu13r8bqi1i"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_h4fw4")
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
 
 [node name="HurtPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_h4fw4")
 bus = &"SFX"
 
-[node name="GameMenu" parent="." instance=ExtResource("6_ldgsr")]
-visible = false
-modulate = Color(1, 1, 1, 0)
-z_index = 11
-layout_mode = 0
-offset_left = 107.24839
-offset_top = 58.986618
-offset_right = 747.2484
-offset_bottom = 410.98663
-scale = Vector2(0.9, 0.9)
+[node name="WinBackPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_i6g32")
 
 [connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
-[connection signal="close_requested" from="GameMenu" to="." method="_on_menu_close_requested"]

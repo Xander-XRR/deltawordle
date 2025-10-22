@@ -23,14 +23,16 @@ var current_word: String = ""
 
 
 func _ready() -> void:
+	GlobalSoul.soul.visible = false
+	SceneTransition.set_vertical_bars(0.0)
+	clear_input()
+	await get_tree().create_timer(3.0).timeout
 	next_level()
 
 
 func next_level() -> void:
 	if level != 10:
-		input_field.self_modulate = Color.TRANSPARENT
-		input_field.editable = false
-		input_field.text = ""
+		
 		level += 1
 		
 		var keys = words.keys()
@@ -51,6 +53,12 @@ func next_level() -> void:
 	
 
 
+func clear_input() -> void:
+	input_field.self_modulate = Color.TRANSPARENT
+	input_field.editable = false
+	input_field.text = ""
+
+
 func type_out_hint(hint: String) -> void:
 	hint_label.text = ""
 	for letter in hint.length():
@@ -67,4 +75,6 @@ func _on_input_field_text_submitted(new_text: String) -> void:
 		print("correct")
 	else:
 		print("false")
+	clear_input()
+	await get_tree().create_timer(0.5).timeout
 	next_level()

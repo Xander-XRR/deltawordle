@@ -18,6 +18,9 @@ var encountered_experiment: bool = false
 var fullscreen: bool = false
 var knows_silly_bugs_dangers: bool = false
 var enable_silly_bugs: bool = false
+var fun_enabled: bool = true
+var enable_debug_menu: bool = false
+var enable_dprint: bool = false
 
 signal update_volume_labels(master, sfx, music)
 signal settings_window_popup_requested
@@ -52,7 +55,7 @@ func save_single_setting(setting_name: String, value) -> void:
 		file.set_value("settings", setting_name, value)
 		file.save(Settings.SAVE_PATH)
 	else:
-		print("Settings: No Settings file found.")
+		Debug.dprint(self, "No Settings file found.")
 
 
 func load_single_setting(setting_name: String, default) -> Variant:
@@ -61,7 +64,7 @@ func load_single_setting(setting_name: String, default) -> Variant:
 	if err == OK:
 		return file.get_value("settings", setting_name, default)
 	else:
-		print("Settings: No Settings file found.")
+		Debug.dprint(self, "No Settings file found.")
 		return default
 
 
@@ -76,6 +79,9 @@ func save_settings() -> void:
 	file.set_value("settings", "fullscreen", fullscreen)
 	file.set_value("settings", "knows_silly_bugs_dangers", knows_silly_bugs_dangers)
 	file.set_value("settings", "enable_silly_bugs", enable_silly_bugs)
+	file.set_value("settings", "fun_enabled", fun_enabled)
+	file.set_value("settings", "enable_debug_menu", enable_debug_menu)
+	file.set_value("settings", "enable_dprint", enable_dprint)
 	var err = file.save(SAVE_PATH)
 	if err != OK:
 		push_error("Settings: Failed saving Settings: %s" % err)
@@ -95,8 +101,11 @@ func load_settings() -> void:
 		fullscreen = file.get_value("settings", "fullscreen", fullscreen)
 		knows_silly_bugs_dangers = file.get_value("settings", "knows_silly_bugs_dangers", knows_silly_bugs_dangers)
 		enable_silly_bugs = file.get_value("settings", "enable_silly_bugs", enable_silly_bugs)
+		fun_enabled = file.get_value("settings", "fun_enabled", fun_enabled)
+		enable_debug_menu = file.get_value("settings", "enable_debug_menu", enable_debug_menu)
+		enable_dprint = file.get_value("settings", "enable_dprint", enable_dprint)
 		
-		print("Settings:",
+		Debug.dprint(self,
 			"\n\tmaster_volume: ", master_volume,
 			"\n\tmusic_volume: ", music_volume,
 			"\n\tsfcx_volume: ", sfx_volume,
@@ -106,10 +115,13 @@ func load_settings() -> void:
 			"\n\tfullscreen: ", fullscreen,
 			"\n\tknows_silly_bugs_dangers: ", knows_silly_bugs_dangers,
 			"\n\tenable_silly_bugs: ", enable_silly_bugs,
+			"\n\tfun_enabled: ", fun_enabled,
+			"\n\tenable_debug_menu: ", enable_debug_menu,
+			"\n\tenable_dprint: ", enable_dprint,
 		)
 	else:
 		settings_file_existed_on_startup = false
-		print("Settings: No Settings file found, using defaults.")
+		Debug.dprint(self, "No Settings file found, using defaults.")
 	
 	_apply_loaded_settings()
 	
@@ -141,7 +153,4 @@ func _apply_loaded_settings() -> void:
 		AudioServer.set_bus_mute(2, false)
 		var db = lerp(db_to_linear(-80), 1.0, music_volume / 100)
 		AudioServer.set_bus_volume_linear(1, db)
-	
-	if fullscreen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	

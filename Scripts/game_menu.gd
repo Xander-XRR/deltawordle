@@ -10,14 +10,17 @@ func _ready() -> void:
 
 
 func _on_title_button_pressed() -> void:
+	window_hide()
 	SceneTransition.transition_to_scene("res://Scenes/main.tscn")
 
 
 func _on_settings_button_pressed() -> void:
-	window_interactable(MouseFilter.MOUSE_FILTER_STOP)
-	Settings.show_settings_window()
+	if get_tree().current_scene.name == "Game":
+		window_hide()
+		Settings.show_settings_window()
 
 
 func _on_settings_close_request() -> void:
-	window_interactable(MouseFilter.MOUSE_FILTER_IGNORE)
-	Settings.hide_settings_window()
+	if get_tree().current_scene.name == "Game":
+		window_popup(true)
+		Settings.hide_settings_window()

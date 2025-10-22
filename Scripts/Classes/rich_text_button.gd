@@ -2,8 +2,8 @@ extends RichTextLabel
 class_name RichTextButton
 
 
-@onready var sfx_player_noise: AudioStreamPlayer = $"../SFXPlayerNoise"
-@onready var sfx_player_select: AudioStreamPlayer = $"../SFXPlayerSelect"
+@onready var sfx_player_noise: AudioStreamPlayer = %SFXPlayerNoise
+@onready var sfx_player_select: AudioStreamPlayer = %SFXPlayerSelect
 @export var cursor: String = "> "
 
 signal hovered

@@ -6,9 +6,13 @@ class_name SettingsWindows
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var audio_stream_player_save: AudioStreamPlayer = $AudioStreamPlayerSave
 @onready var alt_soul: TextureRect = $AltSoul
+
 @onready var fullscreen_check_box: CheckBox = $TabContainer/GENERAL/List/Fullscreen/FullscreenCheckBox
 @onready var silly_bugs_confirmation: ConfirmationDialog = $TabContainer/GENERAL/List/SillyBugs/SillyBugsConfirmation
 @onready var silly_bugs_check_box: CheckBox = $TabContainer/GENERAL/List/SillyBugs/SillyBugsCheckBox
+@onready var fun_events_check_box: CheckBox = $TabContainer/GENERAL/List/FunEvents/FunEventsCheckBox
+@onready var debug_check_box: CheckBox = $TabContainer/DEBUG/List/Debug/DebugCheckBox
+@onready var debug_print_check_box: CheckBox = $TabContainer/DEBUG/List/DebugPrint/DebugPrintCheckBox
 
 const MAIN = preload("res://Scenes/main.tscn")
 const ALT_MAIN = preload("res://Scenes/alt_main.tscn")
@@ -22,6 +26,9 @@ func _ready() -> void:
 		alt_soul.visible = true
 	fullscreen_check_box.button_pressed = Settings.fullscreen
 	silly_bugs_check_box.button_pressed = Settings.enable_silly_bugs
+	debug_check_box.button_pressed = Settings.enable_debug_menu
+	debug_print_check_box.button_pressed = Settings.enable_dprint
+	fun_events_check_box.button_pressed = Settings.fun_enabled
 	
 
 
@@ -33,6 +40,7 @@ func _on_close_requested() -> void:
 
 func _on_alt_soul_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_action_pressed("left_mouse_button"):
+		print("bleh")
 		SceneTransition.set_vertical_bars(400.0)
 		window_hide()
 		await get_tree().create_timer(0.25).timeout
@@ -56,8 +64,8 @@ func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
 	var mode = DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN if toggled_on else DisplayServer.WindowMode.WINDOW_MODE_WINDOWED
 	DisplayServer.window_set_mode(mode)
 	Settings.fullscreen = toggled_on
-	print("Window Mode: ", mode)
-	print("Fullscreen: ", toggled_on)
+	Debug.dprint(self, "Window Mode: ", mode)
+	Debug.dprint(self, "Fullscreen: ", toggled_on)
 	
 
 
@@ -66,11 +74,14 @@ func _on_silly_bugs_check_box_toggled(toggled_on: bool) -> void:
 		silly_bugs_confirmation.popup_centered()
 		window_interactable(MouseFilter.MOUSE_FILTER_STOP)
 	else:
-		Settings.enable_silly_bugs = true
+		Settings.enable_silly_bugs = toggled_on
+		Settings.save_settings()
 
 
 func _on_silly_bugs_confirmation_canceled() -> void:
 	silly_bugs_check_box.button_pressed = false
+	Settings.enable_silly_bugs = false
+	Settings.save_settings()
 	window_interactable(MouseFilter.MOUSE_FILTER_IGNORE)
 	silly_bugs_confirmation.hide()
 
@@ -81,3 +92,19 @@ func _on_silly_bugs_confirmation_confirmed() -> void:
 	Settings.save_settings()
 	silly_bugs_confirmation.hide()
 	window_interactable(MouseFilter.MOUSE_FILTER_IGNORE)
+
+
+func _on_debug_check_box_toggled(toggled_on: bool) -> void:
+	Settings.enable_debug_menu = toggled_on
+	Settings.save_settings()
+	
+
+
+func _on_debug_print_check_box_toggled(toggled_on: bool) -> void:
+	Settings.enable_dprint = toggled_on
+	Settings.save_settings()
+
+
+func _on_fun_events_check_box_toggled(toggled_on: bool) -> void:
+	Settings.fun_enabled = toggled_on
+	Settings.save_settings()

@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=27 format=3 uid="uid://beipq3jy5opem"]
 
-[ext_resource type="FontFile" uid="uid://dpblfb7t82dpc" path="res://Assets/Audio/SFX/Fonts/undertale-deltarune-text-font-extended.otf" id="1_omnoq"]
+[ext_resource type="FontFile" uid="uid://dpblfb7t82dpc" path="res://Assets/Fonts/undertale-deltarune-text-font-extended.otf" id="1_omnoq"]
 [ext_resource type="StyleBox" uid="uid://lbbcwh0qiteo" path="res://Assets/Styles/deltarune_box_style.tres" id="2_cplwo"]
 [ext_resource type="Texture2D" uid="uid://diuajfaevcefs" path="res://Assets/Textures/CancelButtonThick.png" id="4_0cvld"]
 [ext_resource type="Texture2D" uid="uid://rd7clulu46s0" path="res://Assets/Textures/CancelButtonThickPressed.png" id="5_fvn23"]

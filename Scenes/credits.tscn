@@ -1,0 +1,238 @@
+[gd_scene load_steps=15 format=3 uid="uid://didki0stkasqp"]
+
+[ext_resource type="Script" uid="uid://d3qbkhpo8lgbh" path="res://Scripts/credits.gd" id="1_1bamb"]
+[ext_resource type="AudioStream" uid="uid://brxq8ht2o46il" path="res://Assets/Audio/SFX/snd_noise.wav" id="2_ccovl"]
+[ext_resource type="Script" uid="uid://dnjqgywuc7qmv" path="res://Scripts/credits_names.gd" id="2_uah1q"]
+[ext_resource type="Script" uid="uid://b6et4ks62v1o7" path="res://Scripts/Classes/rich_text_credit.gd" id="2_xelri"]
+[ext_resource type="AudioStream" uid="uid://c8obhqa78yeel" path="res://Assets/Audio/SFX/snd_select.wav" id="3_1bamb"]
+[ext_resource type="Script" uid="uid://dh01l53ckixl8" path="res://Scripts/credits_desc.gd" id="4_uah1q"]
+[ext_resource type="Shader" uid="uid://b76v1dp1bb5lg" path="res://Assets/Shaders/scrolling.gdshader" id="5_803yc"]
+[ext_resource type="Texture2D" uid="uid://jbleisj27vmy" path="res://Assets/Textures/DepthsBright.png" id="6_1wbrc"]
+[ext_resource type="AudioStream" uid="uid://baumlpedtssq2" path="res://Assets/Audio/Music/castle_funk_long.ogg" id="7_1wbrc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_803yc"]
+shader = ExtResource("5_803yc")
+shader_parameter/speed = 10.0
+shader_parameter/scroll_direction = Vector2(2, 1.5)
+shader_parameter/pulse = true
+shader_parameter/time_offset = 0.0
+shader_parameter/h_transparency = 0.3
+shader_parameter/l_transparency = 0.1
+
+[sub_resource type="Shader" id="Shader_803yc"]
+code = "shader_type canvas_item;
+
+uniform float speed = 10.0;
+uniform vec2 scroll_direction = vec2(1.0, 1.0);
+uniform bool pulse = true;
+uniform float time_offset = 0.0;
+uniform float h_transparency = 1.0;
+uniform float l_transparency = 0.5;
+
+void vertex() {
+	UV = vec2(UV.x + (TIME / speed * scroll_direction.x), UV.y + (TIME / speed * scroll_direction.y) );
+}
+
+void fragment() {
+	if (pulse) {
+		vec4 pixel_color = texture(TEXTURE, UV);
+		COLOR = vec4(pixel_color.xyz, h_transparency - (l_transparency + sin(TIME + time_offset) / 6.0));
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1wbrc"]
+shader = SubResource("Shader_803yc")
+shader_parameter/speed = 10.0
+shader_parameter/scroll_direction = Vector2(-1, -3)
+shader_parameter/pulse = true
+shader_parameter/time_offset = 1.047
+shader_parameter/h_transparency = 0.3
+shader_parameter/l_transparency = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j6nef"]
+shader = SubResource("Shader_803yc")
+shader_parameter/speed = 10.0
+shader_parameter/scroll_direction = Vector2(-0.5, 2)
+shader_parameter/pulse = true
+shader_parameter/time_offset = 2.094
+shader_parameter/h_transparency = 0.3
+shader_parameter/l_transparency = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdv4u"]
+shader = SubResource("Shader_803yc")
+shader_parameter/speed = 10.0
+shader_parameter/scroll_direction = Vector2(4, -2)
+shader_parameter/pulse = true
+shader_parameter/time_offset = 3.141
+shader_parameter/h_transparency = 0.3
+shader_parameter/l_transparency = 0.1
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1bamb")
+
+[node name="BackgroundProphecy" type="ColorRect" parent="."]
+z_index = 1
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.5921569)
+
+[node name="Scroll" type="TextureRect" parent="BackgroundProphecy"]
+self_modulate = Color(1, 1, 1, 0.11764706)
+z_index = -1
+material = SubResource("ShaderMaterial_803yc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_1wbrc")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Scroll2" type="TextureRect" parent="BackgroundProphecy"]
+self_modulate = Color(1, 1, 1, 0.11764706)
+z_index = -1
+material = SubResource("ShaderMaterial_1wbrc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_1wbrc")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Scroll3" type="TextureRect" parent="BackgroundProphecy"]
+self_modulate = Color(1, 1, 1, 0.11764706)
+z_index = -1
+material = SubResource("ShaderMaterial_j6nef")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_1wbrc")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Scroll4" type="TextureRect" parent="BackgroundProphecy"]
+self_modulate = Color(1, 1, 1, 0.11764706)
+z_index = -1
+material = SubResource("ShaderMaterial_fdv4u")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_1wbrc")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Names" type="Node2D" parent="."]
+z_index = 1
+position = Vector2(64, 128)
+script = ExtResource("2_uah1q")
+
+[node name="Xander" type="RichTextLabel" parent="Names"]
+offset_right = 256.0
+offset_bottom = 56.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Xanderx.x86_64"
+vertical_alignment = 1
+script = ExtResource("2_xelri")
+cursor = "   "
+metadata/_custom_type_script = "uid://d4megyjmtx47o"
+
+[node name="Toby" type="RichTextLabel" parent="Names"]
+offset_right = 256.0
+offset_bottom = 56.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Toby Fox"
+vertical_alignment = 1
+script = ExtResource("2_xelri")
+cursor = "   "
+metadata/_custom_type_script = "uid://d4megyjmtx47o"
+
+[node name="Netz" type="RichTextLabel" parent="Names"]
+offset_right = 256.0
+offset_bottom = 56.0
+theme_override_font_sizes/normal_font_size = 25
+text = "netz!!"
+vertical_alignment = 1
+script = ExtResource("2_xelri")
+cursor = "   "
+metadata/_custom_type_script = "uid://d4megyjmtx47o"
+
+[node name="Exit" type="RichTextLabel" parent="Names"]
+offset_right = 256.0
+offset_bottom = 56.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Exit"
+vertical_alignment = 1
+script = ExtResource("2_xelri")
+cursor = "   "
+metadata/_custom_type_script = "uid://d4megyjmtx47o"
+
+[node name="Desc" type="Node2D" parent="."]
+z_index = 1
+script = ExtResource("4_uah1q")
+
+[node name="DescBackground" type="ColorRect" parent="Desc"]
+offset_left = 656.0
+offset_top = 16.0
+offset_right = 1136.0
+offset_bottom = 632.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Label" type="RichTextLabel" parent="Desc"]
+offset_left = 672.0
+offset_top = 32.0
+offset_right = 1120.0
+offset_bottom = 616.0
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+theme_override_font_sizes/bold_italics_font_size = 25
+theme_override_font_sizes/italics_font_size = 25
+theme_override_font_sizes/mono_font_size = 25
+bbcode_enabled = true
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_1wbrc")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="SFXPlayerNoise" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_ccovl")
+bus = &"SFX"
+
+[node name="SFXPlayerSelect" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_1bamb")
+bus = &"SFX"
+
+[connection signal="new_selected" from="Names" to="." method="_on_names_new_selected"]
+[connection signal="new_selected" from="Names" to="Desc" method="_on_names_new_selected"]

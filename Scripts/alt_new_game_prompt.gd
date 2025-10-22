@@ -28,4 +28,6 @@ func _on_letter_options_item_selected(_index: int) -> void:
 
 
 func _on_start_new_game_pressed() -> void:
+	SceneTransition.set_vertical_bars(400.0)
+	await get_tree().create_timer(1.0).timeout
 	get_tree().call_deferred("change_scene_to_file", "res://Scenes/alt_game.tscn")

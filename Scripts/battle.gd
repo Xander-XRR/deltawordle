@@ -9,6 +9,10 @@ extends ColorRect
 var music_level: int = 0
 
 
+func _ready() -> void:
+	_on_music_escalate()
+
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_action_pressed("ui_accept"):
 		_on_music_escalate()

@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dig01yp5h8yvc"]
+[gd_scene load_steps=5 format=3 uid="uid://dig01yp5h8yvc"]
 
 [ext_resource type="Script" uid="uid://donndpn8ilpt" path="res://Scripts/new_game_prompt.gd" id="1_pck68"]
 [ext_resource type="Script" uid="uid://dppu13r8bqi1i" path="res://Scripts/Classes/hover_button.gd" id="1_tv164"]
 [ext_resource type="Script" uid="uid://c3pxgpb4evbfn" path="res://Scripts/option_button.gd" id="2_yhfv2"]
 [ext_resource type="Script" uid="uid://gg71tmcuo2od" path="res://Scripts/Classes/soul_magnet.gd" id="4_lpux0"]
-[ext_resource type="AudioStream" uid="uid://c8obhqa78yeel" path="res://Assets/Audio/SFX/snd_select.wav" id="6_0145e"]
 
 [node name="DeltaWindow" type="Panel"]
 offset_right = 704.0
@@ -62,10 +61,6 @@ text = "START"
 script = ExtResource("1_tv164")
 soul_offset = Vector2(67, 0)
 metadata/_custom_type_script = "uid://dppu13r8bqi1i"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_0145e")
-bus = &"SFX"
 
 [connection signal="item_selected" from="OptionButton" to="OptionButton" method="_on_item_selected"]
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
